@@ -1,5 +1,5 @@
 <div align="center">
-    <img width="75" src="/assets/img/docs/introduction/img_app.png"></img>
+    <img width="75" src="introduction/img_app.png"></img>
 </div>
 
 <h1 align="center">Fold Craft Launcher</h1>
