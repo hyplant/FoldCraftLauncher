@@ -4,31 +4,31 @@
     "visible": true,
     "displayName": [
       {
-        "lang": "zh",
+        "lang": "zh-CN",
         "name": "关于"
       }
     ],
     "item": [
       {
-        "lang": "zh",
+        "lang": "zh-CN",
         "title": "README.md",
         "subtitle": "README",
         "author": "Tungsten",
-        "path": "/document/1.1.5.1-2/about/README.md"
+        "path": "https://github.com/hyplant/FoldCraftLauncher/blob/doc/document/about/README.md"
       },
       {
-        "lang": "zh",
+        "lang": "zh-CN",
         "title": "为 FCL 文档仓库贡献",
         "subtitle": "如何编写一份文档。",
         "author": "Tungsten",
-        "path": "/document/1.1.5.1-2/about/contribution.md"
+        "path": "https://github.com/hyplant/FoldCraftLauncher/blob/doc/document/about/contribution.md"
       },
       {
-        "lang": "zh",
+        "lang": "zh-CN",
         "title": "compilation.md",
         "subtitle": "compilation",
         "author": "Tungsten",
-        "path": "/document/1.1.5.1-2/about/compilation.md"
+        "path": "https://github.com/hyplant/FoldCraftLauncher/blob/doc/document/about/compilation.md"
       }
     ]
   },
@@ -37,17 +37,17 @@
     "visible": true,
     "displayName": [
       {
-        "lang": "zh",
+        "lang": "zh-CN",
         "name": "启动器"
       }
     ],
     "item": [
       {
-        "lang": "zh",
+        "lang": "zh-CN",
         "title": "介绍",
         "subtitle": "关于启动器。",
         "author": "Tungsten",
-        "path": "/document/1.1.5.1-2/launcher/introduction.md"
+        "path": "https://github.com/hyplant/FoldCraftLauncher/blob/doc/document/launcher/introduction.md"
       }
     ]
   },
@@ -56,17 +56,17 @@
     "visible": true,
     "displayName": [
       {
-        "lang": "zh",
+        "lang": "zh-CN",
         "name": "联机"
       }
     ],
     "item": [
       {
-        "lang": "zh",
+        "lang": "zh-CN",
         "title": "Multiplayer",
         "subtitle": "How to play with your friends without a private server.",
         "author": "Tungsten",
-        "path": "/document/1.1.5.1-2/multiplayer/multiplayer.md"
+        "path": "https://github.com/hyplant/FoldCraftLauncher/blob/doc/document/multiplayer/multiplayer.md"
       }
     ]
   }
