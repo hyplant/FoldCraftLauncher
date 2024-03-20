@@ -74,10 +74,3 @@ along with Fold Craft Launcher.  If not, see <https://www.gnu.org/licenses/>.
 
 - [authlib-injector](https://github.com/yushijinhun/authlib-injector)
 
-<h1 align="center">赞助</h1>
-
-<div align="center">
-
-[![Sponsor](https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#EA4AAA)](https://afdian.net/@tungs)
-
-</div>
