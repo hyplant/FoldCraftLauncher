@@ -1,0 +1,32 @@
+{
+  "id": 1,
+  "significant": true,
+  "outdated": false,
+  "minVersion": -1,
+  "maxVersion": -1,
+  "specificLang": [
+    "en",
+    "zh_CN"
+  ],
+  "title": [
+    {
+      "lang": "en",
+      "text": "About"
+    },
+    {
+      "lang": "zh_CN",
+      "text": "关于"
+    }
+  ],
+  "date": "1981-01-01 01:01:02",
+  "content": [
+    {
+      "lang": "en",
+      "text": "Unofficial version by Hyplant."
+    },
+    {
+      "lang": "zh_CN",
+      "text": "非官方版本，由 Hyplant 制做。"
+    }
+  ]
+}

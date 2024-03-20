@@ -1,0 +1,38 @@
+[
+  {
+    "type": "release",
+    "versionCode": 2147483600,
+    "versionName": "999.999.999.0",
+    "date": "1981-01-01 01:01:02",
+    "description": [
+      {
+        "lang": "en",
+        "text": "test.release.ver\nPlease ignore."
+      },
+      {
+        "lang": "zh_CN",
+        "text": "test.release.ver\n请点击忽略。"
+      }
+    ],
+    "netdiskUrl": "https://url67.ctfile.com/d/37104367-57608754-ff5ae3?p=2604",
+    "url": "https://icraft.ren:90/error.jpg"
+  },
+  {
+    "type": "debug",
+    "versionCode": 2147483647,
+    "versionName": "999.999.999.999",
+    "date": "1981-01-01 01:01:02",
+    "description": [
+      {
+        "lang": "en",
+        "text": "test.release.ver\nPlease ignore."
+      },
+      {
+        "lang": "zh_CN",
+        "text": "test.release.ver\n请点击忽略。"
+      }
+    ],
+    "netdiskUrl": "https://url67.ctfile.com/d/37104367-57608754-ff5ae3?p=2604",
+    "url": "https://icraft.ren:90/error.jpg"
+  }
+]

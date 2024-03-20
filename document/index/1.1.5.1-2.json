@@ -1,0 +1,73 @@
+[
+  {
+    "category": "About",
+    "visible": true,
+    "displayName": [
+      {
+        "lang": "zh",
+        "name": "关于"
+      }
+    ],
+    "item": [
+      {
+        "lang": "zh",
+        "title": "README.md",
+        "subtitle": "README",
+        "author": "Tungsten",
+        "path": "/document/1.1.5.1-2/about/README.md"
+      },
+      {
+        "lang": "zh",
+        "title": "为 FCL 文档仓库贡献",
+        "subtitle": "如何编写一份文档。",
+        "author": "Tungsten",
+        "path": "/document/1.1.5.1-2/about/contribution.md"
+      },
+      {
+        "lang": "zh",
+        "title": "compilation.md",
+        "subtitle": "compilation",
+        "author": "Tungsten",
+        "path": "/document/1.1.5.1-2/about/compilation.md"
+      }
+    ]
+  },
+  {
+    "category": "Launcher",
+    "visible": true,
+    "displayName": [
+      {
+        "lang": "zh",
+        "name": "启动器"
+      }
+    ],
+    "item": [
+      {
+        "lang": "zh",
+        "title": "介绍",
+        "subtitle": "关于启动器。",
+        "author": "Tungsten",
+        "path": "/document/1.1.5.1-2/launcher/introduction.md"
+      }
+    ]
+  },
+  {
+    "category": "Multiplayer",
+    "visible": true,
+    "displayName": [
+      {
+        "lang": "zh",
+        "name": "联机"
+      }
+    ],
+    "item": [
+      {
+        "lang": "zh",
+        "title": "Multiplayer",
+        "subtitle": "How to play with your friends without a private server.",
+        "author": "Tungsten",
+        "path": "/document/1.1.5.1-2/multiplayer/multiplayer.md"
+      }
+    ]
+  }
+]
