@@ -1,0 +1,16 @@
+[
+  {
+    "type": "release",
+    "versionCode": 2147483647,
+    "versionName": "本次更新内容",
+    "date": "1981-01-01 01:01:02",
+    "description": [
+      {
+        "lang": "zh_CN",
+        "text": "???"
+      }
+    ],
+    "netdiskUrl": null,
+    "url": null
+  }
+]
