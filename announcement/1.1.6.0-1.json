@@ -1,0 +1,23 @@
+{
+  "id": 1,
+  "significant": true,
+  "outdated": false,
+  "minVersion": -1,
+  "maxVersion": -1,
+  "specificLang": [
+    "zh"
+  ],
+  "title": [
+    {
+      "lang": "zh_CN",
+      "text": "1.1.6.0-1"
+    }
+  ],
+  "date": "1981-01-01 01:01:02",
+  "content": [
+    {
+      "lang": "zh_CN",
+      "text": "进入启动器设置，点击检查更新，查看该版本的更新内容。"
+    }
+  ]
+}
