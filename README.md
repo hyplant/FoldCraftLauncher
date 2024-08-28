@@ -6,5 +6,5 @@
 - 公告文件 `announcement`
 - 用户协议文件 `eula`
 - 检查更新文件 `version_map`
-
-<h2 align="center">后期该仓库可能还会用于存放文档。</h2>
+<br>
+- 文档 `document`
