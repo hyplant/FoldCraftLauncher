@@ -1,5 +1,24 @@
 [
   {
+    "category": "test",
+    "visible": true,
+    "displayName": [
+      {
+        "lang": "",
+        "name": "Hello World"
+      }
+    ],
+    "item": [
+      {
+        "lang": "",
+        "title": " Article",
+        "subtitle": "description",
+        "author": "Writer",
+        "path": "http://mojang.com/"
+      }
+    ]
+  },
+  {
     "category": "Launcher",
     "visible": true,
     "displayName": [
