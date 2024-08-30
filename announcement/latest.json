@@ -1,5 +1,5 @@
 {
-  "id": 1,
+  "id": 5,
   "significant": true,
   "outdated": false,
   "minVersion": -1,
@@ -7,15 +7,23 @@
   "specificLang": [],
   "title": [
     {
-      "lang": "zh",
-      "text": "1.1.7.7-1"
+      "lang": "en",
+      "text": "About 1.1.7.7"
+    },
+    {
+      "lang": "zh_CN",
+      "text": "关于1.1.7.7"
     }
   ],
-  "date": "1981-01-01 01:01:02",
+  "date": "2024.08.28",
   "content": [
     {
-      "lang": "zh",
-      "text": "进入启动器设置，点击检查更新，查看该版本的更新内容。"
+      "lang": "en",
+      "text": "There is a bug in version 1.1.7.7. If you find that the launcher automatically exits when deleting text, you can download this fix. \n https://github.com/FCL-Team/FoldCraftLauncher/actions/runs/10588078504"
+    },
+    {
+      "lang": "zh_CN",
+      "text": "在1.1.7.7中有一个bug，如果你发现当你在删除文本的时候启动器自动退出，你可以下载这个修复版。\n https://github.com/FCL-Team/FoldCraftLauncher/actions/runs/10588078504"
     }
   ]
 }
