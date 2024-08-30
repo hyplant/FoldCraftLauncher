@@ -4,31 +4,24 @@
     "visible": true,
     "displayName": [
       {
-        "lang": "zh_CN",
+        "lang": "zh",
         "name": "关于"
       }
     ],
     "item": [
       {
-        "lang": "zh_CN",
+        "lang": "zh",
         "title": "README.md",
         "subtitle": "README",
         "author": "Tungsten",
         "path": "https://github.com/hyplant/FoldCraftLauncher/tree/doc/document/about/README.md"
       },
       {
-        "lang": "zh_CN",
+        "lang": "zh",
         "title": "为 FCL 文档仓库贡献",
         "subtitle": "如何编写一份文档。",
         "author": "Tungsten",
         "path": "https://github.com/hyplant/FoldCraftLauncher/tree/doc/document/about/contribution.md"
-      },
-      {
-        "lang": "zh_CN",
-        "title": "compilation.md",
-        "subtitle": "compilation",
-        "author": "Tungsten",
-        "path": "https://github.com/hyplant/FoldCraftLauncher/tree/doc/document/about/compilation.md"
       }
     ]
   },
@@ -37,13 +30,13 @@
     "visible": true,
     "displayName": [
       {
-        "lang": "zh_CN",
+        "lang": "zh",
         "name": "启动器"
       }
     ],
     "item": [
       {
-        "lang": "zh_CN",
+        "lang": "zh",
         "title": "介绍",
         "subtitle": "关于启动器。",
         "author": "Tungsten",
@@ -56,13 +49,13 @@
     "visible": true,
     "displayName": [
       {
-        "lang": "zh_CN",
+        "lang": "zh",
         "name": "联机"
       }
     ],
     "item": [
       {
-        "lang": "zh_CN",
+        "lang": "zh",
         "title": "Multiplayer",
         "subtitle": "How to play with your friends without a private server.",
         "author": "Tungsten",
