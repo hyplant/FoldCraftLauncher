@@ -1,6 +1,6 @@
 {
-  "id": 5,
-  "significant": true,
+  "id": 1,
+  "significant": false,
   "outdated": false,
   "minVersion": -1,
   "maxVersion": -1,
@@ -15,15 +15,15 @@
       "text": "关于1.1.7.7"
     }
   ],
-  "date": "2024.08.28 There is a bug in version https://github.com/FCL-Team/FoldCraftLauncher/actions/runs/10588078504 There is a bug in version",
+  "date": "https://github.com/FCL-Team/FoldCraftLauncher/actions/runs/10588078504",
   "content": [
     {
       "lang": "en",
-      "text": "There is a bug in version 1.1.7.7. If you find that the launcher automatically exits when deleting text, you can download this fix. \n https://github.com/FCL-Team/FoldCraftLauncher/actions/runs/10588078504"
+      "text": "There is a bug in version -1.1.7.7-\n If you find that the launcher automatically exits when deleting text, you can download this fix."
     },
     {
       "lang": "zh_CN",
-      "text": "在1.1.7.7中有一个bug，如果你发现当你在删除文本的时候启动器自动退出，你可以下载这个修复版。\n https://github.com/FCL-Team/FoldCraftLauncher/actions/runs/10588078504"
+      "text": "在 -1.1.7.7- 中有一个bug，如果你发现当你在删除文本的时候启动器自动退出，你可以下载这个修复版。"
     }
   ]
 }
