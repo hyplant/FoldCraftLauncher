@@ -136,10 +136,12 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
                             RuntimeUtils.copyAssetsDirToLocalDir(context, "othersExternal", FCLPath.EXTERNAL_DIR)
                             RuntimeUtils.copyAssetsDirToLocalDir(context, "othersInternal", FCLPath.INTERNAL_DIR)
                             other = true
-                            otherState.visibility = View.VISIBLE
-                            otherProgress.visibility = View.GONE
-                            refreshDrawables()
-                            check()
+                            activity?.runOnUiThread {
+                                otherState.visibility = View.VISIBLE
+                                otherProgress.visibility = View.GONE
+                                refreshDrawables()
+                                check()
+                            }
                         } catch (e: IOException) {
                             e.printStackTrace()
                         }
