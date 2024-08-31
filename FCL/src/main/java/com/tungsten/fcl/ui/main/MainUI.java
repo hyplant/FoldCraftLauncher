@@ -141,18 +141,16 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
         announcementContainer.setVisibility(View.INVISIBLE);
         if(FCLApplication.appConfig.getProperty("enable-announcement","true").equals("true")){
             @SuppressLint("SimpleDateFormat") CompletableFuture<Announcement> future = CompletableFuture.supplyAsync(() -> {
-                Logging.LOG.log(Level.WARNING, "trying to get onlie announcement");
                 try {
                     return new Gson().fromJson(NetworkUtils.doGet(NetworkUtils.toURL(ANNOUNCEMENT_URL), FCLApplication.deviceInfoUtils.toString()), Announcement.class);
                 }catch (Exception e) {
-                    Logging.LOG.log(Level.WARNING, "failed to get online announcement");
                     return new Announcement(
                             -1,
                             true,
                             false,
                             -1,
                             -1,
-                            new ArrayList<>(Collections.singletonList("")),
+                            new ArrayList<>(),
                             new ArrayList<>(Collections.singletonList(new Announcement.Content("en", getContext().getString(R.string.announcement_error)))),
                             new SimpleDateFormat("yyyy.MM.dd").format(new Date()),
                             new ArrayList<>(Collections.singletonList(new Announcement.Content("en", getContext().getString(R.string.announcement_failure))))
@@ -163,10 +161,8 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
                 new Handler(Looper.getMainLooper()).post(() -> {
                     this.announcement = announcement;
                     if (!announcement.shouldDisplay(getContext())) {
-                        Logging.LOG.log(Level.WARNING, "hide online announcement");
                         return;
                     }
-                    Logging.LOG.log(Level.WARNING, "show online announcement");
                     title.setText(this.announcement.getDisplayTitle(getContext()));
                     announcementView.setText(this.announcement.getDisplayContent(getContext()));
                     date.setText(this.announcement.getDate());
