@@ -8,11 +8,11 @@
   "title": [
     {
       "lang": "en",
-      "text": "About 1.1.7.7"
+      "text": "About 1.1.7.7 Long title test. Long title test. Long title test. This is a long long long long long long title. Long title test. long title test."
     },
     {
       "lang": "zh_CN",
-      "text": "关于1.1.7.7"
+      "text": "关于1.1.7.7 长标题测试。 长标题测试。 长标题测试。 这是一个 很长 很长 很长 很长 很长 的标题。长标题测试。 长标题测试。"
     }
   ],
   "date": "https://github.com/FCL-Team/FoldCraftLauncher/actions/runs/10588078504",
