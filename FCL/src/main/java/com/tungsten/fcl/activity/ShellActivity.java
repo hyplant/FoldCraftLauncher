@@ -29,11 +29,9 @@ public class ShellActivity extends FCLActivity {
         setContentView(R.layout.activity_shell);
         logWindow = findViewById(R.id.shell_log_window);
         editText = findViewById(R.id.shell_input);
-        logWindow.appendLog("Welcome to use Fold Craft Launcher!\n");
-        logWindow.appendLog("Here is the shell command line!\n");
         shellUtil = new ShellUtil(new File(FCLPath.FILES_DIR).getParent(), output -> logWindow.appendLog("\t" + output + "\n"));
         shellUtil.start();
-        shellUtil.append(". .bashrc");
+        shellUtil.append(". \"./.bashrc\"\n");
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -51,7 +49,7 @@ public class ShellActivity extends FCLActivity {
                 if (cmd.endsWith("\n")) {
                     logWindow.appendLog("->" + cmd);
                     editText.setText("");
-                    if (cmd == "clear") {
+                    if (cmd == "clear\n") {
                         logWindow.cleanLog();
                         return;
                     }
