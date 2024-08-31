@@ -178,12 +178,11 @@ public class LauncherSettingPage extends FCLCommonPage implements View.OnClickLi
                 config().downloadThreadsProperty().set(FetchTask.DEFAULT_CONCURRENCY);
             }
         });
+
         threads.setProgress(config().getDownloadThreads());
         threads.addProgressListener();
         threads.progressProperty().bindBidirectional(config().downloadThreadsProperty());
         threadsText.stringProperty().bind(Bindings.createStringBinding(() -> threads.getProgress() + "", threads.progressProperty()));
-        // clear cache when start
-        clearCacheDirs();
     }
 
     private int getSourcePosition(String source) {
@@ -205,17 +204,24 @@ public class LauncherSettingPage extends FCLCommonPage implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        if (v == checkUpdate && !UpdateChecker.getInstance().isChecking()) {
-            UpdateChecker.getInstance().checkManually(getContext()).whenComplete(Schedulers.androidUIThread(), e -> {
-                if (e != null) {
-                    FCLAlertDialog.Builder builder = new FCLAlertDialog.Builder(getContext());
-                    builder.setCancelable(false);
-                    builder.setAlertLevel(FCLAlertDialog.AlertLevel.ALERT);
-                    builder.setMessage(getContext().getString(R.string.update_check_failed) + "\n" + e);
-                    builder.setNegativeButton(getContext().getString(com.tungsten.fcllibrary.R.string.dialog_positive), null);
-                    builder.create().show();
-                }
-            }).start();
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("launcher", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        if (v == checkUpdate) {
+            editor.putInt("ignore_announcement", -1);
+            editor.apply();
+            if (!UpdateChecker.getInstance().isChecking()) {
+                UpdateChecker.getInstance().checkManually(getContext()).whenComplete(Schedulers.androidUIThread(), e -> {
+                    if (e != null) {
+                        FCLAlertDialog.Builder builder = new FCLAlertDialog.Builder(getContext());
+                        builder.setCancelable(false);
+                        builder.setAlertLevel(FCLAlertDialog.AlertLevel.ALERT);
+                        builder.setMessage(getContext().getString(R.string.update_check_failed) + "\n" + e);
+                        builder.setNegativeButton(getContext().getString(com.tungsten.fcllibrary.R.string.dialog_positive), null);
+                        builder.create().show();
+                    }
+                }).start();
+            }
         }
         if (v == clearCache) {
             clearCacheDirs();

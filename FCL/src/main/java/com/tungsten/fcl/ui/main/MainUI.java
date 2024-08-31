@@ -138,6 +138,7 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
     }
 
     private void checkAnnouncement() {
+        announcementContainer.setVisibility(View.INVISIBLE);
         if(FCLApplication.appConfig.getProperty("enable-announcement","true").equals("true")){
             @SuppressLint("SimpleDateFormat") CompletableFuture<Announcement> future = CompletableFuture.supplyAsync(() -> {
                 try {
@@ -159,13 +160,15 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
             future.thenAccept(announcement -> {
                 new Handler(Looper.getMainLooper()).post(() -> {
                     this.announcement = announcement;
-                    announcementContainer.setVisibility(View.VISIBLE);
-                    title.setText(AndroidUtils.getLocalizedText(getContext(), "announcement", this.announcement.getDisplayTitle(getContext())));
+                    if (!announcement.shouldDisplay(getContext()))
+                        return;
+                    title.setText(this.announcement.getDisplayTitle(getContext()));
                     announcementView.setText(this.announcement.getDisplayContent(getContext()));
-                    date.setText(AndroidUtils.getLocalizedText(getContext(), "update_date", this.announcement.getDate()));
+                    date.setText(this.announcement.getDate());
+                    announcementContainer.setVisibility(View.VISIBLE);
                 });
             });
-        }else announcementContainer.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void hideAnnouncement() {

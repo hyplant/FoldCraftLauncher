@@ -88,7 +88,6 @@
     <string name="action_retry">重试</string>
     <string name="action_skip">跳过</string>
 
-    <string name="announcement">公告：%s</string>
     <string name="announcement_significant">此公告为重要公告，无法隐藏。</string>
     <string name="announcement_error">异常</string>
     <string name="announcement_failure">无法获取公告。\n您可以稍后前往 github 仓库的 doc 分支查看。</string>
@@ -108,7 +107,7 @@
     <string name="button_copy">复制</string>
     <string name="button_download">下载</string>
     <string name="button_export">导出</string>
-    <string name="button_hide">不再显示</string>
+    <string name="button_hide">关闭</string>
     <string name="button_install">安装</string>
     <string name="button_mouse_left">鼠标左键</string>
     <string name="button_mouse_right">鼠标右键</string>
@@ -734,7 +733,7 @@
 
     <string name="settings_launcher">启动器设置</string>
     <string name="settings_launcher_debug">调试</string>
-    <string name="settings_launcher_upgrade">启动器更新</string>
+    <string name="settings_launcher_upgrade">应用程序和公告更新</string>
     <string name="settings_launcher_upgrade_check">检测</string>
     <string name="settings_launcher_cache">缓存文件夹</string>
     <string name="settings_launcher_clear_cache">清理缓存</string>
@@ -798,7 +797,7 @@
 
     <string name="update">更新</string>
     <string name="update_netdisk">网盘</string>
-    <string name="update_checking">正在检查更新</string>
+    <string name="update_checking">正在检查更新（若有新公告，请重启启动器查看）</string>
     <string name="update_check_failed">无法检测更新</string>
     <string name="update_date">日期：%s</string>
     <string name="update_description">描述：\n%s</string>
