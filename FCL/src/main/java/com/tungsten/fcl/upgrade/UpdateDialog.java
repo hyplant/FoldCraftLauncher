@@ -114,7 +114,7 @@ public class UpdateDialog extends FCLDialog implements View.OnClickListener {
         }
         if (v == positive) {
             String upgradeUrl = version.getUrl();
-            if (updateUrl != null) {
+            if (upgradeUrl != null) {
                 TaskDialog dialog = new TaskDialog(getContext(), new TaskCancellationAction(AppCompatDialog::dismiss));
                 dialog.setTitle(getContext().getString(R.string.update_launcher));
                 Schedulers.androidUIThread().execute(() -> {
