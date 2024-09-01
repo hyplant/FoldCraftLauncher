@@ -112,7 +112,7 @@ public class UpdateDialog extends FCLDialog implements View.OnClickListener {
             UpdateChecker.setIgnore(getContext(), version.getVersionCode());
             dismiss();
         }
-        if (v == positive) 
+        if (v == positive) {
             String upgradeUrl = version.getUrl();
             if (updateUrl != null) {
                 TaskDialog dialog = new TaskDialog(getContext(), new TaskCancellationAction(AppCompatDialog::dismiss));
@@ -150,7 +150,7 @@ public class UpdateDialog extends FCLDialog implements View.OnClickListener {
             dismiss();
         }
         if (v == netdisk) {
-            String upgradeNetdiskUrl = version.getNetdiskUrl()
+            String upgradeNetdiskUrl = version.getNetdiskUrl();
             if (upgradeNetdiskUrl != null) {
                 String upgradeNetdiskPasswd = version.getNetdiskPasswd()
                 if (upgradeNetdiskPasswd != null) {
