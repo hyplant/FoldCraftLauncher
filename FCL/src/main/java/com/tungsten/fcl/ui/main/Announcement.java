@@ -80,7 +80,7 @@ public class Announcement {
             title.add(new Content("en",""));
         }
         for (Content c : title) {
-            if (LocaleUtils.getLocale(LocaleUtils.getLanguage(context)).toString().contains(c.getLang())) {
+            if (c.getLang() == null && LocaleUtils.getLocale(LocaleUtils.getLanguage(context)).toString().contains(c.getLang())) {
                 return c.getText();
             }
         }
@@ -92,7 +92,7 @@ public class Announcement {
             content.add(new Content("en",""));
         }
         for (Content c : content) {
-            if (LocaleUtils.getLocale(LocaleUtils.getLanguage(context)).toString().contains(c.getLang())) {
+            if (c.getLang() == null && LocaleUtils.getLocale(LocaleUtils.getLanguage(context)).toString().contains(c.getLang())) {
                 return c.getText();
             }
         }
