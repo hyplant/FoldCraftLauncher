@@ -1,6 +1,6 @@
 [
   {
-    "type": "beta",
+    "type": "dev",
     "versionCode": 2147483647,
     "versionName": "1.1.7.7-2",
     "date": "1981-01-01 01:01:02",
@@ -14,8 +14,8 @@
         "text": "..."
       }
     ],
-    "netdiskUrl": "https://github.com/hyplant/FoldCraftLauncher/actions",
+    "netdiskUrl": null,
     "netdiskPasswd": "12345",
-    "url": null
+    "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/hyplant/FoldCraftLauncher/doc/base.apk"
   }
 ]

@@ -6,5 +6,4 @@
 - 公告文件 `announcement`
 - 用户协议文件 `eula`
 - 检查更新文件 `version_map`
-<br>
 - 文档 `document`
