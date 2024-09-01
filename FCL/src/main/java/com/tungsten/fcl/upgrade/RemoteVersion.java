@@ -16,8 +16,9 @@ public class RemoteVersion {
     private final ArrayList<Description> description;
     private final String url;
     private final String netdiskUrl;
+    private final String netdiskPasswd;
 
-    public RemoteVersion(String type, int versionCode, String versionName, String date, ArrayList<Description> description, String url, String netdiskUrl) {
+    public RemoteVersion(String type, int versionCode, String versionName, String date, ArrayList<Description> description, String url, String netdiskUrl, String netdiskPasswd) {
         this.type = type;
         this.versionCode = versionCode;
         this.versionName = versionName;
@@ -25,6 +26,7 @@ public class RemoteVersion {
         this.description = description;
         this.url = url;
         this.netdiskUrl = netdiskUrl;
+        this.netdiskPasswd = netdiskPasswd;
     }
 
     public String getType() {
@@ -55,20 +57,20 @@ public class RemoteVersion {
         return netdiskUrl;
     }
 
-    public boolean isBeta() {
-        return getType().equals("beta");
+    public String getNetdiskPasswd() {
+        return netdiskPasswd;
     }
 
-    public String getDisplayType(Context context) {
-        return type.equals("beta") ? context.getString(R.string.update_version_beta) : context.getString(R.string.update_version_release);
+    public boolean isBeta() {
+        return !getType().equals("release");
     }
 
     public String getDisplayDescription(Context context) {
         if (description.size() == 0) {
-            throw new IllegalStateException("No update description list!");
+            return "";
         }
         for (Description d : description) {
-            if (LocaleUtils.getLocale(LocaleUtils.getLanguage(context)).toString().contains(d.getLang())) {
+            if (d.getLang() == null || LocaleUtils.getLocale(LocaleUtils.getLanguage(context)).toString().contains(d.getLang())) {
                 return d.getText();
             }
         }
