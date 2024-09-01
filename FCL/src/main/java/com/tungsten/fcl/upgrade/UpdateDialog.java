@@ -74,7 +74,7 @@ public class UpdateDialog extends FCLDialog implements View.OnClickListener {
 
         versionName.setText(String.format(getContext().getString(R.string.update_version), version.getVersionName()));
         date.setText(String.format(getContext().getString(R.string.update_date), version.getDate()));
-        type.setText(String.format(getContext().getString(R.string.update_type), version.getDisplayType(getContext())));
+        type.setText(String.format(getContext().getString(R.string.update_type), version.getType()));
         description.setText(String.format(getContext().getString(R.string.update_description), version.getDisplayDescription(getContext())));
 
         ignore = findViewById(R.id.ignore);
@@ -112,45 +112,54 @@ public class UpdateDialog extends FCLDialog implements View.OnClickListener {
             UpdateChecker.setIgnore(getContext(), version.getVersionCode());
             dismiss();
         }
-        if (v == positive) {
-            TaskDialog dialog = new TaskDialog(getContext(), new TaskCancellationAction(AppCompatDialog::dismiss));
-            dialog.setTitle(getContext().getString(R.string.update_launcher));
-            Schedulers.androidUIThread().execute(() -> {
-                TaskExecutor executor = Task.composeAsync(() -> {
-                    FileDownloadTask task = new FileDownloadTask(NetworkUtils.toURL(version.getUrl()), new File(FCLPath.CACHE_DIR, "FoldCraftLauncher.apk"));
-                    task.setName("FoldCraftLauncher");
-                    return task.whenComplete(Schedulers.androidUIThread(), exception -> {
-                        if (exception == null) {
-                            Intent intent = new Intent(Intent.ACTION_VIEW);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            Uri apkUri = FileProvider.getUriForFile(getContext(), getContext().getString(com.tungsten.fcllibrary.R.string.file_browser_provider), new File(FCLPath.CACHE_DIR, "FoldCraftLauncher.apk"));
-                            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                            intent.setDataAndType(apkUri, "application/vnd.android.package-archive");
-                            getContext().startActivity(intent);
-                        } else if (!(exception instanceof CancellationException)) {
-                            FCLAlertDialog.Builder builder = new FCLAlertDialog.Builder(getContext());
-                            builder.setCancelable(false);
-                            builder.setAlertLevel(FCLAlertDialog.AlertLevel.ALERT);
-                            builder.setMessage(getContext().getString(R.string.update_failed) + "\n" + exception.getMessage());
-                            builder.setNegativeButton(getContext().getString(com.tungsten.fcllibrary.R.string.dialog_positive), null);
-                            builder.create().show();
-                        }
-                    });
-                }).executor();
-                dialog.setExecutor(executor);
-                dialog.show();
-                executor.start();
-            });
+        if (v == positive) 
+            String upgradeUrl = version.getUrl();
+            if (updateUrl != null) {
+                TaskDialog dialog = new TaskDialog(getContext(), new TaskCancellationAction(AppCompatDialog::dismiss));
+                dialog.setTitle(getContext().getString(R.string.update_launcher));
+                Schedulers.androidUIThread().execute(() -> {
+                    TaskExecutor executor = Task.composeAsync(() -> {
+                        FileDownloadTask task = new FileDownloadTask(NetworkUtils.toURL(upgradeUrl), new File(FCLPath.CACHE_DIR, "FoldCraftLauncher.apk"));
+                        task.setName("FoldCraftLauncher");
+                        return task.whenComplete(Schedulers.androidUIThread(), exception -> {
+                            if (exception == null) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Uri apkUri = FileProvider.getUriForFile(getContext(), getContext().getString(com.tungsten.fcllibrary.R.string.file_browser_provider), new File(FCLPath.CACHE_DIR, "FoldCraftLauncher.apk"));
+                                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                                intent.setDataAndType(apkUri, "application/vnd.android.package-archive");
+                                getContext().startActivity(intent);
+                            } else if (!(exception instanceof CancellationException)) {
+                                FCLAlertDialog.Builder builder = new FCLAlertDialog.Builder(getContext());
+                                builder.setCancelable(false);
+                                builder.setAlertLevel(FCLAlertDialog.AlertLevel.ALERT);
+                                builder.setMessage(getContext().getString(R.string.update_failed) + "\n" + exception.getMessage());
+                                builder.setNegativeButton(getContext().getString(com.tungsten.fcllibrary.R.string.dialog_positive), null);
+                                builder.create().show();
+                            }
+                        });
+                    }).executor();
+                    dialog.setExecutor(executor);
+                    dialog.show();
+                    executor.start();
+                });
+            }
             dismiss();
         }
         if (v == negative) {
             dismiss();
         }
         if (v == netdisk) {
-            FCLBridge.openLink(version.getNetdiskUrl());
-            ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
-            ClipData clip = ClipData.newPlainText("FCL Clipboard", "1145");
-            clipboard.setPrimaryClip(clip);
+            String upgradeNetdiskUrl = version.getNetdiskUrl()
+            if (upgradeNetdiskUrl != null) {
+                String upgradeNetdiskPasswd = version.getNetdiskPasswd()
+                if (upgradeNetdiskPasswd != null) {
+                    ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipData clip = ClipData.newPlainText("FCL Clipboard", upgradeNetdiskPasswd);
+                    clipboard.setPrimaryClip(clip);
+                }
+                FCLBridge.openLink(upgradeNetdiskUrl);
+            }
             dismiss();
         }
     }
