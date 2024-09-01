@@ -733,7 +733,7 @@
 
     <string name="settings_launcher">启动器设置</string>
     <string name="settings_launcher_debug">调试</string>
-    <string name="settings_launcher_upgrade">应用程序和公告更新</string>
+    <string name="settings_launcher_upgrade">启动器和公告更新</string>
     <string name="settings_launcher_upgrade_check">检测</string>
     <string name="settings_launcher_cache">缓存文件夹</string>
     <string name="settings_launcher_clear_cache">清理缓存</string>
@@ -748,9 +748,9 @@
     <string name="settings_launcher_launcher_log_export_failed">无法导出日志</string>
     <string name="settings_launcher_launcher_log_export_success">日志已被导出至 %s</string>
     <string name="settings_launcher_theme">主题</string>
-    <string name="settings_launcher_background_lt">亮色模式启动器背景图片</string>
-    <string name="settings_launcher_background_dk">暗色模式启动器背景图片</string>
-    <string name="settings_launcher_cursor">鼠标图片</string>
+    <string name="settings_launcher_background_lt">亮色背景图</string>
+    <string name="settings_launcher_background_dk">暗色背景图</string>
+    <string name="settings_launcher_cursor">鼠标指针</string>
     <string name="settings_launcher_ignore_notch">忽略刘海屏</string>
     <string name="settings_launcher_animation_speed">动画速度</string>
 

@@ -208,6 +208,7 @@ public class LauncherSettingPage extends FCLCommonPage implements View.OnClickLi
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         if (v == checkUpdate) {
+            editor.putInt("ignore_update", -1);
             editor.putInt("ignore_announcement", -1);
             editor.apply();
             if (!UpdateChecker.getInstance().isChecking()) {
