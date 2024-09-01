@@ -152,7 +152,7 @@ public class UpdateDialog extends FCLDialog implements View.OnClickListener {
         if (v == netdisk) {
             String upgradeNetdiskUrl = version.getNetdiskUrl();
             if (upgradeNetdiskUrl != null) {
-                String upgradeNetdiskPasswd = version.getNetdiskPasswd()
+                String upgradeNetdiskPasswd = version.getNetdiskPasswd();
                 if (upgradeNetdiskPasswd != null) {
                     ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
                     ClipData clip = ClipData.newPlainText("FCL Clipboard", upgradeNetdiskPasswd);
