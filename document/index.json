@@ -1,12 +1,8 @@
 [
   {
-    "category": "test",
+    "category": "HelloWorld",
     "visible": true,
     "displayName": [
-      {
-        "lang": "zh_CN",
-        "name": "Hello World"
-      },
       {
         "lang": null,
         "name": "..."
@@ -14,18 +10,11 @@
     ],
     "item": [
       {
-        "lang": "zh_CN",
-        "title": "Article",
-        "subtitle": "description",
-        "author": "Writer",
-        "path": "http://mojang.com/"
-      },
-      {
         "lang": null,
-        "title": "switch to \"简体中文\" in launcher settings!",
-        "subtitle": "...",
-        "author": "-",
-        "path": "about:blank"
+        "title": "List is empty?",
+        "subtitle": "switch to \"简体中文\" in launcher settings!",
+        "author": "...",
+        "path": "https://github.com/hyplant/FoldCraftLauncher/blob/doc/document/ContributeDoc.md"
       }
     ]
   },
@@ -49,7 +38,7 @@
       {
         "lang": "zh_CN",
         "title": "更改默认配置",
-        "subtitle": "对启动器的配置（config.json, config.properties）进行更改",
+        "subtitle": "对启动器的配置进行更改",
         "author": "hyplant",
         "path": "https://github.com/hyplant/FoldCraftLauncher/blob/doc/document/EmbedClient/Config.md"
       },
