@@ -67,10 +67,10 @@ public class RemoteVersion {
 
     public String getDisplayDescription(Context context) {
         if (description.size() == 0) {
-            throw new IllegalStateException("No update description list!");
+            return "";
         }
         for (Description d : description) {
-            if (LocaleUtils.getLocale(LocaleUtils.getLanguage(context)).toString().contains(d.getLang())) {
+            if (d.getLang() == null || LocaleUtils.getLocale(LocaleUtils.getLanguage(context)).toString().contains(d.getLang())) {
                 return d.getText();
             }
         }
