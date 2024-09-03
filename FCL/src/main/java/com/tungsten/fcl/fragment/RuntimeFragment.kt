@@ -34,7 +34,7 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
     var java21: Boolean = false
     var jna: Boolean = false
     var gameResource = false
-    var other = false
+    var others = false
     lateinit var sharedPreferences: SharedPreferences
     lateinit var editor: SharedPreferences.Editor
     var needRestart: Boolean = false
@@ -76,8 +76,7 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
             java21 = RuntimeUtils.isLatest(FCLPath.JAVA_21_PATH, "/assets/app_runtime/java/jre21")
             jna = RuntimeUtils.isLatest(FCLPath.JNA_PATH, "/assets/app_runtime/jna")
             gameResource = RuntimeUtils.isLatest(FCLPath.SHARED_COMMON_DIR, "/assets/.minecraft")
-            other = RuntimeUtils.isLatest(FCLPath.FILES_DIR, "/assets/othersInternal/files")
-
+            others = RuntimeUtils.isLatest(FCLPath.FILES_DIR, "/assets/othersInternal/files")
         } catch (e: IOException) {
             e.printStackTrace()
         }
@@ -104,7 +103,7 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
                 java21State.setBackgroundDrawable(if (java21) stateDone else stateUpdate)
                 jnaState.setBackgroundDrawable(if (jna) stateDone else stateUpdate)
                 gameResourceState.setBackgroundDrawable(if (gameResource) stateDone else stateUpdate)
-                otherState.setBackgroundDrawable(if (other) stateDone else stateUpdate)
+                othersState.setBackgroundDrawable(if (others) stateDone else stateUpdate)
             }
         }
     }
@@ -113,7 +112,7 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
         get() = lwjgl && cacio && cacio11 && cacio17 && java8 && java11 && java17 && java21 && jna && gameResource
 
     private fun check() {
-        if (isLatest && other) {
+        if (isLatest && others) {
             if (needRestart) {
                 (activity as SplashActivity).finish()
                 System.exit(0)
@@ -123,22 +122,22 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
         }
     }
 
-    private var installingOther = false
+    private var installingOthers = false
     private fun checkOthers() {
-        if (installingOther) return
+        if (installingOthers) return
         if (isLatest) {
-            installingOther = true
+            installingOthers = true
             bind.apply {
-                if (!other) {
-                    otherProgress.visibility = View.VISIBLE
+                if (!others) {
+                    othersProgress.visibility = View.VISIBLE
                     Thread {
                         try {
                             RuntimeUtils.copyAssetsDirToLocalDir(context, "othersExternal", FCLPath.EXTERNAL_DIR)
                             RuntimeUtils.copyAssetsDirToLocalDir(context, "othersInternal", FCLPath.INTERNAL_DIR)
-                            other = true
+                            others = true
                             activity?.runOnUiThread {
-                                otherState.visibility = View.VISIBLE
-                                otherProgress.visibility = View.GONE
+                                othersState.visibility = View.VISIBLE
+                                othersProgress.visibility = View.GONE
                                 refreshDrawables()
                                 check()
                             }
@@ -392,8 +391,8 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
                     }
                 }.start()
             }
-            if (!other) {
-                otherState.visibility = View.GONE
+            if (!others) {
+                othersState.visibility = View.GONE
                 checkOthers()
             }
         }
