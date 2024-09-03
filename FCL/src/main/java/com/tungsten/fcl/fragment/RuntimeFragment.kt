@@ -112,7 +112,7 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
         get() = lwjgl && cacio && cacio11 && cacio17 && java8 && java11 && java17 && java21 && jna && gameResource
 
     private fun check() {
-        if (isLatest && other) {
+        if (isLatest && others) {
             if (needRestart) {
                 (activity as SplashActivity).finish()
                 System.exit(0)
