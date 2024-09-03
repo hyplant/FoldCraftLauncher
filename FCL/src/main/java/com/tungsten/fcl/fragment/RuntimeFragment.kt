@@ -34,7 +34,7 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
     var java21: Boolean = false
     var jna: Boolean = false
     var gameResource = false
-    var other = false
+    var othersFile = false
     lateinit var sharedPreferences: SharedPreferences
     lateinit var editor: SharedPreferences.Editor
     var needRestart: Boolean = false
@@ -77,7 +77,6 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
             jna = RuntimeUtils.isLatest(FCLPath.JNA_PATH, "/assets/app_runtime/jna")
             gameResource = RuntimeUtils.isLatest(FCLPath.SHARED_COMMON_DIR, "/assets/.minecraft")
             other = RuntimeUtils.isLatest(FCLPath.FILES_DIR, "/assets/othersInternal/files")
-
         } catch (e: IOException) {
             e.printStackTrace()
         }
@@ -104,7 +103,7 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
                 java21State.setBackgroundDrawable(if (java21) stateDone else stateUpdate)
                 jnaState.setBackgroundDrawable(if (jna) stateDone else stateUpdate)
                 gameResourceState.setBackgroundDrawable(if (gameResource) stateDone else stateUpdate)
-                otherState.setBackgroundDrawable(if (other) stateDone else stateUpdate)
+                othersFileState.setBackgroundDrawable(if (othersFile) stateDone else stateUpdate)
             }
         }
     }
