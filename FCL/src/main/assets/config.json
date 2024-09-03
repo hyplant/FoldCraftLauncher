@@ -8,10 +8,10 @@
   ],
   "autoChooseDownloadType": true,
   "autoDownloadThreads": true,
-  "commonpath": "/storage/emulated/0/FCL-Server/.minecraft",
+  "commonpath": "",
   "_version": 0,
   "configurations": {
-    "公有目录": {
+    "Default Directory": {
       "global": {
         "usesGlobal": true,
         "javaArgs": "",
@@ -30,12 +30,12 @@
         "renderer": 4,
         "isolateGameDir": false
       },
-      "gameDir": "/storage/emulated/0/FCL-Server/.minecraft"
+      "gameDir": ""
     }
   },
   "downloadThreads": 64,
   "downloadType": "mojang",
-  "last": "公有目录",
+  "last": "Default Directory",
   "uiVersion": 0,
   "versionListSource": "balanced"
 }

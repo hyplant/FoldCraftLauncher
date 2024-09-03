@@ -196,7 +196,7 @@
                     <com.tungsten.fcllibrary.component.view.FCLTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="游戏数据"
+                        android:text="@string/splash_game_resource"
                         android:layout_gravity="center"
                         android:textColor="@color/black"/>
 
@@ -237,7 +237,7 @@
                     <com.tungsten.fcllibrary.component.view.FCLTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="其它文件"
+                        android:text="@string/splash_others"
                         android:layout_gravity="center"
                         android:textColor="@color/black"/>
 
