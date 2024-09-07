@@ -8,6 +8,7 @@
     <string name="file_browser_open_external">使用外部应用打开(比如MT)</string>
     <string name="file_browser_permission_alert">无权打开该目录</string>
     <string name="file_browser_root_alert">已经返回到最上级目录</string>
+    <string name="file_browser_notfound_alert">目标目录不存在：</string>
     <string name="file_browser_mode">模式：</string>
     <string name="file_browser_mode_browse">浏览文件</string>
     <string name="file_browser_mode_file">选择文件</string>

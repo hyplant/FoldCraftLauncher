@@ -130,7 +130,16 @@ public class FileBrowserActivity extends FCLActivity implements View.OnClickList
         extSelected = new ArrayList<>();
         currentText = findViewById(R.id.current_folder);
         listView = findViewById(R.id.list);
-        refreshList(currentPath != null ? currentPath : new File(fileBrowser.getInitDir()).toPath());
+
+        if (currentPath == null) {
+            File initDir = new File(fileBrowser.getInitDir());
+            if (!initDir.exists() || !initDir.isDirectory()) {
+                Toast.makeText(this, getString(R.string.file_browser_notfound_alert), Toast.LENGTH_SHORT).show();
+                initDir = Environment.getExternalStorageDirectory()
+            }
+            currentPath = initDir.toPath()
+        }
+        refreshList(currentPath);
 
         if (fileBrowser.getLibMode() != LibMode.FILE_CHOOSER) {
             selectExternal.setVisibility(View.GONE);
@@ -205,7 +214,7 @@ public class FileBrowserActivity extends FCLActivity implements View.OnClickList
 
     @Override
     public void onBackPressed() {
-        if (currentPath.getParent() != null && !currentPath.toString().equals(Environment.getExternalStorageDirectory().getAbsolutePath())) {
+        if (currentPath.getParent() != null && !currentPath.toString().equals(Environment.getExternalStorageDirectory().getAbsolutePath()) && !currentPath.toString().equals(getCacheDir().getParent())) {
             refreshList(currentPath.getParent());
         } else {
             setResult(Activity.RESULT_CANCELED);

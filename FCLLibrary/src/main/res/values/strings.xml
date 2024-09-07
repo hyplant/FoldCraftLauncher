@@ -11,6 +11,7 @@
     <string name="file_browser_select_external">Select with external APP</string>
     <string name="file_browser_permission_alert">Cannot access to the directory.</string>
     <string name="file_browser_root_alert">Already returned to the top directory.</string>
+    <string name="file_browser_notfound_alert">Target directory does not exist: </string>
     <string name="file_browser_mode">Mode:</string>
     <string name="file_browser_mode_browse">Browse File</string>
     <string name="file_browser_mode_file">Pick File</string>
