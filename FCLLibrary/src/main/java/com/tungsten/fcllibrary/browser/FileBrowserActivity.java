@@ -134,7 +134,7 @@ public class FileBrowserActivity extends FCLActivity implements View.OnClickList
         if (currentPath == null) {
             File initDir = new File(fileBrowser.getInitDir());
             if (!initDir.exists() || !initDir.isDirectory()) {
-                Toast.makeText(this, getString(R.string.file_browser_notfound_alert), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.file_browser_notfound_alert) + fileBrowser.getInitDir(), Toast.LENGTH_SHORT).show();
                 initDir = Environment.getExternalStorageDirectory();
             }
             currentPath = initDir.toPath();
