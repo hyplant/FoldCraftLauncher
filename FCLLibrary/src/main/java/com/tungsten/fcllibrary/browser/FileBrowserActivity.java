@@ -168,8 +168,8 @@ public class FileBrowserActivity extends FCLActivity implements View.OnClickList
     }
 
     private void refreshList(Path path) {
-        File[] files = new File(path).listFiles();
-        if (files == null) {
+        File[] tryFiles = path.toFile().listFiles();
+        if (tryFiles == null) {
             Toast.makeText(this, getString(R.string.file_browser_permission_alert), Toast.LENGTH_SHORT).show();
             return;
         }
