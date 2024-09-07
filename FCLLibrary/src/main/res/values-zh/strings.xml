@@ -6,7 +6,8 @@
     <string name="file_browser_shared">共有目录</string>
     <string name="file_browser_private">私有目录</string>
     <string name="file_browser_open_external">使用外部应用打开(比如MT)</string>
-    <string name="file_browser_private_alert">无法进入私有目录，请检查应用权限</string>
+    <string name="file_browser_permission_alert">无权打开该目录</string>
+    <string name="file_browser_root_alert">已经返回到最上级目录</string>
     <string name="file_browser_mode">模式：</string>
     <string name="file_browser_mode_browse">浏览文件</string>
     <string name="file_browser_mode_file">选择文件</string>

@@ -168,6 +168,11 @@ public class FileBrowserActivity extends FCLActivity implements View.OnClickList
     }
 
     private void refreshList(Path path) {
+        File[] files = new File(path).listFiles();
+        if (files == null) {
+            Toast.makeText(this, getString(R.string.file_browser_permission_alert), Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (fileBrowser.getLibMode() == LibMode.FOLDER_CHOOSER && !selectedFiles.contains(path.toString())) {
             selectedFiles = new ArrayList<>();
             selectedFiles.add(path.toString());
@@ -211,11 +216,10 @@ public class FileBrowserActivity extends FCLActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         if (view == back) {
-            if (currentPath.getParent() != null && !currentPath.toString().equals(Environment.getExternalStorageDirectory().getAbsolutePath())) {
+            if (currentPath.getParent() != null && !currentPath.toString().equals(Environment.getExternalStorageDirectory().getAbsolutePath()) && !currentPath.toString().equals(getCacheDir().getParent())) {
                 refreshList(currentPath.getParent());
             } else {
-                setResult(Activity.RESULT_CANCELED);
-                finish();
+                Toast.makeText(this, getString(R.string.file_browser_root_alert), Toast.LENGTH_SHORT).show();
             }
         }
         if (view == close) {
@@ -226,11 +230,7 @@ public class FileBrowserActivity extends FCLActivity implements View.OnClickList
             refreshList(Environment.getExternalStorageDirectory().toPath());
         }
         if (view == privateDir) {
-            if (getExternalCacheDir().getParent() != null) {
-                refreshList(new File(getExternalCacheDir().getParent()).toPath());
-            } else {
-                Toast.makeText(this, getString(R.string.file_browser_private_alert), Toast.LENGTH_SHORT).show();
-            }
+            refreshList(new File(getCacheDir().getParent()).toPath());
         }
         if (view == openExternal) {
             if (currentPath.toFile().getAbsolutePath().equals(Environment.getExternalStorageDirectory().getAbsolutePath())) {

@@ -9,7 +9,8 @@
     <string name="file_browser_private">Private directory</string>
     <string name="file_browser_open_external">Open in external APP(Like MT)</string>
     <string name="file_browser_select_external">Select with external APP</string>
-    <string name="file_browser_private_alert">Cannot access to private directory, please check the permission.</string>
+    <string name="file_browser_permission_alert">Cannot access to the directory.</string>
+    <string name="file_browser_root_alert">Already returned to the top directory.</string>
     <string name="file_browser_mode">Mode:</string>
     <string name="file_browser_mode_browse">Browse File</string>
     <string name="file_browser_mode_file">Pick File</string>
