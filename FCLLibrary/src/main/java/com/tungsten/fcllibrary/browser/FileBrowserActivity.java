@@ -233,8 +233,9 @@ public class FileBrowserActivity extends FCLActivity implements View.OnClickList
             refreshList(new File(getCacheDir().getParent()).toPath());
         }
         if (view == openExternal) {
-            if (currentPath.toFile().getAbsolutePath().equals(Environment.getExternalStorageDirectory().getAbsolutePath())) {
-                currentPath = currentPath.resolve("FCL-Server");
+            if (currentPath.toString().equals(Environment.getExternalStorageDirectory().getAbsolutePath()) || currentPath.toString().equals(getCacheDir().getParent())) {
+                Toast.makeText(this, getString(R.string.file_browser_positive_alert), Toast.LENGTH_SHORT).show();
+                return;
             }
             Uri uri = FileProvider.getUriForFile(this, getString(R.string.file_browser_provider), currentPath.toFile());
             Intent intent = new Intent(Intent.ACTION_SEND);
