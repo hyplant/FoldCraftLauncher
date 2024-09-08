@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
 
+import com.tungsten.fcl.FCLApplication;
 import com.tungsten.fcl.R;
 import com.tungsten.fclcore.task.Task;
 import com.tungsten.fcllibrary.component.ui.FCLCommonPage;
@@ -13,10 +14,9 @@ import com.tungsten.fcllibrary.component.view.FCLUILayout;
 
 public class AboutPage extends FCLCommonPage implements View.OnClickListener {
 
-    private FCLLinearLayout launcher;
-    private FCLLinearLayout developer;
-    private FCLLinearLayout sponsor;
-    private FCLLinearLayout source;
+    private FCLLinearLayout about_a;
+    private FCLLinearLayout about_b;
+    private FCLLinearLayout about_c;
 
     public AboutPage(Context context, int id, FCLUILayout parent, int resId) {
         super(context, id, parent, resId);
@@ -25,14 +25,12 @@ public class AboutPage extends FCLCommonPage implements View.OnClickListener {
     @Override
     public void onCreate() {
         super.onCreate();
-        launcher = findViewById(R.id.launcher);
-        developer = findViewById(R.id.developer);
-        sponsor = findViewById(R.id.sponsor);
-        source = findViewById(R.id.source);
-        launcher.setOnClickListener(this);
-        developer.setOnClickListener(this);
-        sponsor.setOnClickListener(this);
-        source.setOnClickListener(this);
+        about_a = findViewById(R.id.about_a);
+        about_b = findViewById(R.id.about_b);
+        about_c = findViewById(R.id.about_c);
+        about_a.setOnClickListener(this);
+        about_b.setOnClickListener(this);
+        about_c.setOnClickListener(this);
     }
 
     @Override
@@ -44,17 +42,14 @@ public class AboutPage extends FCLCommonPage implements View.OnClickListener {
     public void onClick(View v) {
         Uri uri = null;
 
-        if (v == launcher) {
-            uri = Uri.parse("https://github.com/hyplant/FoldCraftLauncher");
+        if (v == about_a) {
+            uri = Uri.parse(FCLApplication.appConfig.getProperty("about-a","https://github.com/hyplant/FoldCraftLauncher"));
         }
-        if (v == developer) {
-            uri = Uri.parse("https://github.com/hyplant/FoldCraftLauncher/actions");
+        if (v == about_b) {
+            uri = Uri.parse(FCLApplication.appConfig.getProperty("about-b","https://github.com/hyplant/FoldCraftLauncher/actions"));
         }
-        if (v == sponsor) {
-            uri = Uri.parse("https://github.com/hyplant/FoldCraftLauncher/issues");
-        }
-        if (v == source) {
-            uri = Uri.parse("https://github.com/hyplant/FoldCraftLauncher/tree/main");
+        if (v == about_c) {
+            uri = Uri.parse(FCLApplication.appConfig.getProperty("about-c","https://github.com/hyplant/FoldCraftLauncher/issues"));
         }
 
         if (uri != null) {
