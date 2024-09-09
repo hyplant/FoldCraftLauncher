@@ -14,8 +14,9 @@ import com.tungsten.fcllibrary.component.view.FCLUILayout;
 
 public class CommunityPage extends FCLCommonPage implements View.OnClickListener {
 
-    private FCLLinearLayout discord;
-    private FCLLinearLayout qq;
+    private FCLLinearLayout community_a;
+    private FCLLinearLayout community_b;
+    private FCLLinearLayout community_c;
 
     public CommunityPage(Context context, int id, FCLUILayout parent, int resId) {
         super(context, id, parent, resId);
@@ -24,10 +25,12 @@ public class CommunityPage extends FCLCommonPage implements View.OnClickListener
     @Override
     public void onCreate() {
         super.onCreate();
-        discord = findViewById(R.id.discord);
-        qq = findViewById(R.id.qq);
-        discord.setOnClickListener(this);
-        qq.setOnClickListener(this);
+        community_a = findViewById(R.id.community_a);
+        community_b = findViewById(R.id.community_b);
+        community_c = findViewById(R.id.community_c);
+        community_a.setOnClickListener(this);
+        community_b.setOnClickListener(this);
+        community_c.setOnClickListener(this);
     }
 
     @Override
@@ -37,26 +40,21 @@ public class CommunityPage extends FCLCommonPage implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        if (v == discord) {
-            Uri uri = Uri.parse(FCLApplication.appConfig.getProperty("discord","https://github.com/hyplant"));
+        Uri uri = null;
+
+        if (v == community_a) {
+            uri = Uri.parse(FCLApplication.appConfig.getProperty("community-a","https://github.com/hyplant"));
+        }
+        if (v == community_b) {
+            uri = Uri.parse(FCLApplication.appConfig.getProperty("community-b","https://github.com/hyplant"));
+        }
+        if (v == community_c) {
+            uri = Uri.parse(FCLApplication.appConfig.getProperty("community-c","https://github.com/hyplant"));
+        }
+
+if (uri != null) {
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             getContext().startActivity(intent);
-        }
-        if (v == qq) {
-            joinQQGroup(QQ_GROUP_KEY);
-        }
-    }
-
-    private final static String QQ_GROUP_KEY = FCLApplication.appConfig.getProperty("qq-group-key","https://github.com/hyplant/FoldCraftLauncher");
-
-    public boolean joinQQGroup(String key) {
-        Intent intent = new Intent();
-        intent.setData(Uri.parse(key));
-        try {
-            getContext().startActivity(intent);
-            return true;
-        } catch (Exception e) {
-            return false;
         }
     }
 }
