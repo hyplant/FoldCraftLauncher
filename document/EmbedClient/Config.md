@@ -1,11 +1,76 @@
 # 更改默认配置
 
+大多数设置通过安装“其他文件”时，覆盖本地文件来更新。  
+因此需要修改`assets/othersInternal/files/version`中的版本号才能更新。  
+这些选项通过覆盖本地配置文件来实现，详见[Extra.md](../Extra.md)。  
+
+其中`config.properties`和`options.txt`每次用到时自动读取，无需手动修改版本号。
+而`config.json`在安装“游戏资源”时更新，需要修改`/assets/.minecraft/version`。
+
+<div><br></div>
+
+## config.properties
+
+**APK 中文件位置：**`/assets/config.properties`  
+该文件为 FCL 直装版独有的自定义配置文件，用于调整直装版的某些选项。  
+
+### 基本格式
+
+```java-properties
+# 安装到公有目录哪个目录下
+# 值必须是英文字符，若需要使用中文目录名称请将中文转成unicode码并填写
+put-directory=FCL-Server
+
+# 是否开启公告界面，若值不是“true”则不开启
+enable-announcement=true
+
+# 公告内容链接[因为公告是在线的所以要一个直链链接读取网页内容]
+# 关于格式说明：请严格按照默认公告链接内的伪Json格式书写，若出现格式问题则会提示"无法获取公告，也许是网络问题"
+announcement-url=https://mirror.ghproxy.com/https://raw.githubusercontent.com/hyplant/FoldCraftLauncher/doc/announcement/latest.json
+
+# 第一次运行启动器时显示的EULA信息[因为是在线的所以要一个直链链接读取网页内容]
+# 值必须是英文字符，不能出现非英文字符
+eula-url=https://mirror.ghproxy.com/https://raw.githubusercontent.com/hyplant/FoldCraftLauncher/doc/eula/latest.txt
+
+# 帮助页面文档索引的链接
+# 用于在帮助页面显示文档列表
+doc-index-url=https://mirror.ghproxy.com/https://raw.githubusercontent.com/hyplant/FoldCraftLauncher/doc/document/index.json
+
+# 帮助页面文档主页的链接
+# 点击帮助页面的按钮会前往这个链接
+doc-home-url=https://github.com/hyplant/FoldCraftLauncher/tree/doc/document
+
+# QQ群Key
+# 去这里申请Key：https://qun.qq.com/#/handy-tool/join-group
+# 获得的key前面加前缀：mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26jump_from%3Dwebapi%26k%3D
+qq-group-key=about:blank
+
+# Discord链接
+# 值必须是英文字符，不能出现非英文字符
+discord=about:blank
+
+# 每次打开启动器是否在线检测更新，若值不是“true”则不检测
+check-update=true
+
+# 启动器检查更新链接地址，需要先开启check-update选项后该功能才有效
+# 若需要更改链接请确保必须和原连接内json格式一致，若格式不一致会导致启动器会闪退！！！
+# 值必须是英文字符，不能出现非英文字符
+check-update-url=https://mirror.ghproxy.com/https://raw.githubusercontent.com/hyplant/FoldCraftLauncher/doc/version_map/latest.json
+
+# NS服务器地址
+primary-nameserver=223.5.5.5
+secondary-nameserver=8.8.8.8
+
+# 是否忽略刘海屏，若值不是“true”则不忽略
+fullscreen=false
+```
+
 <div><br></div>
 
 ## config.json
 
 **APK 中文件位置：**`/assets/config.json`  
-该文件为启动器的主要配置文件，大多数游戏设置相关的内容都在这里。
+该文件为启动器的主要配置文件，大多数游戏设置相关的内容都在这里。  
 
 ### 基本格式
 
@@ -56,16 +121,14 @@
 
 <div><br></div>
 
-## global_config.json
+## options.txt
 
-**APK 中文件位置：**`/assets/global_config.json`  
-**该文件作用未知！**
+**APK 中文件位置：**`/assets/options.txt`  
+该文件为客户端的默认配置文件。  
 
 ### 基本格式
 
-```json
-{}
-```
+详见 Minecraft Wiki [客户端选项文件格式](https://zh.minecraft.wiki/w/%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%80%89%E9%A1%B9%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F)。
 
 <div><br></div>
 
@@ -192,69 +255,31 @@
 
 <div><br></div>
 
-## config.properties
+## .bashrc
 
-**APK 中文件位置：**`/assets/config.properties`  
-该文件为 FCL 直装版独有的自定义配置文件，用于调整直装版的某些选项。
+**APK 中文件位置：**`/assets/othersInternal/.bashrc`  
+每次进入 fcl shell （长按**启动游戏**按钮，或进入应用程序信息中的**应用内设置**）时  
+会自动运行此文件中的命令。
 
 ### 基本格式
 
-```java-properties
-# 安装到公有目录哪个目录下
-# 值必须是英文字符，若需要使用中文目录名称请将中文转成unicode码并填写
-put-directory=FCL-Server
+```sh
+#!/system/bin/sh
+echo "Welcome to use Fold Craft Launcher!"
+echo "Here is the shell command line!"
 
-# 是否开启公告界面，若值不是“true”则不开启
-enable-announcement=true
 
-# 公告内容链接[因为公告是在线的所以要一个直链链接读取网页内容]
-# 关于格式说明：请严格按照默认公告链接内的伪Json格式书写，若出现格式问题则会提示"无法获取公告，也许是网络问题"
-announcement-url=https://mirror.ghproxy.com/https://raw.githubusercontent.com/hyplant/FoldCraftLauncher/doc/announcement/latest.json
-
-# 第一次运行启动器时显示的EULA信息[因为是在线的所以要一个直链链接读取网页内容]
-# 值必须是英文字符，不能出现非英文字符
-eula-url=https://mirror.ghproxy.com/https://raw.githubusercontent.com/hyplant/FoldCraftLauncher/doc/eula/latest.txt
-
-# 帮助页面文档索引的链接
-# 用于在帮助页面显示文档列表
-doc-index-url=https://mirror.ghproxy.com/https://raw.githubusercontent.com/hyplant/FoldCraftLauncher/doc/document/index.json
-
-# 帮助页面文档主页的链接
-# 点击帮助页面的按钮会前往这个链接
-doc-home-url=https://github.com/hyplant/FoldCraftLauncher/tree/doc/document
-
-# QQ群Key
-# 去这里申请Key：https://qun.qq.com/#/handy-tool/join-group
-# 获得的key前面加前缀：mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26jump_from%3Dwebapi%26k%3D
-qq-group-key=about:blank
-
-# Discord链接
-# 值必须是英文字符，不能出现非英文字符
-discord=about:blank
-
-# 每次打开启动器是否在线检测更新，若值不是“true”则不检测
-check-update=true
-
-# 启动器检查更新链接地址，需要先开启check-update选项后该功能才有效
-# 若需要更改链接请确保必须和原连接内json格式一致，若格式不一致会导致启动器会闪退！！！
-# 值必须是英文字符，不能出现非英文字符
-check-update-url=https://mirror.ghproxy.com/https://raw.githubusercontent.com/hyplant/FoldCraftLauncher/doc/version_map/latest.json
-
-# NS服务器地址
-primary-nameserver=223.5.5.5
-secondary-nameserver=8.8.8.8
-
-# 是否忽略刘海屏，若值不是“true”则不忽略
-fullscreen=false
 ```
 
 <div><br></div>
 
-## options.txt
+## global_config.json
 
-**APK 中文件位置：**`/assets/options.txt`  
-该文件为客户端的默认配置文件。
+**APK 中文件位置：**`/assets/othersInternal/files/global_config.json`  
+**该文件作用未知！**
 
 ### 基本格式
 
-详见 Minecraft Wiki [客户端选项文件格式](https://zh.minecraft.wiki/w/%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%80%89%E9%A1%B9%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F)。
+```json
+{}
+```
