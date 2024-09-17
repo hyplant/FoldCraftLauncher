@@ -2,7 +2,7 @@
 
 大多数设置通过安装“其他文件”时，覆盖本地文件来更新。  
 因此需要修改`assets/othersInternal/files/version`中的版本号才能更新。  
-这些选项通过覆盖本地配置文件来实现，详见[Extra.md](../Extra.md)。  
+这些选项通过覆盖本地配置文件来实现，详见[Extra.md](./Extra.md)。  
 
 其中`config.properties`和`options.txt`每次用到时自动读取，无需手动修改版本号。
 而`config.json`在安装“游戏资源”时更新，需要修改`/assets/.minecraft/version`。
