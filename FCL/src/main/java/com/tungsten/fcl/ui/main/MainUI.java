@@ -206,15 +206,33 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        checkAnnouncement();
+        FCLAlertDialog.Builder builder = new FCLAlertDialog.Builder(activity);
+        builder.setAlertLevel(FCLAlertDialog.AlertLevel.INFO);
+        builder.setCancelable(true);
+        builder.setMessage(activity.getString(R.string.menu_settings_force_exit_msg));
+        builder.setPositiveButton(() -> {
+            if (getActivity() instanceof MainActivity) {
+                ((MainActivity) getActivity()).finish();
+                System.exit(0);
+            }
+        });
+        builder.setNegativeButton(null);
+        builder.create().show();
+    }
+
+    @Override
     public void onClick(View view) {
         if (view == hide) {
             if (announcement != null && announcement.isSignificant()) {
                 FCLAlertDialog.Builder builder = new FCLAlertDialog.Builder(getContext());
                 builder.setAlertLevel(FCLAlertDialog.AlertLevel.ALERT);
-                builder.setCancelable(false);
+                builder.setCancelable(true);
                 builder.setMessage(getContext().getString(R.string.announcement_significant));
-                builder.setPositiveButton(null);
-                builder.setNegativeButton(null);
+                builder.setPositiveButton(null, null);
+                builder.setNegativeButton(null, null);
                 builder.create().show();
             } else {
                 hideAnnouncement();
