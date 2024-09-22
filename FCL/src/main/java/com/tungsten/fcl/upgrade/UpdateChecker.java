@@ -50,23 +50,27 @@ public class UpdateChecker {
             if (showAlert) {
                 Schedulers.androidUIThread().execute(() -> Toast.makeText(context, context.getString(R.string.update_checking), Toast.LENGTH_SHORT).show());
             }
-            String res = NetworkUtils.doGet(NetworkUtils.toURL(UPDATE_CHECK_URL_CN));
-            ArrayList<RemoteVersion> versions = JsonUtils.GSON.fromJson(res, new TypeToken<ArrayList<RemoteVersion>>(){}.getType());
-            for (RemoteVersion version : versions) {
-                if (version.getVersionCode() > getCurrentVersionCode(context)) {
-                    if (showBeta || !version.isBeta()) {
-                        if (showBeta || !isIgnore(context, version.getVersionCode())) {
-                            showUpdateDialog(context, version);
+            try {
+                String res = NetworkUtils.doGet(NetworkUtils.toURL(UPDATE_CHECK_URL_CN));
+                ArrayList<RemoteVersion> versions = JsonUtils.GSON.fromJson(res, new TypeToken<ArrayList<RemoteVersion>>(){}.getType());
+                isChecking = false;
+                for (RemoteVersion version : versions) {
+                    if (version.getVersionCode() > getCurrentVersionCode(context)) {
+                        if (showBeta || !version.isBeta()) {
+                            if (showBeta || !isIgnore(context, version.getVersionCode())) {
+                                showUpdateDialog(context, version);
+                                return;
+                            }
                         }
-                        isChecking = false;
-                        return;
                     }
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+            isChecking = false;
             if (showAlert) {
                 Schedulers.androidUIThread().execute(() -> Toast.makeText(context, context.getString(R.string.update_not_exist), Toast.LENGTH_SHORT).show());
             }
-            isChecking = false;
         });
     }
 
@@ -77,7 +81,7 @@ public class UpdateChecker {
             return packageInfo.versionCode;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
-            throw new IllegalStateException("无法获取当前应用版本信息，请确保使用的是官方版！");
+            throw new IllegalStateException("无法获取当前应用版本信息，请确保包管理服务未被篡改！");
         }
     }
 
