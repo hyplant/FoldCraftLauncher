@@ -207,7 +207,6 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         checkAnnouncement();
         FCLAlertDialog.Builder builder = new FCLAlertDialog.Builder(getContext());
         builder.setAlertLevel(FCLAlertDialog.AlertLevel.INFO);
@@ -229,7 +228,7 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
                 builder.setAlertLevel(FCLAlertDialog.AlertLevel.ALERT);
                 builder.setCancelable(true);
                 builder.setMessage(getContext().getString(R.string.announcement_significant));
-                builder.setPositiveButton(null, null);
+                builder.setPositiveButton(null);
                 builder.setNegativeButton(null, null);
                 builder.create().show();
             } else {
