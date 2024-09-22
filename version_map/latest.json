@@ -1,21 +1,59 @@
 [
   {
-    "type": "release",
+    "type": "debug",
     "versionCode": 2147483647,
-    "versionName": "1.1.7.8-1",
+    "versionName": "1.1.8.0-dev",
     "date": "1981-01-01 01:01:02",
     "description": [
       {
         "lang": "zh_CN",
-        "text": "[❗]阅读完请点击忽略\n[⚠]不支持直接下载，点击网盘链接前往仓库，可在 Actions 中下载。\n\n(Ⅰ) 启动器更新至 1.1.7.8\n    1. 修复有时从后台打开时崩溃。\n    (详见官方更新日志)\n\n(Ⅱ) 启动器调整\n    1. 允许增大分辨率。"
+        "text": "[❗]阅读完请点击忽略\n[⚠]不支持直接下载，点击网盘链接前往仓库，可在 Actions 中下载。\n\n(Ⅰ) 启动器更新至 1.1.8.0\n    1.修复应用启动时有概率闪退的bug\n    2.修复陀螺仪无法正常工作的bug\n    3.修复切换夜间模式闪退的bug\n    4.使用Pojav作为启动器后端\n    ... (详见官方更新日志)\n\n(Ⅱ) 启动器调整\n    1. 更改部分默认选项。\n    2. 对弹窗提醒地形进行微调。\n    3. 文档分类列表再次修复语言问题。"
       },
       {
         "lang": null,
         "text": "..."
       }
     ],
-    "netdiskUrl": "https://github.com/hyplant/FoldCraftLauncher/actions/runs/10811827222",
-    "netdiskPasswd": "https://github.com/hyplant/FoldCraftLauncher/actions/runs/10811827222",
+    "netdiskUrl": "https://github.com/hyplant/FoldCraftLauncher/actions/runs/10979149863",
+    "netdiskPasswd": "10979149863",
+    "url": null
+  },
+  {
+    "type": "release",
+    "versionCode": 2147483645,
+    "versionName": "1.1.8.0-rel-1",
+    "date": "1981-01-01 01:01:02",
+    "description": [
+      {
+        "lang": "zh_CN",
+        "text": "[❗]阅读完请点击忽略\n[⚠]不支持直接下载，点击网盘链接前往仓库，可在 Actions 中下载。\n\n(Ⅰ) 启动器更新至 1.1.8.0\n    1.修复应用启动时有概率闪退的bug\n    2.修复陀螺仪无法正常工作的bug\n    3.修复切换夜间模式闪退的bug\n    4.使用Pojav作为启动器后端\n    ... (详见官方更新日志)\n\n(Ⅱ) 启动器调整\n    1. 更改部分默认选项。\n    2. 对弹窗提醒地形进行微调。\n    3. 文档分类列表再次修复语言问题。"
+      },
+      {
+        "lang": null,
+        "text": "..."
+      }
+    ],
+    "netdiskUrl": "https://github.com/hyplant/FoldCraftLauncher/actions/runs/10979149863",
+    "netdiskPasswd": "10979149863",
+    "url": null
+  },
+  {
+    "type": "release",
+    "versionCode": 2147483646,
+    "versionName": "1.1.8.0-rel-2",
+    "date": "1981-01-01 01:01:02",
+    "description": [
+      {
+        "lang": "zh_CN",
+        "text": "[❗]阅读完请点击忽略\n[⚠]不支持直接下载，点击网盘链接前往仓库，可在 Actions 中下载。\n\n(Ⅰ) 启动器更新至 1.1.8.0\n    1.修复应用启动时有概率闪退的bug\n    2.修复陀螺仪无法正常工作的bug\n    3.修复切换夜间模式闪退的bug\n    4.使用Pojav作为启动器后端\n    ... (详见官方更新日志)\n\n(Ⅱ) 启动器调整\n    1. 更改部分默认选项。\n    2. 对弹窗提醒地形进行微调。\n    3. 文档分类列表再次修复语言问题。"
+      },
+      {
+        "lang": null,
+        "text": "..."
+      }
+    ],
+    "netdiskUrl": "https://github.com/hyplant/FoldCraftLauncher/actions/runs/10979149863",
+    "netdiskPasswd": "10979149863",
     "url": null
   }
 ]

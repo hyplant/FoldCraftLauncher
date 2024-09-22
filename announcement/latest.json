@@ -1,6 +1,6 @@
 {
-  "id": 117801,
-  "significant": false,
+  "id": 118001,
+  "significant": true,
   "outdated": false,
   "minVersion": -1,
   "maxVersion": -1,
@@ -8,18 +8,18 @@
   "title": [
     {
       "lang": "zh_CN",
-      "text": "1.1.7.8-1"
+      "text": "1.1.8.0-1"
     },
     {
       "lang": null,
       "text": "..."
     }
   ],
-  "date": "https://github.com/hyplant/FoldCraftLauncher/actions/runs/10811827222",
+  "date": "https://github.com/hyplant/FoldCraftLauncher/actions/runs/10979149863",
   "content": [
     {
       "lang": "zh_CN",
-      "text": "进入启动器设置，点击检查更新，查看该版本的更新内容。"
+      "text": "进入启动器设置，点击检查更新，查看该版本的更新内容。\n\n请检查：\n    1. 退出时是否需要确认。\n    2. 语言跟随系统时文档是否正常显示。\n    3. 终端中有大量文本输出时是否正常工作。"
     },
     {
       "lang": null,
