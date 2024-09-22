@@ -53,15 +53,16 @@ public class UpdateChecker {
             try {
                 String res = NetworkUtils.doGet(NetworkUtils.toURL(UPDATE_CHECK_URL_CN));
                 ArrayList<RemoteVersion> versions = JsonUtils.GSON.fromJson(res, new TypeToken<ArrayList<RemoteVersion>>(){}.getType());
+                isChecking = false;
                 for (RemoteVersion version : versions) {
                     if (version.getVersionCode() > getCurrentVersionCode(context)) {
                         if (showBeta || !version.isBeta()) {
                             if (showBeta || !isIgnore(context, version.getVersionCode())) {
                                 showUpdateDialog(context, version);
+                                return;
                             }
                         }
                     }
-                    return;
                 }
             } catch (Exception e) {
                 e.printStackTrace();
