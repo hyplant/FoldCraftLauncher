@@ -1,10 +1,10 @@
 {
-  "id": "5fce36eb",
+  "id": "c7fa40ea",
   "name": "HyController",
   "version": "0.0.3",
-  "versionCode": 2,
+  "versionCode": 3,
   "author": "Hyplant",
-  "description": "Hyplant\u0027s Controller of Fold Craft Launcher.",
+  "description": "Hyplant\u0027s Pojav-like controller for Fold Craft Launcher.",
   "controllerVersion": 20,
   "buttonStyles": [
     {
