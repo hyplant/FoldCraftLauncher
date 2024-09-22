@@ -13,6 +13,7 @@ import android.widget.ScrollView;
 import androidx.appcompat.widget.AppCompatSpinner;
 
 import com.google.gson.reflect.TypeToken;
+import com.tungsten.fcl.FCLApplication;
 import com.tungsten.fcl.R;
 import com.tungsten.fcl.control.download.ControllerCategory;
 import com.tungsten.fcl.control.download.ControllerIndex;
@@ -45,8 +46,8 @@ import java.util.stream.Collectors;
 
 public class ControllerRepoPage extends FCLCommonPage implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
-    public static final String CONTROLLER_GITHUB = "https://raw.githubusercontent.com/FCL-Team/FCL-Controllers/main/";
-    public static final String CONTROLLER_GIT_CN = "";
+    public static final String CONTROLLER_GITHUB = FCLApplication.appConfig.getProperty("controller-url","https://raw.githubusercontent.com/hyplant/FoldCraftLauncher/doc/controllerRepo/");
+    public static final String CONTROLLER_GIT_CN = FCLApplication.appConfig.getProperty("controller-url-cn","https://raw.githubusercontent.com/hyplant/FoldCraftLauncher/doc/controllerRepoCN/");
 
     private final ObjectProperty<ControllerCategory> categoryProperty = new SimpleObjectProperty<>(new ControllerCategory(0, null));
     private boolean refreshCategory = true;
