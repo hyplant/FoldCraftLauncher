@@ -104,7 +104,7 @@ public class RemoteModpackPage extends ModpackPage {
     @Override
     protected void onDescribe() {
         FCLAlertDialog.Builder builder = new FCLAlertDialog.Builder(getContext());
-        builder.setAlertLevel(FCLAlertDialog.AlertLevel.ALERT);
+        builder.setAlertLevel(FCLAlertDialog.AlertLevel.INFO);
         builder.setCancelable(false);
         builder.setTitle(getContext().getString(R.string.modpack_description));
         CharSequence charSequence = Html.fromHtml(manifest.getDescription(), 0);

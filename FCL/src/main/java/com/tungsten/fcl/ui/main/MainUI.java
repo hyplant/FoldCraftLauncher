@@ -212,11 +212,11 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
         builder.setAlertLevel(FCLAlertDialog.AlertLevel.INFO);
         builder.setCancelable(true);
         builder.setMessage(getContext().getString(R.string.menu_settings_force_exit_msg));
-        builder.setPositiveButton(() -> {
+        builder.setPositiveButton(null);
+        builder.setNegativeButton(getContext().getString(com.tungsten.fcllibrary.R.string.dialog_positive), () -> {
             getActivity().finish();
             System.exit(0);
         });
-        builder.setNegativeButton(null);
         builder.create().show();
     }
 
