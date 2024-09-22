@@ -32,7 +32,7 @@ public class ControllerCategory {
             return "Unknown category";
         } else {
             for (Lang l : getLang()) {
-                if (LocaleUtils.getLocale(LocaleUtils.getLanguage(context)).toString().contains(l.getLocale())) {
+                if (l.getLocale() == null || LocaleUtils.getLocale(LocaleUtils.getLanguage(context)).toString().contains(l.getLocale())) {
                     return l.getText();
                 }
             }
@@ -68,7 +68,7 @@ public class ControllerCategory {
                 if (category.getLang() == null)
                     continue;
                 for (Lang l : category.getLang()) {
-                    if (LocaleUtils.getLocale(LocaleUtils.getLanguage(context)).toString().contains(l.getLocale())) {
+                    if (l.getLocale() == null || LocaleUtils.getLocale(LocaleUtils.getLanguage(context)).toString().contains(l.getLocale())) {
                         target.add(l.getText());
                         hasTrans = true;
                         break;

@@ -111,7 +111,7 @@ public class ControllerRepoPage extends FCLCommonPage implements View.OnClickLis
             ArrayList<ControllerCategory> categories = JsonUtils.GSON.fromJson(categoryStr, new TypeToken<ArrayList<ControllerCategory>>(){}.getType());
             categories.add(0, new ControllerCategory(0, null));
             allIndexes.forEach(i -> {
-                if ((i.getLang().equals("all") || lang == 0 || LocaleUtils.getLocale(LocaleUtils.getLanguage(getContext())).toString().contains(i.getLang())) &&
+                if ((i.getLang() == null || i.getLang().equals("all") || lang == 0 || LocaleUtils.getLocale(LocaleUtils.getLanguage(getContext())).toString().contains(i.getLang())) &&
                         i.getDevice().contains(device) &&
                         (category == 0 || i.getCategories().contains(category))) {
                     indexes.add(i);
