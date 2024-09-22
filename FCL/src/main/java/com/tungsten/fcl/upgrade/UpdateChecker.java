@@ -53,21 +53,20 @@ public class UpdateChecker {
             try {
                 String res = NetworkUtils.doGet(NetworkUtils.toURL(UPDATE_CHECK_URL_CN));
                 ArrayList<RemoteVersion> versions = JsonUtils.GSON.fromJson(res, new TypeToken<ArrayList<RemoteVersion>>(){}.getType());
+                for (RemoteVersion version : versions) {
+                    if (version.getVersionCode() > getCurrentVersionCode(context)) {
+                        if (showBeta || !version.isBeta()) {
+                            if (showBeta || !isIgnore(context, version.getVersionCode())) {
+                                showUpdateDialog(context, version);
+                            }
+                        }
+                    }
+                    return;
+                }
             } catch (Exception e) {
                 e.printStackTrace();
-                Schedulers.androidUIThread().execute(() -> Toast.makeText(context, context.getString(R.string.update_not_exist), Toast.LENGTH_SHORT).show());
             }
             isChecking = false;
-            for (RemoteVersion version : versions) {
-                if (version.getVersionCode() > getCurrentVersionCode(context)) {
-                    if (showBeta || !version.isBeta()) {
-                        if (showBeta || !isIgnore(context, version.getVersionCode())) {
-                            showUpdateDialog(context, version);
-                        }
-                        return;
-                    }
-                }
-            }
             if (showAlert) {
                 Schedulers.androidUIThread().execute(() -> Toast.makeText(context, context.getString(R.string.update_not_exist), Toast.LENGTH_SHORT).show());
             }
