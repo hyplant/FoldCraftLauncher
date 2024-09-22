@@ -228,8 +228,8 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
                 builder.setAlertLevel(FCLAlertDialog.AlertLevel.ALERT);
                 builder.setCancelable(true);
                 builder.setMessage(getContext().getString(R.string.announcement_significant));
-                builder.setPositiveButton(null);
-                builder.setNegativeButton(null, null);
+                builder.setPositiveButton(null, null);
+                builder.setNegativeButton(null);
                 builder.create().show();
             } else {
                 hideAnnouncement();
