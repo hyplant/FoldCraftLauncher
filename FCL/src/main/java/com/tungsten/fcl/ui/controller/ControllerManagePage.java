@@ -140,7 +140,7 @@ public class ControllerManagePage extends FCLCommonPage implements View.OnClickL
         refreshList();
     }
 
-    private void refreshList() {
+    public void refreshList() {
         EditableControllerListAdapter adapter = new EditableControllerListAdapter(getContext(), Controllers.controllersProperty());
         listView.setAdapter(adapter);
     }
@@ -175,6 +175,11 @@ public class ControllerManagePage extends FCLCommonPage implements View.OnClickL
         }
 
         refreshProperty.set(!refreshProperty.get());
+        try {
+            old.saveToDisk();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
