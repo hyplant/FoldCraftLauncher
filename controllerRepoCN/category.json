@@ -1,5 +1,18 @@
 [
   {
+    "id": 0,
+    "lang": [
+      {
+        "locale": "zh_CN",
+        "text": "推荐"
+      },
+      {
+        "locale": null,
+        "text": "Recommend"
+      }
+    ]
+  },
+  {
     "id": 1,
     "lang": [
       {
@@ -9,19 +22,6 @@
       {
         "locale": "zh_CN",
         "text": "通用"
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "lang": [
-      {
-        "locale": "zh_CN",
-        "text": "推荐"
-      },
-      {
-        "locale": null,
-        "text": "Recommend"
       }
     ]
   }
