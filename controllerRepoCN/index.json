@@ -26,11 +26,12 @@
         ]
     },
     {
-        "id": "6b13be19",
+        "id": "00000001",
         "lang": "all",
-        "name": "HY:Pojav-lite_4:3",
-        "introduction": "和 Pojav Launcher 的默认控制器几乎一模一样。\n适用于平板、小屏手机等4:3屏幕的设备。",
+        "name": "HY:Pojav",
+        "introduction": "和 Pojav Launcher 的默认控制器几乎一模",
         "device": [
+            0
             1,
             2
         ],
