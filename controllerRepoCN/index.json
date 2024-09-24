@@ -31,7 +31,7 @@
         "name": "HY:Pojav",
         "introduction": "和 Pojav Launcher 的默认控制器几乎一模",
         "device": [
-            0
+            0,
             1,
             2
         ],
