@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths>
     <external-path
-        name="external_files"
+        name="external_path"
         path="."/>
     <files-path
-        name="files_path"
+        name="internal_path"
         path=".."/>
+    <root-path
+        name="root_path"
+        path="."/>
 </paths>
