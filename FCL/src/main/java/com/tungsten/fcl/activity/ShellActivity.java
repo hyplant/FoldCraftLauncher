@@ -33,7 +33,7 @@ public class ShellActivity extends FCLActivity {
         setContentView(R.layout.activity_shell);
         logWindow = findViewById(R.id.shell_log_window);
         editText = findViewById(R.id.shell_input);
-        shellUtil = new ShellUtil(new File(FCLPath.FILES_DIR).getParent(), output -> appendLog("\t" + output + "\n"));
+        shellUtil = new ShellUtil(new File(FCLPath.FILES_DIR).getParent(), output -> runOnUiThread(() -> appendLog("\t" + output + "\n")));
         shellUtil.start();
         shellUtil.append(". \"./.bashrc\"\n");
         editText.addTextChangedListener(new TextWatcher() {
