@@ -1,0 +1,15 @@
+{
+  "screenshot": 2,
+  "description": "Default_root-S7",
+  "author": "root-S7",
+  "latest": {
+    "versionCode": 2,
+    "versionName": "2.2.2"
+  },
+  "history": [
+    {
+      "versionCode": 1,
+      "versionName": "1.2.0"
+    }
+  ]
+}
