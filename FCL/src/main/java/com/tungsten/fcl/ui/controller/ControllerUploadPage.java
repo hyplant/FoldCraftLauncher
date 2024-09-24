@@ -41,7 +41,7 @@ public class ControllerUploadPage extends FCLTempPage implements View.OnClickLis
     private FCLTextView tag;
     private FCLTextView description;
 
-    private FCLButton qq;
+    private FCLButton community;
     private FCLButton share;
 
     public ControllerUploadPage(Context context, int id, FCLUILayout parent, int resId, Controller controller) {
@@ -59,9 +59,9 @@ public class ControllerUploadPage extends FCLTempPage implements View.OnClickLis
         tag.setText(controller.getVersion());
         description.setText(controller.getDescription());
 
-        qq = findViewById(R.id.qq);
+        community = findViewById(R.id.community);
         share = findViewById(R.id.share);
-        qq.setOnClickListener(this);
+        community.setOnClickListener(this);
         share.setOnClickListener(this);
     }
 
@@ -77,8 +77,8 @@ public class ControllerUploadPage extends FCLTempPage implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
-        if (view == qq) {
-            joinQQGroup(QQ_GROUP_KEY);
+        if (view == community) {
+            joinCommunity();
         }
         if (view == share) {
             ControllerUploadDialog dialog = new ControllerUploadDialog(getContext(), getActivity(), controller, this::share);
@@ -129,9 +129,8 @@ public class ControllerUploadPage extends FCLTempPage implements View.OnClickLis
         }).start();
     }
 
-    private final static String QQ_GROUP_KEY;
 
-    public boolean joinQQGroup(String key) {
+    public boolean joinCommunity() {
         Intent intent = new Intent();
         intent.setData(Uri.parse(FCLApplication.appConfig.getProperty("community-controller","https://github.com/hyplant/FoldCraftLauncher/discussions/36")));
         try {
