@@ -148,6 +148,7 @@
     <string name="community_a">Community A</string>
     <string name="community_b">Community B</string>
     <string name="community_c">Community C</string>
+    <string name="community_controller">Controller Community</string>
 
     <string name="control_create">Create Controller</string>
     <string name="control_delete">Are you sure to delete this controller?</string>
@@ -167,7 +168,7 @@
     <string name="control_import_failed">Failed to import controller!</string>
     <string name="control_upgrade">Controller: %s is an outdated controller, it may produce some unknown bugs, but we still support it, do you want to migrate it to a new version?</string>
     <string name="control_incompatible">Controller: %s is an incompatible controller, it may be caused by the launcher version being too low or the controller version being too low, please check.</string>
-    <string name="control_upload_requirement">Please join the QQ group first, then click "Share" to share the controller and its information to the administrator and wait for review. Please contact the administrator to tell him the category of your controller.</string>
+    <string name="control_upload_requirement">Please join the community first, then click "Share" to share the controller and its information to the administrator and wait for review. Please contact the administrator to tell him the category of your controller.</string>
     <string name="control_info_author">Author: </string>
     <string name="control_info_icon">Icon: </string>
     <string name="control_info_lang">Language: </string>

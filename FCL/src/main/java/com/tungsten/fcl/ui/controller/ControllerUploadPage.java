@@ -129,11 +129,11 @@ public class ControllerUploadPage extends FCLTempPage implements View.OnClickLis
         }).start();
     }
 
-    private final static String QQ_GROUP_KEY = "y9zEb5_DHSGdOYyigFdwsNHx9-9kALbX";
+    private final static String QQ_GROUP_KEY;
 
     public boolean joinQQGroup(String key) {
         Intent intent = new Intent();
-        intent.setData(Uri.parse("mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26jump_from%3Dwebapi%26k%3D" + FCLApplication.appConfig.getProperty("qq-group-key","huOeeoWkJd3X-FTqbhgHxNh89hoNJ1cT")));
+        intent.setData(Uri.parse(FCLApplication.appConfig.getProperty("community-controller","https://github.com/hyplant/FoldCraftLauncher/discussions/36")));
         try {
             getContext().startActivity(intent);
             return true;
