@@ -1,10 +1,10 @@
 {
   "id": "00000000",
   "name": "Default",
-  "version": "2.2.2",
-  "versionCode": 2,
-  "author": "root-s7",
-  "description": "服务器直装版基础按键",
+  "version": "2.2.2-new",
+  "versionCode": 3,
+  "author": "root-S7",
+  "description": "多人游戏基本布局",
   "controllerVersion": 20,
   "buttonStyles": [
     {
@@ -112,7 +112,7 @@
             "text": "左键",
             "style": "右下",
             "baseInfo": {
-              "visibilityType": "ALWAYS",
+              "visibilityType": "IN_GAME",
               "xPosition": 828,
               "yPosition": 690,
               "sizeType": "PERCENTAGE",
@@ -262,7 +262,7 @@
             "text": "右键",
             "style": "右下",
             "baseInfo": {
-              "visibilityType": "ALWAYS",
+              "visibilityType": "IN_GAME",
               "xPosition": 936,
               "yPosition": 447,
               "sizeType": "PERCENTAGE",
@@ -337,7 +337,7 @@
             "text": "背包",
             "style": "左上",
             "baseInfo": {
-              "visibilityType": "ALWAYS",
+              "visibilityType": "IN_GAME",
               "xPosition": 288,
               "yPosition": 0,
               "sizeType": "PERCENTAGE",
@@ -412,7 +412,7 @@
             "text": "蹲下",
             "style": "右下",
             "baseInfo": {
-              "visibilityType": "ALWAYS",
+              "visibilityType": "IN_GAME",
               "xPosition": 937,
               "yPosition": 938,
               "sizeType": "PERCENTAGE",
@@ -788,7 +788,7 @@
             "style": "键盘",
             "baseInfo": {
               "visibilityType": "ALWAYS",
-              "xPosition": 497,
+              "xPosition": 551,
               "yPosition": 0,
               "sizeType": "PERCENTAGE",
               "absoluteWidth": 50,
@@ -872,7 +872,7 @@
               },
               "percentageHeight": {
                 "reference": "SCREEN_HEIGHT",
-                "size": 151
+                "size": 130
               }
             },
             "event": {
