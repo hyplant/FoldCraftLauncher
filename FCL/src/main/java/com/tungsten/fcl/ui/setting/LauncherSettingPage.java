@@ -364,7 +364,7 @@ public class LauncherSettingPage extends FCLCommonPage implements View.OnClickLi
             ThemeEngine.getInstance().applyAndSave(getContext(), ThemeEngine.getDefaultColor(getContext()), false);
         }
         if (v == resetTheme2) {
-            ThemeEngine.getInstance().applyAndSave2(getContext(), ThemeEngine.getWallpaperColor(getContext()), false);
+            ThemeEngine.getInstance().applyAndSave2(getContext(), ThemeEngine.getDefaultColor(getContext()), false);
         }
         if (v == resetLtBackground) {
             new Thread(() -> {
