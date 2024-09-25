@@ -160,7 +160,6 @@ public class Theme {
         this.dkColor.set(Color.HSVToColor(dkHsv));
         this.autoTint.set(ColorUtils.calculateLuminance(color) >= 0.5 ? Color.parseColor("#FF000000") : Color.parseColor("#FFFFFFFF"));
         this.color.set(color);
-        this.color2.set(color);
     }
 
     public void setColor2(int color) {
@@ -187,7 +186,7 @@ public class Theme {
         SharedPreferences sharedPreferences;
         sharedPreferences = context.getSharedPreferences("theme", MODE_PRIVATE);
         int color = sharedPreferences.getInt("theme_color", context.getColor(R.color.default_theme_color));
-        int color2 = sharedPreferences.getInt("theme_color2", context.getColor(R.color.default_theme_color));
+        int color2 = sharedPreferences.getInt("theme_color2", context.getColor(R.color.default_theme_color2));
         boolean fullscreen = sharedPreferences.getBoolean("fullscreen", false);
         boolean modified = sharedPreferences.getBoolean("modified", false);
         int animationSpeed = sharedPreferences.getInt("animation_speed", 8);

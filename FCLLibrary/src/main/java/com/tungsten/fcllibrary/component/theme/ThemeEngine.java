@@ -174,5 +174,9 @@ public class ThemeEngine {
         int color = context.getColor(R.color.default_theme_color);
         return color;
     }
+    public static int getDefaultColor2(Context context) {
+        int color2 = context.getColor(R.color.default_theme_color2);
+        return color2;
+    }
 
 }
