@@ -335,7 +335,7 @@ class MainActivity : FCLActivity(), OnSelectListener, View.OnClickListener {
                 JarExecutorHelper.start(this@MainActivity, this@MainActivity)
             }
             if (view === shell) {
-                val builder = FileBrowser.Builder(getContext())
+                val builder = FileBrowser.Builder(this@MainActivity)
                 builder.setLibMode(LibMode.FILE_BROWSER)
                 builder.setInitDir(File(FCLPath.EXTERNAL_DIR).absolutePath)
                 builder.create().browse(this@MainActivity, RequestCodes.BROWSE_DIR_CODE, null)
