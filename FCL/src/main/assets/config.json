@@ -16,7 +16,7 @@
         "usesGlobal": true,
         "javaArgs": "",
         "minecraftArgs": "",
-        "maxMemory": 4106,
+        "maxMemory": 4096,
         "autoMemory": true,
         "permSize": "",
         "serverIp": "",
@@ -26,7 +26,7 @@
         "notCheckJVM": true,
         "beGesture": false,
         "vulkanDriverSystem": false,
-        "controller": "Default",
+        "controller": "00000000",
         "renderer": 4,
         "isolateGameDir": false
       },

@@ -44,7 +44,6 @@
         app:layout_constraintStart_toEndOf="@id/eula_parent"/>
 
     <com.tungsten.fcllibrary.component.view.FCLButton
-        android:enabled="false"
         android:text="@string/splash_eula_next"
         android:id="@+id/next"
         android:layout_width="0dp"

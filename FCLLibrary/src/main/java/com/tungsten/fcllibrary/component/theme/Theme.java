@@ -187,9 +187,9 @@ public class Theme {
         sharedPreferences = context.getSharedPreferences("theme", MODE_PRIVATE);
         int color = sharedPreferences.getInt("theme_color", context.getColor(R.color.default_theme_color));
         int color2 = sharedPreferences.getInt("theme_color2", context.getColor(R.color.default_theme_color2));
-        boolean fullscreen = sharedPreferences.getBoolean("fullscreen", false);
+        boolean fullscreen = sharedPreferences.getBoolean("fullscreen", FCLPath.APP_CONFIG_PROPERTIES.getProperty("fullscreen", "true").equals("true"));
         boolean modified = sharedPreferences.getBoolean("modified", false);
-        int animationSpeed = sharedPreferences.getInt("animation_speed", 8);
+        int animationSpeed = sharedPreferences.getInt("animation_speed", 3);
         Bitmap lt = !new File(context.getFilesDir().getAbsolutePath() + "/background/lt.png").exists() ? ConvertUtils.getBitmapFromRes(context, R.drawable.background_light) : BitmapFactory.decodeFile(context.getFilesDir().getAbsolutePath() + "/background/lt.png");
         BitmapDrawable backgroundLt = new BitmapDrawable(lt);
         Bitmap dk = !new File(context.getFilesDir().getAbsolutePath() + "/background/dk.png").exists() ? ConvertUtils.getBitmapFromRes(context, R.drawable.background_dark) : BitmapFactory.decodeFile(context.getFilesDir().getAbsolutePath() + "/background/dk.png");

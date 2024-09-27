@@ -135,7 +135,6 @@ public class DefaultLauncher extends Launcher {
         res.addDefault("-Djava.io.tmpdir=", FCLPath.CACHE_DIR);
         res.addDefault("-Dorg.lwjgl.opengl.libname=", "${gl_lib_name}");
         res.addDefault("-Dorg.lwjgl.freetype.libname=", context.getApplicationInfo().nativeLibraryDir + "/libfreetype.so");
-        res.addDefault("-Dfml.earlyprogresswindow=", "false");
         if (FCLBridge.BACKEND_IS_BOAT) {
             res.addDefault("-Dwindow.width=", options.getWidth() + "");
             res.addDefault("-Dwindow.height=", options.getHeight() + "");
@@ -390,7 +389,6 @@ public class DefaultLauncher extends Launcher {
                 pair("${auth_uuid}", UUIDTypeAdapter.fromUUID(authInfo.getUUID())),
                 pair("${version_name}", Optional.ofNullable(options.getVersionName()).orElse(version.getId())),
                 pair("${profile_name}", Optional.ofNullable(options.getProfileName()).orElse("Minecraft")),
-                pair("${version_type}", Optional.ofNullable(options.getVersionType()).orElse(version.getType().getId())),
                 pair("${game_directory}", repository.getRunDirectory(version.getId()).getAbsolutePath()),
                 pair("${user_type}", "msa"),
                 pair("${assets_index_name}", version.getAssetIndex().getId()),
@@ -401,8 +399,6 @@ public class DefaultLauncher extends Launcher {
                 pair("${classpath_separator}", File.pathSeparator),
                 pair("${primary_jar}", repository.getVersionJar(version).getAbsolutePath()),
                 pair("${language}", Locale.getDefault().toString()),
-                pair("${launcher_name}", "FCL"),
-                pair("${launcher_version}", "1.0"),
 
                 // file_separator is used in -DignoreList
                 pair("${file_separator}", File.pathSeparator),

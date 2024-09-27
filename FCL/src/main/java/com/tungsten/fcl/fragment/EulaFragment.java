@@ -18,6 +18,7 @@ import com.tungsten.fcl.FCLApplication;
 import com.tungsten.fcl.R;
 import com.tungsten.fcl.activity.SplashActivity;
 import com.tungsten.fcl.util.AndroidUtils;
+import com.tungsten.fclcore.util.io.IOUtils;
 import com.tungsten.fclcore.util.io.NetworkUtils;
 import com.tungsten.fcllibrary.component.FCLFragment;
 import com.tungsten.fcllibrary.component.view.FCLButton;
@@ -35,6 +36,8 @@ public class EulaFragment extends FCLFragment implements View.OnClickListener {
 
     private FCLButton next;
 
+    private boolean load = false;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,7 +50,7 @@ public class EulaFragment extends FCLFragment implements View.OnClickListener {
         next.setOnClickListener(this);
 
         loadEula();
-        
+
         return view;
     }
 
@@ -56,8 +59,19 @@ public class EulaFragment extends FCLFragment implements View.OnClickListener {
             String str;
             try {
                 str = NetworkUtils.doGet(NetworkUtils.toURL(EULA_URL),FCLApplication.deviceInfoUtils.toString());
+                load = true;
             } catch (IOException | IllegalArgumentException e) {
                 e.printStackTrace();
+            }
+            if (!load) {
+                try {
+                    str = IOUtils.readFullyAsString(requireActivity().getAssets().open( "eula.txt"));
+                    load = true;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (!load){
                 str = getString(R.string.splash_eula_error);
             }
             final String s = str;
@@ -65,13 +79,8 @@ public class EulaFragment extends FCLFragment implements View.OnClickListener {
                 getActivity().runOnUiThread(() -> {
                     progressBar.setVisibility(View.GONE);
                     eula.setText(s);
-                    eula.setTextSize(16.5F);
-                    eula.setTextColor(Color.BLACK);
                 });
             }
-            new Handler(Looper.getMainLooper()).post(() -> {
-                next.setEnabled(true); // 启用按钮
-            });
         }).start();
     }
 
@@ -79,10 +88,12 @@ public class EulaFragment extends FCLFragment implements View.OnClickListener {
     public void onClick(View view) {
         if (view == next) {
             if (getActivity() != null) {
-                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("launcher", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean("is_first_launch", false);
-                editor.apply();
+                if (load) {
+                    SharedPreferences sharedPreferences = getActivity().getSharedPreferences("launcher", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean("is_first_launch", false);
+                    editor.apply();
+                }
                 ((SplashActivity) getActivity()).start();
             }
         }
