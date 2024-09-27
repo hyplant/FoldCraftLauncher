@@ -31,10 +31,6 @@
     <string name="setting">Настройки</string>
     
     <string name="about">О лаунчере</string>
-    <string name="about_launcher" translatable="false">Fold Craft Launcher</string>
-    <string name="about_developer" translatable="false">FCL-Team</string>
-    <string name="about_sponsor">Спонсоры</string>
-    <string name="about_source">Исходный код</string>
     <string name="about_desc">Fold Craft Launcher - это лаунчер Minecraft для Android, который позволяет пользователю запускать Minecraft: Java Edition на устройстве Android. Fold Craft Launcher разработан командой FCL-Team. Большинство функций Fold Craft Launcher изменены на основе HMCLCore. Приложение заимствует и цитирует некоторые коды из PojavLauncher и Boat, поэтому, если вы собираетесь распространять это приложение, пожалуйста, следуйте лицензии GPL-v3.</string>
 
     <string name="account_add_server">Добавить сервер аутентификации</string>
@@ -103,7 +99,6 @@
     <string name="action_share">Делиться</string>
     <string name="action_skip">Пропустить</string>
 
-    <string name="announcement">Объявление: %s</string>
     <string name="announcement_significant">Это объявление является важным. Пожалуйста, подтвердите, что вы прочитали это объявление, прежде чем скрывать его.</string>
 
     <string name="archive_author">Авторы</string>
@@ -141,8 +136,6 @@
 
     <string name="community">Сообщество</string>
     <string name="community_hint">Присоединяйтесь к нашему сообществу, чтобы получать последние версии, сообщать об ошибках и т. д. Если вы присоединитесь, пожалуйста, следуйте правилам сообщества.</string>
-    <string name="community_discord" translatable="false">Discord</string>
-    <string name="community_qq">QQ-Group</string>
 
     <string name="control_create">Создать контроллер</string>
     <string name="control_delete">Вы уверены, что хотите удалить этот контроллер?</string>
@@ -478,7 +471,6 @@
     <string name="jar_executor_crash_title">Ошибка выполнения Jar :(</string>
     <string name="jar_executor_crash_reason">Анализ причин сбоя исполнителя Jar в настоящее время не поддерживается.</string>
 
-    <string name="launch">Играть</string>
     <string name="launch_error_java">Вы используете устаревшую версию Java. Вы уверены, что хотите продолжить?</string>
     <string name="launch_error_java_auto">Выбрать автоматически (рекомендуется)</string>
     <string name="launch_error_java_continue">Продолжить</string>
@@ -731,7 +723,6 @@
     <string name="mods_update_modpack_mod_warning">Обновление модов в модпаке может привести к непоправимым результатам, возможно, к повреждению модпака, из-за которого он не сможет запуститься. Вы уверены, что хотите обновить?</string>
 
     <string name="profile_shared">Shared Directory \n(хранилище устройства)</string>
-    <string name="profile_private">Private Directory \n(хранилище игры)</string>
     <string name="profile_name">Название </string>
     <string name="profile_path">Путь</string>
     <string name="profile_select">Select Directory</string>

@@ -100,7 +100,6 @@ public class SplashActivity extends FCLActivity {
 
     private void init() {
         FCLPath.loadPaths(this);
-        transFile();
         Logging.start(Paths.get(FCLPath.LOG_DIR));
         start();
     }
@@ -114,17 +113,9 @@ public class SplashActivity extends FCLActivity {
         }
     }
 
-    private void transFile() {
-        try {
-            Path controlDir = Paths.get(FCLPath.FILES_DIR + "/control");
-            if (controlDir.toFile().exists()) {
-                FileUtils.copyDirectory(controlDir, Paths.get(FCLPath.CONTROLLER_DIR));
-                FileUtils.deleteDirectory(controlDir.toFile());
-            }
-        } catch (IOException ignore) {
-        }
+    public void enterRuntimeFragment() {
+        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.frag_start_anim, R.anim.frag_stop_anim).replace(R.id.fragment, RuntimeFragment.class, null).commit();
     }
-
     public void enterLauncher() {
         finish();
         Intent intent = new Intent(this, MainActivity.class);

@@ -287,22 +287,77 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/view2" />
 
+            <com.tungsten.fcllibrary.component.view.FCLTextView
+                android:id="@+id/launch_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:singleLine="true"
+                android:text="@string/launch_mode"
+                android:textSize="11sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/view3"
+                app:use_theme_color="true" />
+
+            <com.tungsten.fcllibrary.component.view.FCLView
+                android:id="@+id/view3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/execute_jar"
+                app:use_theme_color="true" />
+
             <com.tungsten.fcllibrary.component.view.FCLButton
                 android:id="@+id/execute_jar"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="8dp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/jar_execute"
-                app:layout_constraintBottom_toTopOf="@id/launch"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="4dp"
+                app:layout_constraintBottom_toTopOf="@id/launch_pojav"
+                app:layout_constraintEnd_toStartOf="@id/shell"
+                app:layout_constraintStart_toStartOf="parent"
                 app:ripple="true" />
 
             <com.tungsten.fcllibrary.component.view.FCLButton
-                android:id="@+id/launch"
+                android:id="@+id/shell"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/browse_files"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toTopOf="@id/launch_pojav"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/execute_jar"
+                app:ripple="true" />
+
+            <com.tungsten.fcllibrary.component.view.FCLButton
+                android:id="@+id/launch_pojav"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/launch_pojav"
                 android:layout_marginHorizontal="8dp"
-                android:text="@string/launch"
+                app:layout_constraintBottom_toTopOf="@id/launch_boat"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/shell"
+                app:ripple="true" />
+
+            <com.tungsten.fcllibrary.component.view.FCLButton
+                android:id="@+id/launch_boat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/launch_boat"
+                android:layout_marginHorizontal="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:ripple="true" />
 

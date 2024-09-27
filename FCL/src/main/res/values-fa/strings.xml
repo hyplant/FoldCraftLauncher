@@ -31,10 +31,6 @@
     <string name="setting">تنظیمات</string>
 
     <string name="about">در باره</string>
-    <string name="about_launcher" translatable="false">Fold Craft Launcher</string>
-    <string name="about_developer" translatable="false">FCL-Team</string>
-    <string name="about_sponsor">حامی مالی</string>
-    <string name="about_source">متن باز</string>
     <string name="about_desc">Fold Craft Launcher یک راه‌انداز Minecraft Android است که به کاربر امکان می‌دهد Minecraft: Java Edition را در دستگاه Android راه‌اندازی کند.\n\nFold Craft Launcher توسط FCL-Team توسعه داده شده است.\n\nبیشترین ویژگی‌های Fold Craft Launcher بر اساس HMCLCore اصلاح شده‌اند.\n\nبرنامه برخی از کدهای PojavLauncher و Boat را قرض می گیرد و نقل قول می کند، بنابراین اگر می خواهید این برنامه را توزیع کنید، لطفاً مجوز GPL-v3 را دنبال کنید.</string>
 
     <string name="account_add_server">افزودن سرور احراز هویت</string>
@@ -103,7 +99,6 @@
     <string name="action_share">به اشتراک بگذارید</string>
     <string name="action_skip">رد کردن</string>
 
-    <string name="announcement">اطلاعیه ها</string>
     <string name="announcement_significant">این اطلاعیه یک اطلاعیه مهم است. لطفاً قبل از پنهان کردن این اعلامیه، تأیید کنید که آن را خوانده اید. آیا می خواهید به پنهان کردن آن ادامه دهید؟</string>
 
     <string name="archive_author">نویسنده(های)</string>
@@ -141,8 +136,6 @@
 
     <string name="community">کامیونیتی</string>
     <string name="community_hint">برای دریافت آخرین نسخه ، گزارش اشکالات و غیره به جامعه ما بپیوندید. لطفاً در صورت پیوستن ، قوانین جامعه را دنبال کنید.</string>
-    <string name="community_discord" translatable="false">Discord</string>
-    <string name="community_qq">گروه qq</string>
 
     <string name="control_create">کنترلر ایجاد کنید</string>
     <string name="control_delete">آیا مطمئناً این کنترلر را حذف می کنید؟</string>
@@ -478,7 +471,6 @@
     <string name="jar_executor_crash_title">مجری کوزه سقوط کرد</string>
     <string name="jar_executor_crash_reason">تحلیل دلیل خرابی Jar Executor اکنون پشتیبانی نمی‌شود.</string>
 
-    <string name="launch">راه اندازی</string>
     <string name="launch_error_java">شما از یک نسخه جاوا منسوخ استفاده می کنید، آیا مطمئن هستید که می خواهید ادامه دهید؟</string>
     <string name="launch_error_java_auto">انتخاب خودکار</string>
     <string name="launch_error_java_continue">ادامه هید</string>
@@ -731,7 +723,6 @@
     <string name="mods_update_modpack_mod_warning">به‌روزرسانی مود‌ها در یک مودپک می‌تواند منجر به نتایج جبران‌ناپذیری شود و احتمالاً مودپک را خراب کند به طوری که شروع به کار نشود. آیا مطمئن هستید که می خواهید به روز رسانی کنید؟</string>
 
     <string name="profile_shared">دایرکتوری مشترک</string>
-    <string name="profile_private">دایرکتوری خصوصی</string>
     <string name="profile_name">نام</string>
     <string name="profile_path">مسیر</string>
     <string name="profile_select">دایرکتوری را انتخاب کنید</string>

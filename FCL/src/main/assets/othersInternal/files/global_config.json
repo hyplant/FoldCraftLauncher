@@ -1,1 +1,18 @@
-{}
+{
+  "usesGlobal": true,
+  "javaArgs": "",
+  "minecraftArgs": "",
+  "maxMemory": 4096,
+  "autoMemory": true,
+  "permSize": "",
+  "serverIp": "",
+  "java": "Auto",
+  "scaleFactor": 1.0,
+  "notCheckGame": false,
+  "notCheckJVM": true,
+  "beGesture": false,
+  "vulkanDriverSystem": false,
+  "controller": "00000000",
+  "renderer": 4,
+  "isolateGameDir": false
+}

@@ -317,8 +317,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:layout_weight="1"
-                            android:min="25"
-                            android:max="100"
+                            android:min="1"
+                            android:max="400"
                             android:id="@+id/edit_scale_factor"/>
 
                         <com.tungsten.fcllibrary.component.view.FCLTextView

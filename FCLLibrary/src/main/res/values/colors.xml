@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="default_theme_color">#AA3F3F3F</color>
+    <color name="default_theme_color">#7F101112</color>
+    <color name="default_theme_color2">#FF87898A</color>
 </resources>

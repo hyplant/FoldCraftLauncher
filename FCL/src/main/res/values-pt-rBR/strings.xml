@@ -31,10 +31,6 @@
     <string name="setting">Configurações</string>
     
     <string name="about">Sobre</string>
-    <string name="about_launcher" translatable="false">Fold Craft Launcher</string>
-    <string name="about_developer" translatable="false">FCL-Team</string>
-    <string name="about_sponsor">Patrocinadores</string>
-    <string name="about_source">Código fonte</string>
     <string name="about_desc">Fold Craft é um Launcher de Minecraft no Android, que lhe permite jogar Minecraft: Java Edition no seu aparelho Android.\n\nO Fold Craft Launcher é desenvolvido pela FCL-Team.\n\nA maioria das funcionalidades do Fold Craft Launcher são baseadas no HMCLCore.\n\nO aplicativo usa partes do código de PojavLauncher e Boat, então se deseja distribuir este aplicativo, por favor siga as regras da Licença GPL-v3.</string>
 
     <string name="account_add_server">Adicionar servidor de autenticação</string>
@@ -103,7 +99,6 @@
     <string name="action_share">Compartilhar</string>
     <string name="action_skip">Pular</string>
 
-    <string name="announcement">Anúncio: %s</string>
     <string name="announcement_significant">Este anúncio é importante. Por favor certifique que você leu o anúncio antes de desativar. Você deseja desativar-lo?</string>
 
     <string name="archive_author">Autor(es)</string>
@@ -141,8 +136,6 @@
 
     <string name="community">Comunidade</string>
     <string name="community_hint">Entre na nossa comunidade para ter as últimas versões, reportar bugs, etc. Por favor seguir as regras da comunidade se entrar!</string>
-    <string name="community_discord" translatable="false">Discord</string>
-    <string name="community_qq">QQ-Group</string>
 
     <string name="control_create">Criar</string>
     <string name="control_delete">Tem certeza de que deseja excluir este controle?</string>
@@ -478,7 +471,6 @@
     <string name="jar_executor_crash_title">Execução de .jar falhou</string>
     <string name="jar_executor_crash_reason">O motivo da falha ainda não é suportado.</string>
 
-    <string name="launch">Jogar</string>
     <string name="launch_error_java">Você está usando uma versão não suportada do Java, tem certeza que deseja continuar?</string>
     <string name="launch_error_java_auto">Seleção automática</string>
     <string name="launch_error_java_continue">Continuar</string>
@@ -731,7 +723,6 @@
     <string name="mods_update_modpack_mod_warning">Atualizar mods em um modpack pode levar à resultados irreparáveis, possivelmente corrompendo o modpack de forma que ele não possa ser iniciado. Tem certeza de que deseja atualizar?</string>
 
     <string name="profile_shared">Diretório compartilhado</string>
-    <string name="profile_private">Diretório privado</string>
     <string name="profile_name">Nome</string>
     <string name="profile_path">Caminho</string>
     <string name="profile_select">Selecione Diretório</string>

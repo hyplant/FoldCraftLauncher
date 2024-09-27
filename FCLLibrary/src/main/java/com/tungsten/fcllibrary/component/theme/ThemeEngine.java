@@ -84,6 +84,15 @@ public class ThemeEngine {
         }
     }
 
+    public void applyColor2(int color) {
+        theme.setColor2(color);
+        for (View view : runnables.keySet()) {
+            if (view != null && runnables.get(view) != null) {
+                handler.post(runnables.get(view));
+            }
+        }
+    }
+
     public void applyFullscreen(Window window, boolean fullscreen) {
         theme.setFullscreen(fullscreen);
         if (window != null) {
@@ -140,6 +149,11 @@ public class ThemeEngine {
         Theme.saveTheme(context, theme, modified);
     }
 
+    public void applyAndSave2(Context context, int color, boolean modified) {
+        applyColor2(color);
+        Theme.saveTheme(context, theme, modified);
+    }
+
     public void applyAndSave(Context context, Window window, boolean fullscreen) {
         applyFullscreen(window, fullscreen);
         Theme.saveTheme(context, theme);
@@ -159,6 +173,10 @@ public class ThemeEngine {
     public static int getDefaultColor(Context context) {
         int color = context.getColor(R.color.default_theme_color);
         return color;
+    }
+    public static int getDefaultColor2(Context context) {
+        int color2 = context.getColor(R.color.default_theme_color2);
+        return color2;
     }
 
 }
