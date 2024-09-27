@@ -471,7 +471,6 @@
     <string name="jar_executor_crash_title">Ошибка выполнения Jar :(</string>
     <string name="jar_executor_crash_reason">Анализ причин сбоя исполнителя Jar в настоящее время не поддерживается.</string>
 
-    <string name="launch">Играть</string>
     <string name="launch_error_java">Вы используете устаревшую версию Java. Вы уверены, что хотите продолжить?</string>
     <string name="launch_error_java_auto">Выбрать автоматически (рекомендуется)</string>
     <string name="launch_error_java_continue">Продолжить</string>

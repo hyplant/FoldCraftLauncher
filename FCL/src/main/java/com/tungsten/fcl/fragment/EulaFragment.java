@@ -91,7 +91,7 @@ public class EulaFragment extends FCLFragment implements View.OnClickListener {
                     editor.putBoolean("is_first_launch", false);
                     editor.apply();
                 }
-                ((SplashActivity) getActivity()).start();
+                ((SplashActivity) getActivity()).enterRuntimeFragment();
             }
         }
     }

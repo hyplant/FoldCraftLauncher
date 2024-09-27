@@ -35,6 +35,7 @@ import com.tungsten.fcl.util.AndroidUtils
 import com.tungsten.fcl.util.FXUtils
 import com.tungsten.fcl.util.WeakListenerHolder
 import com.tungsten.fclauncher.bridge.FCLBridge
+import com.tungsten.fclauncher.utils.FCLPath;
 import com.tungsten.fclcore.auth.Account
 import com.tungsten.fclcore.auth.authlibinjector.AuthlibInjectorAccount
 import com.tungsten.fclcore.auth.authlibinjector.AuthlibInjectorServer
@@ -53,12 +54,15 @@ import com.tungsten.fclcore.mod.RemoteModRepository
 import com.tungsten.fclcore.task.Schedulers
 import com.tungsten.fclcore.util.Logging
 import com.tungsten.fclcore.util.fakefx.BindingMapping
+import com.tungsten.fcllibrary.browser.FileBrowser
+import com.tungsten.fcllibrary.browser.options.LibMode
 import com.tungsten.fcllibrary.component.FCLActivity
 import com.tungsten.fcllibrary.component.theme.ThemeEngine
 import com.tungsten.fcllibrary.component.view.FCLEditText
 import com.tungsten.fcllibrary.component.view.FCLMenuView
 import com.tungsten.fcllibrary.component.view.FCLMenuView.OnSelectListener
 import com.tungsten.fcllibrary.util.ConvertUtils
+import java.io.File
 import java.io.IOException
 import java.util.function.Consumer
 import java.util.logging.Level
@@ -193,11 +197,12 @@ class MainActivity : FCLActivity(), OnSelectListener, View.OnClickListener {
                         .show()
                     true
                 }
-                launch.setOnClickListener(this@MainActivity)
-                launch.setOnLongClickListener {
+                shell.setOnClickListener(this@MainActivity)
+                shell.setOnLongClickListener {
                     startActivity(Intent(this@MainActivity, ShellActivity::class.java))
                     true
                 }
+                launchPojav.setOnClickListener(this@MainActivity)
                 launchBoat.setOnClickListener(this@MainActivity)
 
                 uiManager = UIManager(this@MainActivity, uiLayout)
@@ -328,7 +333,14 @@ class MainActivity : FCLActivity(), OnSelectListener, View.OnClickListener {
             if (view === executeJar) {
                 JarExecutorHelper.start(this@MainActivity, this@MainActivity)
             }
-            if (view === launch) {
+            }
+            if (view === shell) {
+                val builder = FileBrowser.Builder(context)
+                builder.setLibMode(LibMode.FILE_BROWSER)
+                builder.setInitDir(new File(FCLPath.EXTERNAL_DIR).absolutePath)
+                builder.create().browse(activity, RequestCodes.BROWSE_DIR_CODE, null)
+            }
+            if (view === launchPojav) {
                 Versions.launch(this@MainActivity, Profiles.getSelectedProfile())
             }
             if (view === launchBoat) {
@@ -497,7 +509,7 @@ class MainActivity : FCLActivity(), OnSelectListener, View.OnClickListener {
                 it.interpolator(BounceInterpolator()).start()
             }
             AnimUtil.playTranslationY(
-                listOf(executeJar, launch, launchBoat),
+                listOf(executeJar, launchPojav, launchBoat),
                 speed * 100L,
                 -200f,
                 0f
