@@ -33,6 +33,7 @@ import com.tungsten.fcl.ui.version.Versions
 import com.tungsten.fcl.upgrade.UpdateChecker
 import com.tungsten.fcl.util.AndroidUtils
 import com.tungsten.fcl.util.FXUtils
+import com.tungsten.fcl.util.RequestCodes
 import com.tungsten.fcl.util.WeakListenerHolder
 import com.tungsten.fclauncher.bridge.FCLBridge
 import com.tungsten.fclauncher.utils.FCLPath;
@@ -334,10 +335,10 @@ class MainActivity : FCLActivity(), OnSelectListener, View.OnClickListener {
                 JarExecutorHelper.start(this@MainActivity, this@MainActivity)
             }
             if (view === shell) {
-                val builder = FileBrowser.Builder(context)
+                val builder = FileBrowser.Builder(gitContext())
                 builder.setLibMode(LibMode.FILE_BROWSER)
-                builder.setInitDir(new File(FCLPath.EXTERNAL_DIR).absolutePath)
-                builder.create().browse(activity, RequestCodes.BROWSE_DIR_CODE, null)
+                builder.setInitDir(File(FCLPath.EXTERNAL_DIR).absolutePath)
+                builder.create().browse(this@MainActivity, RequestCodes.BROWSE_DIR_CODE, null)
             }
             if (view === launchPojav) {
                 Versions.launch(this@MainActivity, Profiles.getSelectedProfile())
