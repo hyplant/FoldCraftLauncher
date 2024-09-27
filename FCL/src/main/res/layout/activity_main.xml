@@ -346,7 +346,9 @@
                 android:layout_marginBottom="10dp"
                 android:text="@string/launch_pojav"
                 android:layout_marginHorizontal="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/launch_boat"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/shell"
                 app:ripple="true" />
 
             <com.tungsten.fcllibrary.component.view.FCLButton
