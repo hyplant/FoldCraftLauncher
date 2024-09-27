@@ -333,7 +333,6 @@ class MainActivity : FCLActivity(), OnSelectListener, View.OnClickListener {
             if (view === executeJar) {
                 JarExecutorHelper.start(this@MainActivity, this@MainActivity)
             }
-            }
             if (view === shell) {
                 val builder = FileBrowser.Builder(context)
                 builder.setLibMode(LibMode.FILE_BROWSER)
