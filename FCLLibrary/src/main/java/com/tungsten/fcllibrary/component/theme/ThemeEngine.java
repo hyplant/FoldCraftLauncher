@@ -48,6 +48,7 @@ public class ThemeEngine {
             theme = Theme.getTheme(context);
             if (!theme.isModified()) {
                 theme.setColor(getDefaultColor(context));
+                theme.setColor2(getDefaultColor(context));
             }
             runnables = new HashMap<>();
             initialized = true;
