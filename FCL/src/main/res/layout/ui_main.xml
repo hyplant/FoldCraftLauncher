@@ -68,6 +68,7 @@
                 <com.tungsten.fcllibrary.component.view.FCLTextView
                     android:padding="10dp"
                     android:textSize="16.5sp"
+                    android:textIsSelectable="true"
                     android:id="@+id/announcement"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
