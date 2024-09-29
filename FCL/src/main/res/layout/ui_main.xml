@@ -7,7 +7,7 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/announcement_container"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -98,14 +98,6 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <com.tungsten.fcllibrary.component.view.FCLButton
-        android:id="@+id/show"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="begin"
-        android:text="show"
-        app:ripple="true"/>
 
     <RelativeLayout
         android:id="@+id/skin_container"

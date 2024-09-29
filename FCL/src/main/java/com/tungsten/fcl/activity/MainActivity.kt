@@ -216,8 +216,10 @@ class MainActivity : FCLActivity(), OnSelectListener, View.OnClickListener {
                 }
                 launchPojav.setOnClickListener(this@MainActivity)
                 launchBoat.setOnClickListener(this@MainActivity)
-                OnLongClickListener { openRendererMenu(launch);true }.apply {
+                OnLongClickListener { openRendererMenu(launchPojav);true }.apply {
                     launchPojav.setOnLongClickListener(this)
+                }
+                OnLongClickListener { openRendererMenu(launchBoat);true }.apply {
                     launchBoat.setOnLongClickListener(this)
                 }
 
@@ -536,7 +538,7 @@ class MainActivity : FCLActivity(), OnSelectListener, View.OnClickListener {
         popupWindow = PopupWindow(
             listView,
             bind.rightMenu.width,
-            bind.launch.y.toInt()
+            bind.launchPojav.y.toInt()
         ).apply {
             isClippingEnabled = true
             isOutsideTouchable = true

@@ -77,9 +77,8 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
         announcementView = findViewById(R.id.announcement);
         date = findViewById(R.id.date);
         hide = findViewById(R.id.hide);
-        show = findViewById(R.id.show);
         ThemeEngine.getInstance().registerEvent(announcementLayout, () -> announcementLayout.getBackground().setTint(ThemeEngine.getInstance().getTheme().getColor()));
-        show.setOnClickListener(this);
+        hide.setOnClickListener(this);
 
         skinContainer = findViewById(R.id.skin_container);
         renderer = new SkinRenderer(getContext());
@@ -139,6 +138,7 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
     }
 
     private void checkAnnouncement() {
+        announcementContainer.setVisibility(View.INVISIBLE);
         if(FCLApplication.appConfig.getProperty("enable-announcement","true").equals("true")){
             @SuppressLint("SimpleDateFormat") CompletableFuture<Announcement> future = CompletableFuture.supplyAsync(() -> {
                 try {
@@ -174,8 +174,6 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
 
     private void hideAnnouncement() {
         announcementContainer.setVisibility(View.GONE);
-        show.setVisibility(View.VISIBLE);
-        skinContainer.setVisibility(View.VISIBLE);
         if (announcement != null) {
             announcement.hide(getContext());
         }
@@ -209,6 +207,7 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
+        checkAnnouncement();
         FCLAlertDialog.Builder builder = new FCLAlertDialog.Builder(getContext());
         builder.setAlertLevel(FCLAlertDialog.AlertLevel.INFO);
         builder.setCancelable(true);
@@ -235,10 +234,6 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
             } else {
                 hideAnnouncement();
             }
-        }
-        if (view == show) {
-            skinContainer.setVisibility(View.GONE);
-            checkAnnouncement();
         }
     }
 }
