@@ -544,7 +544,7 @@ class MainActivity : FCLActivity(), OnSelectListener, View.OnClickListener {
             isOutsideTouchable = true
             enterTransition = Slide(Gravity.TOP)
             exitTransition = Slide(Gravity.TOP)
-            showAsDropDown(view)
+            showAsDropDown(launchPojav)
         }
     }
 
