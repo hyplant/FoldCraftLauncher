@@ -157,7 +157,7 @@
             "text": "左键",
             "style": "全键盘-功能键",
             "baseInfo": {
-              "visibilityType": "IN_GAME",
+              "visibilityType": "ALWAYS",
               "xPosition": 832,
               "yPosition": 689,
               "sizeType": "PERCENTAGE",
@@ -307,7 +307,7 @@
             "text": "右键",
             "style": "全键盘-功能键",
             "baseInfo": {
-              "visibilityType": "IN_GAME",
+              "visibilityType": "ALWAYS",
               "xPosition": 935,
               "yPosition": 446,
               "sizeType": "PERCENTAGE",
