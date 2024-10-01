@@ -3,17 +3,21 @@
   "description": "多人游戏基本布局（服务器直装版基础按键）",
   "author": "root-S7",
   "latest": {
-    "versionCode": 3,
-    "versionName": "2.2.2 (3)"
+    "versionCode": 4,
+    "versionName": "2.3.0"
   },
   "history": [
+    {
+      "versionCode": 3,
+      "versionName": "2.2.2 (3)"
+    },
     {
       "versionCode": 2,
       "versionName": "2.2.2 (2)"
     },
     {
       "versionCode": 1,
-      "versionName": "1.2.0 (1)"
+      "versionName": "1.2.0"
     }
   ]
 }
