@@ -1,0 +1,54 @@
+name: Android CI test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  DebugBuild:
+    strategy:
+      fail-fast: false
+    env:
+      CURSE_API_KEY: ${{ secrets.CURSE_API_KEY }}
+      OAUTH_API_KEY: ${{ secrets.OAUTH_API_KEY }}
+    name: Build Debug
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: 17
+
+      - name: Prepare to Build ALL
+        run: |
+          chmod +x gradlew
+
+      - name: Build ALL apk
+        run: |
+          ./gradlew assembledebug -Darch=all --stacktrace
+
+      - name: Upload ALL apk
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug-all
+          path: FCL/build/outputs/*
+          retention-days: 7
+
+      - name: Prepare to Build ARM64
+        run: |
+          rm -rfv ./FCL/build/outputs/*
+
+      - name: Build ARM64 apk
+        run: |
+          ./gradlew assembledebug -Darch=arm64 --stacktrace
+
+      - name: Upload ARM64 apk
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug-all
+          path: FCL/build/outputs/*
+          retention-days: 7
