@@ -41,6 +41,7 @@ jobs:
       - name: Prepare to Build ARM64
         run: |
           rm -rfv ./FCL/build/outputs/*
+          ./gradlew -Darch=arm64 :FCL:mergeDebugAssets --rerun-tasks --no-build-cache
 
       - name: Build ARM64 apk
         run: |
