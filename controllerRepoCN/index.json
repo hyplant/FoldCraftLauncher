@@ -14,6 +14,21 @@
     ]
   },
   {
+    "id": "9329f2ce",
+    "lang": "all",
+    "name": "HMCL-PE Default",
+    "introduction": "HMCL-PE Default controller for Fold Craft Launcher.",
+    "device": [
+      0,
+      1,
+      2
+    ],
+    "categories": [
+      1,
+      6
+    ]
+  },
+  {
     "id": "f9b80a8f",
     "lang": "all",
     "name": "Default_root-S7",
@@ -36,7 +51,7 @@
       0
     ],
     "categories": [
-      10
+      100
     ]
   },
   {

@@ -1,6 +1,6 @@
 [
   {
-    "id": 10,
+    "id": 100,
     "lang": [
       {
         "locale": "zh_CN",
@@ -48,6 +48,19 @@
       {
         "locale": "zh_CN",
         "text": "基岩版"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "lang": [
+      {
+        "locale": "en",
+        "text": "Full keyboard"
+      },
+      {
+        "locale": "zh_CN",
+        "text": "全键盘"
       }
     ]
   }
