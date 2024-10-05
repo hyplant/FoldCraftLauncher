@@ -13,6 +13,19 @@
     ]
   },
   {
+    "id": 101,
+    "lang": [
+      {
+        "locale": "zh_CN",
+        "text": "官方"
+      },
+      {
+        "locale": null,
+        "text": "Official"
+      }
+    ]
+  },
+  {
     "id": 1,
     "lang": [
       {
