@@ -140,7 +140,8 @@
     <string name="control_download_history">下载历史版本</string>
     <string name="control_download_history_empty">没有历史版本！</string>
     <string name="control_download_lang_current">当前语言</string>
-    <string name="control_download_source_cn">国内源</string>
+    <string name="control_download_source_github">官方源</string>
+    <string name="control_download_source_cn">直装版</string>
     <string name="control_download_device_phone">手机</string>
     <string name="control_download_device_pad">平板</string>
     <string name="control_download_device_other">其他</string>
