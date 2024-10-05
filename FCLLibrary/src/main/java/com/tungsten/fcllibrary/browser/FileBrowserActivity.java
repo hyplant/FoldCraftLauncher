@@ -159,6 +159,10 @@ public class FileBrowserActivity extends FCLActivity implements View.OnClickList
                 break;
                 default:
         }
+        if (!fileBrowser.isExternalSelection()) {
+            selectExternal.setVisibility(View.GONE);
+            openExternal.setVisibility(View.GONE);
+        }
     }
 
     private String getMode() {
