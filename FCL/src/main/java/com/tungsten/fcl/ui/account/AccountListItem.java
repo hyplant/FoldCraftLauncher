@@ -227,7 +227,6 @@ public class AccountListItem {
         image.bind(TexturesLoader.avatarBinding(account, ConvertUtils.dip2px(context, 30f)));
         texture.bind(TexturesLoader.textureBinding(account));
         MainActivity.getInstance().refreshAvatar(account);
-        UIManager.getInstance().getMainUI().refreshSkin(account);
     }
 
     public static AuthInfo logIn(Account account) throws CancellationException, AuthenticationException, InterruptedException {
