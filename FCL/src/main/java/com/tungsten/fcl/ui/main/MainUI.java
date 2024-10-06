@@ -34,8 +34,6 @@ import com.tungsten.fcllibrary.component.ui.FCLCommonUI;
 import com.tungsten.fcllibrary.component.view.FCLButton;
 import com.tungsten.fcllibrary.component.view.FCLTextView;
 import com.tungsten.fcllibrary.component.view.FCLUILayout;
-import com.tungsten.fcllibrary.skin.SkinCanvas;
-import com.tungsten.fcllibrary.skin.SkinRenderer;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -57,10 +55,6 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
     private FCLButton hide;
     private Announcement announcement = null;
 
-    private RelativeLayout skinContainer;
-    private SkinCanvas skinCanvas;
-    private SkinRenderer renderer;
-
     private ObjectProperty<Account> currentAccount;
 
     public MainUI(Context context, FCLUILayout parent, int id) {
@@ -80,54 +74,27 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
         ThemeEngine.getInstance().registerEvent(announcementLayout, () -> announcementLayout.getBackground().setTint(ThemeEngine.getInstance().getTheme().getColor()));
         hide.setOnClickListener(this);
 
-        skinContainer = findViewById(R.id.skin_container);
-        renderer = new SkinRenderer(getContext());
-        ViewGroup.LayoutParams layoutParamsSkin = skinContainer.getLayoutParams();
-        layoutParamsSkin.width = (int) (((View) skinContainer.getParent().getParent()).getMeasuredWidth() * 0.5f);
-        layoutParamsSkin.height = (int) Math.min(((View) skinContainer.getParent().getParent()).getMeasuredWidth() * 0.5f, ((View) skinContainer.getParent().getParent()).getMeasuredHeight());
-        skinContainer.setLayoutParams(layoutParamsSkin);
-
         checkAnnouncement();
-
-        setupSkinDisplay();
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        if (skinCanvas == null) {
-            skinCanvas = new SkinCanvas(getContext());
-            skinCanvas.setRenderer(renderer, 5f);
-        } else {
-            skinCanvas.onResume();
-            renderer.updateTexture(renderer.getTexture()[0], renderer.getTexture()[1]);
-        }
-        skinContainer.addView(skinCanvas);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        if (skinCanvas != null) {
-            skinCanvas.onPause();
-        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (isShowing() && skinCanvas != null) {
-            skinCanvas.onResume();
-        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        if (skinCanvas != null) {
-            skinCanvas.onPause();
-        }
-        skinContainer.removeView(skinCanvas);
     }
 
     @Override
@@ -177,32 +144,6 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
         if (announcement != null) {
             announcement.hide(getContext());
         }
-    }
-
-    private void setupSkinDisplay() {
-        currentAccount = new SimpleObjectProperty<Account>() {
-
-            @Override
-            protected void invalidated() {
-                Account account = get();
-                renderer.textureProperty().unbind();
-                if (account == null) {
-                    renderer.updateTexture(BitmapFactory.decodeStream(MainUI.class.getResourceAsStream("/assets/img/alex.png")), null);
-                } else {
-                    renderer.textureProperty().bind(TexturesLoader.textureBinding(account));
-                }
-            }
-        };
-        currentAccount.bind(Accounts.selectedAccountProperty());
-    }
-
-    public void refreshSkin(Account account) {
-        Schedulers.androidUIThread().execute(() -> {
-            if (currentAccount.get() == account) {
-                renderer.textureProperty().unbind();
-                renderer.textureProperty().bind(TexturesLoader.textureBinding(currentAccount.get()));
-            }
-        });
     }
 
     @Override
