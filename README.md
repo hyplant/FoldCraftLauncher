@@ -18,5 +18,6 @@
 
 - 控制器仓库1（对应启动器中的GITHUB源） `controllerRepo`
   - 不定期同步官方仓库更新，但移除`5bqf54mpCg`
+  - `remove_5bqf54mpCg` 用于移除5bqf54mpCg的脚本
 - 控制器仓库2（对应启动器中的国内源） `controllerRepoCN`
   - 一些适用于服务器或整合包直装版的控制器
