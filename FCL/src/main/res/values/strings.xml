@@ -486,7 +486,7 @@
     <string name="jar_execute_custom_args">Execute with custom args</string>
     <string name="jar_executor_crash_title">Jar Executor Crashed</string>
     <string name="jar_executor_crash_reason">Jar Executor crash reason analyse is not supported now.</string>
-    <string name="browse_files">Browse Files</string>
+    <string name="browse_files">Files</string>
 
     <string name="launch_pojav">Pojav</string>
     <string name="launch_boat">Boat</string>
