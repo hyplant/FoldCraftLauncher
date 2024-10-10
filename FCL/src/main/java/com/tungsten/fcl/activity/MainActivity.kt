@@ -320,6 +320,14 @@ class MainActivity : FCLActivity(), OnSelectListener, View.OnClickListener {
                 builder.setInitDir(File(FCLPath.EXTERNAL_DIR).absolutePath)
                 builder.create().browse(this@MainActivity, RequestCodes.BROWSE_DIR_CODE, null)
             }
+
+            private fun launch() {
+                if (!Controllers.isInitialized()) {
+                    title.setTextWithAnim(getString(R.string.message_loading_controllers))
+                    return
+                }
+                Versions.launch(this@MainActivity, Profiles.getSelectedProfile())
+            }
             if (view === launchPojav) {
                 FCLBridge.BACKEND_IS_BOAT = false
                 launch()
@@ -329,14 +337,6 @@ class MainActivity : FCLActivity(), OnSelectListener, View.OnClickListener {
                 launch()
             }
         }
-    }
-
-    private fun launch() {
-        if (!Controllers.isInitialized()) {
-            title.setTextWithAnim(getString(R.string.message_loading_controllers))
-            return
-        }
-        Versions.launch(this@MainActivity, Profiles.getSelectedProfile())
     }
 
     private fun setupAccountDisplay() {
