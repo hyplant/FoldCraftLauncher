@@ -321,7 +321,7 @@ class MainActivity : FCLActivity(), OnSelectListener, View.OnClickListener {
                 builder.create().browse(this@MainActivity, RequestCodes.BROWSE_DIR_CODE, null)
             }
 
-            private fun launch() {
+            fun launch() {
                 if (!Controllers.isInitialized()) {
                     title.setTextWithAnim(getString(R.string.message_loading_controllers))
                     return
