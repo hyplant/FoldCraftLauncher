@@ -38,7 +38,6 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
     var others: Boolean = false
     lateinit var sharedPreferences: SharedPreferences
     lateinit var editor: SharedPreferences.Editor
-    var needRestart: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -125,13 +124,13 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
     private fun check() {
         if (!isLatest) return
         if (others) {
-            if (!needRestart) {
+            if (!installing) {
                 (activity as SplashActivity).enterLauncher()
             } else {
                 (activity as SplashActivity).finish()
                 System.exit(0)
             }
-        } else {
+        } else if (installing) {
             checkOthers()
         }
     }
@@ -172,8 +171,8 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
     private var installing = false
     private fun install() {
         if (installing) return
+        installing = true
         bind.apply {
-            installing = true
             if (!gameResource) {
                 gameResourceState.visibility = View.GONE
                 gameResourceProgress.visibility = View.VISIBLE
@@ -413,7 +412,6 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
 
     override fun onClick(view: View) {
         if (view === bind.install) {
-            needRestart = true
             install()
         }
     }
