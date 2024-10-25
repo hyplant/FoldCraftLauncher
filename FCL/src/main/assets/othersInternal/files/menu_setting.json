@@ -2,6 +2,7 @@
   "autoFit": true,
   "autoFitDist": 0,
   "lockMenuView": true,
+  "hideMenuView": false,
   "disableSoftKeyAdjust": true,
   "showLog": false,
   "menuPositionX": 1.0,

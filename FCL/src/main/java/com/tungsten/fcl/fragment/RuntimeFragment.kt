@@ -34,8 +34,8 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
     var java17: Boolean = false
     var java21: Boolean = false
     var jna: Boolean = false
-    var gameResource = false
-    var others = false
+    var gameResource: Boolean = false
+    var others: Boolean = false
     lateinit var sharedPreferences: SharedPreferences
     lateinit var editor: SharedPreferences.Editor
     var needRestart: Boolean = false
@@ -123,42 +123,41 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
         get() = lwjgl && cacio && cacio11 && cacio17 && java8 && java11 && java17 && java21 && jna && gameResource
 
     private fun check() {
-        if (isLatest && others) {
-            if (needRestart) {
+        if (!isLatest) return
+        if (others) {
+            if (!needRestart) {
+                (activity as SplashActivity).enterLauncher()
+            } else {
                 (activity as SplashActivity).finish()
                 System.exit(0)
-            } else {
-                (activity as SplashActivity).enterLauncher()
             }
+        } else {
+            checkOthers()
         }
     }
 
     private var installingOthers = false
     private fun checkOthers() {
         if (installingOthers) return
-        if (isLatest) {
-            installingOthers = true
-            bind.apply {
-                if (!others) {
-                    othersProgress.visibility = View.VISIBLE
-                    Thread {
-                        try {
-                            RuntimeUtils.copyAssetsDirToLocalDir(context, "othersExternal", FCLPath.EXTERNAL_DIR)
-                            RuntimeUtils.copyAssetsDirToLocalDir(context, "othersInternal", FCLPath.INTERNAL_DIR)
-                            others = true
-                            activity?.runOnUiThread {
-                                othersState.visibility = View.VISIBLE
-                                othersProgress.visibility = View.GONE
-                                refreshDrawables()
-                                check()
-                            }
-                        } catch (e: IOException) {
-                            e.printStackTrace()
+        installingOthers = true
+        bind.apply {
+            if (!others) {
+                othersProgress.visibility = View.VISIBLE
+                Thread {
+                    try {
+                        RuntimeUtils.copyAssetsDirToLocalDir(context, "othersExternal", FCLPath.EXTERNAL_DIR)
+                        RuntimeUtils.copyAssetsDirToLocalDir(context, "othersInternal", FCLPath.INTERNAL_DIR)
+                        others = true
+                        activity?.runOnUiThread {
+                            othersState.visibility = View.VISIBLE
+                            othersProgress.visibility = View.GONE
+                            refreshDrawables()
+                            check()
                         }
-                    }.start()
-                } else {
-                    check()
-                }
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
+                }.start()
             }
         }
     }
@@ -171,10 +170,8 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
     }
 
     private var installing = false
-
     private fun install() {
         if (installing) return
-
         bind.apply {
             installing = true
             if (!gameResource) {
@@ -197,7 +194,7 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
                             gameResourceState.visibility = View.VISIBLE
                             gameResourceProgress.visibility = View.GONE
                             refreshDrawables()
-                            checkOthers()
+                            check()
                         }
                     }catch (e: IOException) {
                         e.printStackTrace()
@@ -223,7 +220,7 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
                         lwjglState.visibility = View.VISIBLE
                         lwjglProgress.visibility = View.GONE
                         refreshDrawables()
-                        checkOthers()
+                        check()
                     }
                 }.start()
             }
@@ -245,7 +242,7 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
                         cacioState.visibility = View.VISIBLE
                         cacioProgress.visibility = View.GONE
                         refreshDrawables()
-                        checkOthers()
+                        check()
                     }
                 }.start()
             }
@@ -267,7 +264,7 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
                         cacio11State.visibility = View.VISIBLE
                         cacio11Progress.visibility = View.GONE
                         refreshDrawables()
-                        checkOthers()
+                        check()
                     }
                 }.start()
             }
@@ -289,7 +286,7 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
                         cacio17State.visibility = View.VISIBLE
                         cacio17Progress.visibility = View.GONE
                         refreshDrawables()
-                        checkOthers()
+                        check()
                     }
                 }.start()
             }
@@ -312,7 +309,7 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
                         java8State.visibility = View.VISIBLE
                         java8Progress.visibility = View.GONE
                         refreshDrawables()
-                        checkOthers()
+                        check()
                     }
                 }.start()
             }
@@ -335,7 +332,7 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
                         java11State.visibility = View.VISIBLE
                         java11Progress.visibility = View.GONE
                         refreshDrawables()
-                        checkOthers()
+                        check()
                     }
                 }.start()
             }
@@ -358,7 +355,7 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
                         java17State.visibility = View.VISIBLE
                         java17Progress.visibility = View.GONE
                         refreshDrawables()
-                        checkOthers()
+                        check()
                     }
                 }.start()
             }
@@ -381,7 +378,7 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
                         java21State.visibility = View.VISIBLE
                         java21Progress.visibility = View.GONE
                         refreshDrawables()
-                        checkOthers()
+                        check()
                     }
                 }.start()
             }
@@ -403,13 +400,13 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
                         jnaState.visibility = View.VISIBLE
                         jnaProgress.visibility = View.GONE
                         refreshDrawables()
-                        checkOthers()
+                        check()
                     }
                 }.start()
             }
             if (!others) {
                 othersState.visibility = View.GONE
-                checkOthers()
+                check()
             }
         }
     }
