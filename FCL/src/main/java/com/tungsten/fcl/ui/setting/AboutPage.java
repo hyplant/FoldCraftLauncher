@@ -43,13 +43,13 @@ public class AboutPage extends FCLCommonPage implements View.OnClickListener {
         Uri uri = null;
 
         if (v == about_a) {
-            uri = Uri.parse(FCLApplication.appConfig.getProperty("about-a","https://github.com/hyplant/FoldCraftLauncher"));
+            uri = Uri.parse(FCLApplication.appConfig.getProperty("about-a","https://github.com/hyplant-team/FoldCraftLauncher"));
         }
         if (v == about_b) {
-            uri = Uri.parse(FCLApplication.appConfig.getProperty("about-b","https://github.com/hyplant/FoldCraftLauncher/actions"));
+            uri = Uri.parse(FCLApplication.appConfig.getProperty("about-b","https://github.com/hyplant-team/FoldCraftLauncher/actions"));
         }
         if (v == about_c) {
-            uri = Uri.parse(FCLApplication.appConfig.getProperty("about-c","https://github.com/hyplant/FoldCraftLauncher/issues"));
+            uri = Uri.parse(FCLApplication.appConfig.getProperty("about-c","https://github.com/hyplant-team/FoldCraftLauncher/pulls"));
         }
 
         if (uri != null) {

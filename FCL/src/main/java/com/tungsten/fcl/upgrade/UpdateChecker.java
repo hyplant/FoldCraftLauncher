@@ -14,8 +14,7 @@ import java.util.ArrayList;
 
 public class UpdateChecker {
 
-    //public static final String UPDATE_CHECK_URL = "https://raw.githubusercontent.com/FCL-Team/FoldCraftLauncher/main/version_map.json";
-    public static final String UPDATE_CHECK_URL_CN = FCLApplication.appConfig.getProperty("check-update-url","https://raw.githubusercontent.com/hyplant/FoldCraftLauncher/doc/version_map/latest.json");
+    public static final String UPDATE_CHECK_URL = FCLApplication.appConfig.getProperty("check-update-url","https://raw.githubusercontent.com/hyplant-team/FoldCraftLauncher/doc/version_map/latest.json");
 
     private static UpdateChecker instance;
 
@@ -51,7 +50,7 @@ public class UpdateChecker {
                 Schedulers.androidUIThread().execute(() -> Toast.makeText(context, context.getString(R.string.update_checking), Toast.LENGTH_SHORT).show());
             }
             try {
-                String res = NetworkUtils.doGet(NetworkUtils.toURL(UPDATE_CHECK_URL_CN));
+                String res = NetworkUtils.doGet(NetworkUtils.toURL(UPDATE_CHECK_URL));
                 ArrayList<RemoteVersion> versions = JsonUtils.GSON.fromJson(res, new TypeToken<ArrayList<RemoteVersion>>(){}.getType());
                 isChecking = false;
                 for (RemoteVersion version : versions) {
