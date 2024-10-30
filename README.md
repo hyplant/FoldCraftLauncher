@@ -1,12 +1,16 @@
 
-```
+```text
   controllerRepo 文件夹会不定期同步官方控制器
-  如果你不希望你在官方仓库中提交的控制器被直装版收录
-  请在 issues 中提出
+    如果你不希望你在官方仓库中提交的控制器被直装版收录
+    请在 issues 中提出
+
   由于某些原因，某些特定的控制器图标和截图可能会被移除
-  如果你不希望你的控制器发生这种情况
-  可以选择通过 pull request 提交符合要求的图像
-  符合要求的图像和原图相放在同一目录中，命名为 ${原图像文件名}_replace.png
+    如果你不希望你的控制器发生这种情况
+    可以选择通过 pull request 提交符合要求的图像
+    图标文件: Scripts/assets/<控制器id>/icon.png
+    截图文件: Scripts/assets/<控制器id>/<截图id>.png
+
+  你也可以通过 pull request 向直装版控制器仓库 (controllerRepoCN) 提交控制器
 ```
 
 </br>
