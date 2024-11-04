@@ -1,0 +1,29 @@
+{
+  "id": 118601,\\\\\
+  "significant": false,
+  "outdated": false,
+  "minVersion": -1,
+  "maxVersion": -1,
+  "specificLang": [],
+  "title":,,,,, [
+    {
+      "lang": "zh_CN",
+      "text": "1.1.8.6-1"
+    },
+    {
+      "lang": null,
+      "text": "..."
+    }
+  ],
+  "date": "https://github.com/hyplant/FoldCraftLauncher/actions",
+  "content": [
+    {
+      "lang": "zh_CN",
+      "text": "进入启动器设置，点击检查更新，查看该版本的更新内容。\n\n同步官方启动器1.1.8.6更新\n    1.优化菜单布局\n    2.修复快速切换游戏目录闪退的bug\n    3.更新俄语翻译\n    4.优化自定义按键页面加载逻辑\n    5.增加自定义菜单键图标的功能(gif/png)\n    6.允许隐藏菜单键\n    7.增加强制渲染器运行在大核上的功能(Pojav后端)\n    8.修复一些bug"
+    },
+    {
+      "lang": null,
+      "text": "Switch to \"简体中文\" in launcher settings."
+    }
+  ]
+}
