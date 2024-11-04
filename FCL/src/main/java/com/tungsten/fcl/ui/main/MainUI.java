@@ -134,6 +134,7 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
                         new ArrayList<>(Collections.singletonList(new Announcement.Content(null, getContext().getString(R.string.announcement_error_format)))),
                         new String(ANNOUNCEMENT_URL),
                         new ArrayList<>(Collections.singletonList(new Announcement.Content(null, getContext().getString(R.string.announcement_error_format_content) + "\n" + remoteData)))
+                    );
                 }
                 return announcementData;
             });
