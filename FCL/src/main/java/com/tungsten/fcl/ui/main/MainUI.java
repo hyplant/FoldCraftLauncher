@@ -106,8 +106,8 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
 
     private void checkAnnouncement() {
         announcementContainer.setVisibility(View.INVISIBLE);
-        String remoteData = null;
-        Announcement announcementData = null;
+        AtomicReference<String> remoteDataRef = new AtomicReference<>();
+        AtomicReference<Announcement> announcementDataRef = new AtomicReference<>();
         if(FCLApplication.appConfig.getProperty("enable-announcement","true").equals("true")){
             title.setText(getContext().getString(R.string.announcement));
             announcementView.setText(getContext().getString(R.string.announcement_loading));
@@ -115,7 +115,8 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
             announcementContainer.setVisibility(View.VISIBLE);
             CompletableFuture<Announcement> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    remoteData = NetworkUtils.doGet(NetworkUtils.toURL(ANNOUNCEMENT_URL), FCLApplication.deviceInfoUtils.toString());
+                    String remoteData = NetworkUtils.doGet(NetworkUtils.toURL(ANNOUNCEMENT_URL), FCLApplication.deviceInfoUtils.toString());
+                    remoteDataRef.set(remoteData);
                 }catch (Exception e) {
                     e.printStackTrace();
                     return new Announcement(
@@ -126,17 +127,18 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
                     );
                 }
                 try {
-                    announcementData = new Gson().fromJson(remoteData, Announcement.class);
+                    Announcement announcementData = new Gson().fromJson(remoteDataRef.get(), Announcement.class);
+                    announcementDataRef.set(announcementData);
                 }catch (Exception e) {
                     e.printStackTrace();
                     return new Announcement(
                         -1, true, false, -1, -1, new ArrayList<>(),
                         new ArrayList<>(Collections.singletonList(new Announcement.Content(null, getContext().getString(R.string.announcement_error_format)))),
                         new String(ANNOUNCEMENT_URL),
-                        new ArrayList<>(Collections.singletonList(new Announcement.Content(null, getContext().getString(R.string.announcement_error_format_content) + "\n" + remoteData)))
+                        new ArrayList<>(Collections.singletonList(new Announcement.Content(null, getContext().getString(R.string.announcement_error_format_content) + "\n" + remoteDataRef.get())))
                     );
                 }
-                return announcementData;
+                return announcementDataRef.get();
             });
             future.thenAccept(announcement -> new Handler(Looper.getMainLooper()).post(() -> {
                 this.announcement = announcement;
@@ -151,7 +153,7 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
                 }catch(Exception e) {
                     title.setText(getContext().getString(R.string.announcement_error_data));
                     announcementView.setText(ANNOUNCEMENT_URL);
-                    date.setText(getContext().getString(R.string.announcement_error_data_content) + "\n" + remoteData);
+                    date.setText(getContext().getString(R.string.announcement_error_data_content) + "\n" + remoteDataRef.get());
                 }
             }));
         }
