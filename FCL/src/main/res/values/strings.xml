@@ -107,9 +107,15 @@
     <string name="action_share">Share</string>
     <string name="action_skip">Skip</string>
 
-    <string name="announcement_significant">This announcement is an important announcement. You can\'t hide it.</string>
-    <string name="announcement_error">ERROR</string>
-    <string name="announcement_failure">Failed to get the announcement.\nYou can view it later by going to the doc branch of the github repository.</string>
+    <string name="announcement">Announcement</string>
+    <string name="announcement_loading">Loading announcement...</string>
+    <string name="announcement_significant">This is an important announcement and cannot be hidden.</string>
+    <string name="announcement_error_network">Failure: Network problem</string>
+    <string name="announcement_error_network_content">Failed to load announcement. The url may be incorrect or unable to connect to remote server. Announcement url:</string>
+    <string name="announcement_error_format">Error: Format error</string>
+    <string name="announcement_error_format_content">The remote JSON file is invalid and failed to parse. Original data:</string>
+    <string name="announcement_error_data">Error: Data error</string>
+    <string name="announcement_error_data_content">The remote JSON file is valid, but failed to load data. For example, the announcement content does not have a version for the current language or a null (universal) version, or the launcher version is not an integer. Original data:</string>
 
     <string name="archive_author">Author(s)</string>
     <string name="archive_date">Publish Date</string>

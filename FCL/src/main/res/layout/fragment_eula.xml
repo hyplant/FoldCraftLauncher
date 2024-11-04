@@ -17,6 +17,8 @@
 
         <com.tungsten.fcllibrary.component.view.FCLTextView
             android:id="@+id/eula"
+            android:textSize="16sp"
+            android:textColor="#FF000000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"/>

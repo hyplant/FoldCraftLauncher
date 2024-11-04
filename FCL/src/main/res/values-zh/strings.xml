@@ -93,9 +93,15 @@
     <string name="action_share">分享</string>
     <string name="action_skip">跳过</string>
 
+    <string name="announcement">公告</string>
+    <string name="announcement_loading">正在加载公告...</string>
     <string name="announcement_significant">此公告为重要公告，无法隐藏。</string>
-    <string name="announcement_error">异常</string>
-    <string name="announcement_failure">无法获取公告。\n您可以稍后前往 github 仓库的 doc 分支查看。</string>
+    <string name="announcement_error_network">公告加载失败：网络问题</string>
+    <string name="announcement_error_network_content">无法加载公告，可能是链接格式有误或远程服务器异常。当前加载链接：</string>
+    <string name="announcement_error_format">公告加载异常：格式错误</string>
+    <string name="announcement_error_format_content">远程文件json格式无效，解析失败。原始数据：</string>
+    <string name="announcement_error_data">公告加载异常：数据错误</string>
+    <string name="announcement_error_data_content">远程文件json格式有效，但加载数据失败，例如公告内容既没有当前语言版本也没有null(通用)版本、启动器版本不是整数等。原始数据：</string>
 
     <string name="archive_author">作者</string>
     <string name="archive_date">发布时间</string>

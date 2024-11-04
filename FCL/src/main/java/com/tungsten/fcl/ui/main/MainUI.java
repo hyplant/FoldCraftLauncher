@@ -106,36 +106,53 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
 
     private void checkAnnouncement() {
         announcementContainer.setVisibility(View.INVISIBLE);
+        String remoteData = null;
+        Announcement announcementData = null;
         if(FCLApplication.appConfig.getProperty("enable-announcement","true").equals("true")){
-            @SuppressLint("SimpleDateFormat") CompletableFuture<Announcement> future = CompletableFuture.supplyAsync(() -> {
+            title.setText(getContext().getString(R.string.announcement));
+            announcementView.setText(getContext().getString(R.string.announcement_loading));
+            date.setText(new String(ANNOUNCEMENT_URL));
+            announcementContainer.setVisibility(View.VISIBLE);
+            CompletableFuture<Announcement> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    return new Gson().fromJson(NetworkUtils.doGet(NetworkUtils.toURL(ANNOUNCEMENT_URL), FCLApplication.deviceInfoUtils.toString()), Announcement.class);
+                    remoteData = NetworkUtils.doGet(NetworkUtils.toURL(ANNOUNCEMENT_URL), FCLApplication.deviceInfoUtils.toString());
                 }catch (Exception e) {
+                    e.printStackTrace();
                     return new Announcement(
-                            -1,
-                            true,
-                            false,
-                            -1,
-                            -1,
-                            new ArrayList<>(),
-                            new ArrayList<>(Collections.singletonList(new Announcement.Content("en", getContext().getString(R.string.announcement_error)))),
-                            new SimpleDateFormat("yyyy.MM.dd").format(new Date()),
-                            new ArrayList<>(Collections.singletonList(new Announcement.Content("en", getContext().getString(R.string.announcement_failure))))
+                        -1, true, false, -1, -1, new ArrayList<>(),
+                        new ArrayList<>(Collections.singletonList(new Announcement.Content(null, getContext().getString(R.string.announcement_error_network)))),
+                        new String(ANNOUNCEMENT_URL),
+                        new ArrayList<>(Collections.singletonList(new Announcement.Content(null, getContext().getString(R.string.announcement_error_network_content) + "\n" + ANNOUNCEMENT_URL)))
                     );
                 }
+                try {
+                    announcementData = new Gson().fromJson(remoteData, Announcement.class);
+                }catch (Exception e) {
+                    e.printStackTrace();
+                    return new Announcement(
+                        -1, true, false, -1, -1, new ArrayList<>(),
+                        new ArrayList<>(Collections.singletonList(new Announcement.Content(null, getContext().getString(R.string.announcement_error_format)))),
+                        new String(ANNOUNCEMENT_URL),
+                        new ArrayList<>(Collections.singletonList(new Announcement.Content(null, getContext().getString(R.string.announcement_error_format_content) + "\n" + remoteData)))
+                }
+                return announcementData;
             });
-            future.thenAccept(announcement -> {
-                new Handler(Looper.getMainLooper()).post(() -> {
-                    this.announcement = announcement;
+            future.thenAccept(announcement -> new Handler(Looper.getMainLooper()).post(() -> {
+                this.announcement = announcement;
+                try {
                     if (!announcement.shouldDisplay(getContext())) {
+                        announcementContainer.setVisibility(View.INVISIBLE);
                         return;
                     }
                     title.setText(this.announcement.getDisplayTitle(getContext()));
                     announcementView.setText(this.announcement.getDisplayContent(getContext()));
                     date.setText(this.announcement.getDate());
-                    announcementContainer.setVisibility(View.VISIBLE);
-                });
-            });
+                }catch(Exception e) {
+                    title.setText(getContext().getString(R.string.announcement_error_data));
+                    announcementView.setText(ANNOUNCEMENT_URL);
+                    date.setText(getContext().getString(R.string.announcement_error_data_content) + "\n" + remoteData);
+                }
+            }));
         }
     }
 
