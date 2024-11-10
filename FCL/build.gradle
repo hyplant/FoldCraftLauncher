@@ -16,25 +16,30 @@ android {
     properties.load(Files.newInputStream(Paths.get("${rootDir}/local.properties")))
 
     signingConfigs {
-        DebugKey {
-            storeFile file("../debug-key.jks")
+        FCLKey {
+            storeFile file("debug-key.jks")
             storePassword "FCL-Debug"
             keyAlias "FCL-Debug"
             keyPassword "FCL-Debug"
+        }
+        DebugKey {
+            storeFile file("test-key.jks")
+            storePassword "keystore-pass"
+            keyAlias "testkey"
+            keyPassword "keystore-pass"
         }
     }
 
     defaultConfig {
         aaptOptions{
             ignoreAssets "!.svn:!.git:<dir>_*:!CVS:!thumbs.db:!picasa.ini:!*.scc:*~"
-            ignoreAssetsPattern "!.svn:!.git:<dir>_*:!CVS:!thumbs.db:!picasa.ini:!*.scc:*~"
+            ignoreAssetsPattern '!bin-arm.tar.xz*:!bin-x86.tar.xz*:!bin-x86_64.tar.xz*'
         }
         applicationId "com.tungsten.fcl.debug"
         minSdk 26
         targetSdk 34
         versionCode 1188
         versionName "1.1.8.8"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -42,7 +47,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.DebugKey
+            signingConfig signingConfigs.FCLKey
         }
         debug {
             initWith debug
