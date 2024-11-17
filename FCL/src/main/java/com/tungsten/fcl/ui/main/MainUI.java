@@ -55,6 +55,7 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
     private FCLTextView date;
     private FCLButton hide;
     private Announcement announcement = null;
+    private boolean isChecking = false;
 
     private RelativeLayout skinContainer;
     private SkinCanvas skinCanvas;
@@ -130,7 +131,9 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
     }
 
     private void checkAnnouncement() {
+        if (isChecking) return;
         if(FCLApplication.appConfig.getProperty("enable-announcement","true").equals("true")){
+            isChecking = true;
             AtomicReference<String> remoteDataRef = new AtomicReference<>();
             AtomicReference<Announcement> announcementDataRef = new AtomicReference<>();
             title.setText(getContext().getString(R.string.announcement));
@@ -171,6 +174,7 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
                     if (!announcement.shouldDisplay(getContext())) {
                         announcementContainer.setVisibility(View.GONE);
                         checkSkinDisplay();
+                        isChecking = false;
                         return;
                     }
                     title.setText(this.announcement.getDisplayTitle(getContext()));
@@ -181,6 +185,7 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
                     announcementView.setText(ANNOUNCEMENT_URL);
                     date.setText(getContext().getString(R.string.announcement_error_data_content) + "\n" + remoteDataRef.get());
                 }
+                isChecking = false;
             }));
         } else {
             checkSkinDisplay();
@@ -258,13 +263,13 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (view == hide) {
-            if (announcement != null && announcement.isSignificant()) {
+            if (announcement != null && (isChecking || announcement.isSignificant())) {
                 FCLAlertDialog.Builder builder = new FCLAlertDialog.Builder(getContext());
                 builder.setAlertLevel(FCLAlertDialog.AlertLevel.ALERT);
                 builder.setCancelable(false);
                 builder.setMessage(getContext().getString(R.string.announcement_significant));
-                builder.setPositiveButton(this::hideAnnouncement);
-                builder.setNegativeButton(null);
+                builder.setPositiveButton(null);
+                builder.setNegativeButton(null, null);
                 builder.create().show();
             } else {
                 hideAnnouncement();
