@@ -54,8 +54,6 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
     private FCLTextView announcementView;
     private FCLTextView date;
     private FCLButton hide;
-    private FCLButton buttona;
-    private FCLButton buttons;
     private Announcement announcement = null;
 
     private RelativeLayout skinContainer;
@@ -78,12 +76,8 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
         announcementView = findViewById(R.id.announcement);
         date = findViewById(R.id.date);
         hide = findViewById(R.id.hide);
-        buttona = findViewById(R.id.buttona);
-        buttons = findViewById(R.id.buttons);
         ThemeEngine.getInstance().registerEvent(announcementLayout, () -> announcementLayout.getBackground().setTint(ThemeEngine.getInstance().getTheme().getColor()));
         hide.setOnClickListener(this);
-        buttona.setOnClickListener(this);
-        buttons.setOnClickListener(this);
 
         skinContainer = findViewById(R.id.skin_container);
         renderer = new SkinRenderer(getContext());
@@ -98,8 +92,9 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
     @Override
     public void onStart() {
         super.onStart();
+        skinContainer.setVisibility(View.GONE);
+        announcementContainer.setVisibility(View.GONE);
         checkAnnouncement();
-        checkSkinDisplay();
     }
 
     @Override
@@ -135,14 +130,14 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
     }
 
     private void checkAnnouncement() {
-        announcementContainer.setVisibility(View.GONE);
-        AtomicReference<String> remoteDataRef = new AtomicReference<>();
-        AtomicReference<Announcement> announcementDataRef = new AtomicReference<>();
         if(FCLApplication.appConfig.getProperty("enable-announcement","true").equals("true")){
+            AtomicReference<String> remoteDataRef = new AtomicReference<>();
+            AtomicReference<Announcement> announcementDataRef = new AtomicReference<>();
             title.setText(getContext().getString(R.string.announcement));
             announcementView.setText(getContext().getString(R.string.announcement_loading));
             date.setText(new String(ANNOUNCEMENT_URL));
             announcementContainer.setVisibility(View.VISIBLE);
+            checkSkinDisplay();
             CompletableFuture<Announcement> future = CompletableFuture.supplyAsync(() -> {
                 try {
                     String remoteData = NetworkUtils.doGet(NetworkUtils.toURL(ANNOUNCEMENT_URL), FCLApplication.deviceInfoUtils.toString());
@@ -175,6 +170,7 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
                 try {
                     if (!announcement.shouldDisplay(getContext())) {
                         announcementContainer.setVisibility(View.GONE);
+                        checkSkinDisplay();
                         return;
                     }
                     title.setText(this.announcement.getDisplayTitle(getContext()));
@@ -186,6 +182,8 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
                     date.setText(getContext().getString(R.string.announcement_error_data_content) + "\n" + remoteDataRef.get());
                 }
             }));
+        } else {
+            checkSkinDisplay();
         }
     }
 
@@ -271,12 +269,6 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
             } else {
                 hideAnnouncement();
             }
-        }
-        if (view == buttona) {
-            checkAnnouncement();
-        }
-        if (view == buttons) {
-            checkSkinDisplay();
         }
     }
 }
