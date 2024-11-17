@@ -38,10 +38,9 @@ import com.tungsten.fcllibrary.skin.SkinCanvas;
 import com.tungsten.fcllibrary.skin.SkinRenderer;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.CompletableFuture;
 import java.util.logging.Level;
 
@@ -55,6 +54,8 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
     private FCLTextView announcementView;
     private FCLTextView date;
     private FCLButton hide;
+    private FCLButton buttona;
+    private FCLButton buttons;
     private Announcement announcement = null;
 
     private RelativeLayout skinContainer;
@@ -77,8 +78,12 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
         announcementView = findViewById(R.id.announcement);
         date = findViewById(R.id.date);
         hide = findViewById(R.id.hide);
+        buttona = findViewById(R.id.buttona);
+        buttons = findViewById(R.id.buttons);
         ThemeEngine.getInstance().registerEvent(announcementLayout, () -> announcementLayout.getBackground().setTint(ThemeEngine.getInstance().getTheme().getColor()));
         hide.setOnClickListener(this);
+        buttona.setOnClickListener(this);
+        buttons.setOnClickListener(this);
 
         skinContainer = findViewById(R.id.skin_container);
         renderer = new SkinRenderer(getContext());
@@ -87,28 +92,14 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
         layoutParamsSkin.height = (int) Math.min(((View) skinContainer.getParent().getParent()).getMeasuredWidth() * 0.5f, ((View) skinContainer.getParent().getParent()).getMeasuredHeight());
         skinContainer.setLayoutParams(layoutParamsSkin);
 
-        checkAnnouncement();
-
         setupSkinDisplay();
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        if (!ThemeEngine.getInstance().theme.isCloseSkinModel()) {
-            if (skinCanvas == null) {
-                skinCanvas = new SkinCanvas(getContext());
-                skinCanvas.setRenderer(renderer, 5f);
-            } else {
-                skinCanvas.onResume();
-                renderer.updateTexture(renderer.getTexture()[0], renderer.getTexture()[1]);
-            }
-
-            skinContainer.addView(skinCanvas);
-            skinContainer.setVisibility(View.VISIBLE);
-        } else {
-            if (skinCanvas != null) skinCanvas.onPause();
-        }
+        checkAnnouncement();
+        checkSkinDisplay();
     }
 
     @Override
@@ -144,37 +135,58 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
     }
 
     private void checkAnnouncement() {
+        announcementContainer.setVisibility(View.GONE);
+        AtomicReference<String> remoteDataRef = new AtomicReference<>();
+        AtomicReference<Announcement> announcementDataRef = new AtomicReference<>();
         if(FCLApplication.appConfig.getProperty("enable-announcement","true").equals("true")){
-            @SuppressLint("SimpleDateFormat") CompletableFuture<Announcement> future = CompletableFuture.supplyAsync(() -> {
+            title.setText(getContext().getString(R.string.announcement));
+            announcementView.setText(getContext().getString(R.string.announcement_loading));
+            date.setText(new String(ANNOUNCEMENT_URL));
+            announcementContainer.setVisibility(View.VISIBLE);
+            CompletableFuture<Announcement> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    return new Gson().fromJson(NetworkUtils.doGet(NetworkUtils.toURL(ANNOUNCEMENT_URL), FCLApplication.deviceInfoUtils.toString()), Announcement.class);
+                    String remoteData = NetworkUtils.doGet(NetworkUtils.toURL(ANNOUNCEMENT_URL), FCLApplication.deviceInfoUtils.toString());
+                    remoteDataRef.set(remoteData);
                 }catch (Exception e) {
+                    e.printStackTrace();
                     return new Announcement(
-                            -1,
-                            true,
-                            false,
-                            -1,
-                            -1,
-                            new ArrayList<>(),
-                            new ArrayList<>(Collections.singletonList(new Announcement.Content("en", "异常"))),
-                            new SimpleDateFormat("yyyy.MM.dd").format(new Date()),
-                            new ArrayList<>(Collections.singletonList(new Announcement.Content("en", "无法获取公告，原因：无效的公告地址或JSON文件格式无效")))
+                        -1, true, false, -1, -1, new ArrayList<>(),
+                        new ArrayList<>(Collections.singletonList(new Announcement.Content(null, getContext().getString(R.string.announcement_error_network)))),
+                        new String(ANNOUNCEMENT_URL),
+                        new ArrayList<>(Collections.singletonList(new Announcement.Content(null, getContext().getString(R.string.announcement_error_network_content) + "\n" + ANNOUNCEMENT_URL)))
                     );
                 }
+                try {
+                    Announcement announcementData = new Gson().fromJson(remoteDataRef.get(), Announcement.class);
+                    announcementDataRef.set(announcementData);
+                }catch (Exception e) {
+                    e.printStackTrace();
+                    return new Announcement(
+                        -1, true, false, -1, -1, new ArrayList<>(),
+                        new ArrayList<>(Collections.singletonList(new Announcement.Content(null, getContext().getString(R.string.announcement_error_format)))),
+                        new String(ANNOUNCEMENT_URL),
+                        new ArrayList<>(Collections.singletonList(new Announcement.Content(null, getContext().getString(R.string.announcement_error_format_content) + "\n" + remoteDataRef.get())))
+                    );
+                }
+                return announcementDataRef.get();
             });
             future.thenAccept(announcement -> new Handler(Looper.getMainLooper()).post(() -> {
                 this.announcement = announcement;
                 try {
-                    title.setText(AndroidUtils.getLocalizedText(getContext(), "announcement", this.announcement.getDisplayTitle(getContext())));
+                    if (!announcement.shouldDisplay(getContext())) {
+                        announcementContainer.setVisibility(View.GONE);
+                        return;
+                    }
+                    title.setText(this.announcement.getDisplayTitle(getContext()));
                     announcementView.setText(this.announcement.getDisplayContent(getContext()));
-                    date.setText(AndroidUtils.getLocalizedText(getContext(), "update_date", this.announcement.getDate()));
+                    date.setText(this.announcement.getDate());
                 }catch(Exception e) {
-                    title.setText("异常");
-                    announcementView.setText("无法获取公告，原因：无效的JSON文件格式");
-                    date.setText(new SimpleDateFormat("yyyy.MM.dd").format(new Date()));
+                    title.setText(getContext().getString(R.string.announcement_error_data));
+                    announcementView.setText(ANNOUNCEMENT_URL);
+                    date.setText(getContext().getString(R.string.announcement_error_data_content) + "\n" + remoteDataRef.get());
                 }
             }));
-        }else announcementContainer.setVisibility(View.GONE);
+        }
     }
 
     private void hideAnnouncement() {
@@ -182,6 +194,7 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
         if (announcement != null) {
             announcement.hide(getContext());
         }
+        checkSkinDisplay();
     }
 
     private void setupSkinDisplay() {
@@ -201,6 +214,27 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
         currentAccount.bind(Accounts.selectedAccountProperty());
     }
 
+    private void checkSkinDisplay() {
+        if (!ThemeEngine.getInstance().theme.isCloseSkinModel() && announcementContainer.getVisibility() == View.GONE) {
+            if (skinCanvas == null) {
+                skinCanvas = new SkinCanvas(getContext());
+                skinCanvas.setRenderer(renderer, 5f);
+            } else {
+                skinCanvas.onResume();
+                skinContainer.removeView(skinCanvas);
+                renderer.updateTexture(renderer.getTexture()[0], renderer.getTexture()[1]);
+            }
+            skinContainer.addView(skinCanvas);
+            skinContainer.setVisibility(View.VISIBLE);
+        } else {
+            if (skinCanvas != null) {
+                skinCanvas.onPause();
+                skinContainer.removeView(skinCanvas);
+                skinContainer.setVisibility(View.GONE);
+            }
+        }
+    }
+
     public void refreshSkin(Account account) {
         Schedulers.androidUIThread().execute(() -> {
             if (currentAccount.get() == account) {
@@ -208,6 +242,19 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
                 renderer.textureProperty().bind(TexturesLoader.textureBinding(currentAccount.get()));
             }
         });
+    }
+
+    public void onBackPressed() {
+        FCLAlertDialog.Builder builder = new FCLAlertDialog.Builder(getContext());
+        builder.setAlertLevel(FCLAlertDialog.AlertLevel.INFO);
+        builder.setCancelable(false);
+        builder.setMessage(getContext().getString(R.string.menu_settings_force_exit_msg));
+        builder.setPositiveButton(getContext().getString(com.tungsten.fcllibrary.R.string.dialog_negative), null);
+        builder.setNegativeButton(getContext().getString(com.tungsten.fcllibrary.R.string.dialog_positive), () -> {
+            getActivity().finish();
+            System.exit(0);
+        });
+        builder.create().show();
     }
 
     @Override
@@ -224,6 +271,12 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
             } else {
                 hideAnnouncement();
             }
+        }
+        if (view == buttona) {
+            checkAnnouncement();
+        }
+        if (view == buttons) {
+            checkSkinDisplay();
         }
     }
 }

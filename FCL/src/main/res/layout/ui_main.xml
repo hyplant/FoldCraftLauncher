@@ -56,27 +56,6 @@
                     android:layout_gravity="end"
                     android:text="@string/button_hide"
                     app:ripple="true"/>
-                <com.tungsten.fcllibrary.component.view.FCLButton
-                    android:id="@+id/buttonp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:text="P"
-                    app:ripple="true"/>
-                <com.tungsten.fcllibrary.component.view.FCLButton
-                    android:id="@+id/buttonr"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:text="R"
-                    app:ripple="true"/>
-                <com.tungsten.fcllibrary.component.view.FCLButton
-                    android:id="@+id/buttons"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:text="S"
-                    app:ripple="true"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -135,5 +114,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:visibility="gone"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:padding="10dp">
+        <com.tungsten.fcllibrary.component.view.FCLButton
+            android:id="@+id/buttona"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="cA"
+            app:ripple="true"/>
+        <com.tungsten.fcllibrary.component.view.FCLButton
+            android:id="@+id/buttons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="cS"
+            app:ripple="true"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
