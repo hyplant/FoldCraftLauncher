@@ -23,7 +23,7 @@ for iconFile in ${iconFiles[@]}; do
   if [ $? -eq 0 ]; then
     echo -e "\e[92m已覆盖\e[35m${iconHint}\e[96m：\e[0m${iconFile}"
   else
-    echo -e "\e[31m覆盖失败\e[35m${iconHint}\e[96m：\e[0m${iconFile}"
+    echo -e "\e[91m覆盖失败\e[35m${iconHint}\e[96m：\e[0m${iconFile}"
   fi
 done
 
@@ -42,6 +42,6 @@ for screenshotFile in ${screenshotFiles[@]}; do
   if [ $? -eq 0 ]; then
     echo -e "\e[92m已覆盖\e[35m${screenshotHint}\e[96m：\e[0m${screenshotFile}"
   else
-    echo -e "\e[31m覆盖失败\e[35m${screenshotHint}\e[96m：\e[0m${screenshotFile}"
+    echo -e "\e[91m覆盖失败\e[35m${screenshotHint}\e[96m：\e[0m${screenshotFile}"
   fi
 done
