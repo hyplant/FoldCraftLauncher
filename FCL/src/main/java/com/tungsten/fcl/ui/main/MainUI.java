@@ -57,9 +57,9 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
     private FCLTextView date;
     private FCLButton hide;
 
-    private FCLButton p;
-    private FCLButton r;
-    private FCLButton s;
+    private FCLButton buttonp;
+    private FCLButton buttonr;
+    private FCLButton buttons;
 
     private Announcement announcement = null;
 
@@ -83,14 +83,14 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
         announcementView = findViewById(R.id.announcement);
         date = findViewById(R.id.date);
         hide = findViewById(R.id.hide);
-        p = findViewById(R.id.p);
-        r = findViewById(R.id.r);
-        s = findViewById(R.id.s);
+        buttonp = findViewById(R.id.buttonp);
+        buttonr = findViewById(R.id.buttonr);
+        buttons = findViewById(R.id.buttons);
         ThemeEngine.getInstance().registerEvent(announcementLayout, () -> announcementLayout.getBackground().setTint(ThemeEngine.getInstance().getTheme().getColor()));
         hide.setOnClickListener(this);
-        p.setOnClickListener(this);
-        r.setOnClickListener(this);
-        s.setOnClickListener(this);
+        buttonp.setOnClickListener(this);
+        buttonr.setOnClickListener(this);
+        buttons.setOnClickListener(this);
 
         skinContainer = findViewById(R.id.skin_container);
         renderer = new SkinRenderer(getContext());
@@ -272,13 +272,13 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
             } else {
                 hideAnnouncement();
             }
-        } else if (view == p) {
+        } else if (view == buttonp) {
             onPause();
         }
-        } else if (view == r) {
+        } else if (view == buttonr) {
             onResume();
         }
-        } else if (view == s) {
+        } else if (view == buttons) {
             onStop();
         }
     }

@@ -57,11 +57,25 @@
                     android:text="@string/button_hide"
                     app:ripple="true"/>
                 <com.tungsten.fcllibrary.component.view.FCLButton
-                    android:id="@+id/pause"
+                    android:id="@+id/buttonp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:text="@string/button_hide"
+                    android:text="P"
+                    app:ripple="true"/>
+                <com.tungsten.fcllibrary.component.view.FCLButton
+                    android:id="@+id/buttonr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:text="R"
+                    app:ripple="true"/>
+                <com.tungsten.fcllibrary.component.view.FCLButton
+                    android:id="@+id/buttons"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:text="S"
                     app:ripple="true"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
