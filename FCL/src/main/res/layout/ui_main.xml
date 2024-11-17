@@ -31,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="10dp">
+
                 <HorizontalScrollView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -47,6 +48,7 @@
                         android:textSize="20sp"
                         app:auto_text_tint="true"/>
                 </HorizontalScrollView>
+
                 <com.tungsten.fcllibrary.component.view.FCLButton
                     android:id="@+id/hide"
                     android:layout_width="wrap_content"
@@ -54,6 +56,14 @@
                     android:layout_gravity="end"
                     android:text="@string/button_hide"
                     app:ripple="true"/>
+                <com.tungsten.fcllibrary.component.view.FCLButton
+                    android:id="@+id/pause"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:text="@string/button_hide"
+                    app:ripple="true"/>
+
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <View
@@ -98,5 +108,18 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <RelativeLayout
+        android:id="@+id/skin_container"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

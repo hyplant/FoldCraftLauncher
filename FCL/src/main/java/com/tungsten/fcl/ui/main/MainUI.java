@@ -34,6 +34,8 @@ import com.tungsten.fcllibrary.component.ui.FCLCommonUI;
 import com.tungsten.fcllibrary.component.view.FCLButton;
 import com.tungsten.fcllibrary.component.view.FCLTextView;
 import com.tungsten.fcllibrary.component.view.FCLUILayout;
+import com.tungsten.fcllibrary.skin.SkinCanvas;
+import com.tungsten.fcllibrary.skin.SkinRenderer;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -54,7 +56,16 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
     private FCLTextView announcementView;
     private FCLTextView date;
     private FCLButton hide;
+
+    private FCLButton p;
+    private FCLButton r;
+    private FCLButton s;
+
     private Announcement announcement = null;
+
+    private RelativeLayout skinContainer;
+    private SkinCanvas skinCanvas;
+    private SkinRenderer renderer;
 
     private ObjectProperty<Account> currentAccount;
 
@@ -72,30 +83,69 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
         announcementView = findViewById(R.id.announcement);
         date = findViewById(R.id.date);
         hide = findViewById(R.id.hide);
+        p = findViewById(R.id.p);
+        r = findViewById(R.id.r);
+        s = findViewById(R.id.s);
         ThemeEngine.getInstance().registerEvent(announcementLayout, () -> announcementLayout.getBackground().setTint(ThemeEngine.getInstance().getTheme().getColor()));
         hide.setOnClickListener(this);
+        p.setOnClickListener(this);
+        r.setOnClickListener(this);
+        s.setOnClickListener(this);
+
+        skinContainer = findViewById(R.id.skin_container);
+        renderer = new SkinRenderer(getContext());
+        ViewGroup.LayoutParams layoutParamsSkin = skinContainer.getLayoutParams();
+        layoutParamsSkin.width = (int) (((View) skinContainer.getParent().getParent()).getMeasuredWidth() * 0.5f);
+        layoutParamsSkin.height = (int) Math.min(((View) skinContainer.getParent().getParent()).getMeasuredWidth() * 0.5f, ((View) skinContainer.getParent().getParent()).getMeasuredHeight());
+        skinContainer.setLayoutParams(layoutParamsSkin);
 
         checkAnnouncement();
+
+        setupSkinDisplay();
     }
 
     @Override
     public void onStart() {
         super.onStart();
+        if (!ThemeEngine.getInstance().theme.isCloseSkinModel()) {
+            if (skinCanvas == null) {
+                skinCanvas = new SkinCanvas(getContext());
+                skinCanvas.setRenderer(renderer, 5f);
+            } else {
+                skinCanvas.onResume();
+                renderer.updateTexture(renderer.getTexture()[0], renderer.getTexture()[1]);
+            }
+
+            skinContainer.addView(skinCanvas);
+            skinContainer.setVisibility(View.VISIBLE);
+        } else {
+            if (skinCanvas != null) skinCanvas.onPause();
+        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        if (skinCanvas != null) {
+            skinCanvas.onPause();
+        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        if (isShowing() && skinCanvas != null) {
+            skinCanvas.onResume();
+        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
+        if (skinCanvas != null) {
+            skinCanvas.onPause();
+        }
+        skinContainer.removeView(skinCanvas);
     }
 
     @Override
@@ -106,7 +156,7 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
     }
 
     private void checkAnnouncement() {
-        announcementContainer.setVisibility(View.INVISIBLE);
+        announcementContainer.setVisibility(View.GONE);
         AtomicReference<String> remoteDataRef = new AtomicReference<>();
         AtomicReference<Announcement> announcementDataRef = new AtomicReference<>();
         if(FCLApplication.appConfig.getProperty("enable-announcement","true").equals("true")){
@@ -145,7 +195,7 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
                 this.announcement = announcement;
                 try {
                     if (!announcement.shouldDisplay(getContext())) {
-                        announcementContainer.setVisibility(View.INVISIBLE);
+                        announcementContainer.setVisibility(View.GONE);
                         return;
                     }
                     title.setText(this.announcement.getDisplayTitle(getContext()));
@@ -167,12 +217,38 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
         }
     }
 
+    private void setupSkinDisplay() {
+        currentAccount = new SimpleObjectProperty<Account>() {
+
+            @Override
+            protected void invalidated() {
+                Account account = get();
+                renderer.textureProperty().unbind();
+                if (account == null) {
+                    renderer.updateTexture(BitmapFactory.decodeStream(MainUI.class.getResourceAsStream("/assets/img/alex.png")), null);
+                } else {
+                    renderer.textureProperty().bind(TexturesLoader.textureBinding(account));
+                }
+            }
+        };
+        currentAccount.bind(Accounts.selectedAccountProperty());
+    }
+
+    public void refreshSkin(Account account) {
+        Schedulers.androidUIThread().execute(() -> {
+            if (currentAccount.get() == account) {
+                renderer.textureProperty().unbind();
+                renderer.textureProperty().bind(TexturesLoader.textureBinding(currentAccount.get()));
+            }
+        });
+    }
+
     @Override
     public void onBackPressed() {
         checkAnnouncement();
         FCLAlertDialog.Builder builder = new FCLAlertDialog.Builder(getContext());
         builder.setAlertLevel(FCLAlertDialog.AlertLevel.INFO);
-        builder.setCancelable(true);
+        builder.setCancelable(false);
         builder.setMessage(getContext().getString(R.string.menu_settings_force_exit_msg));
         builder.setPositiveButton(getContext().getString(com.tungsten.fcllibrary.R.string.dialog_negative), null);
         builder.setNegativeButton(getContext().getString(com.tungsten.fcllibrary.R.string.dialog_positive), () -> {
@@ -196,6 +272,14 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
             } else {
                 hideAnnouncement();
             }
+        } else if (view == p) {
+            onPause();
+        }
+        } else if (view == r) {
+            onResume();
+        }
+        } else if (view == s) {
+            onStop();
         }
     }
 }
