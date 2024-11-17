@@ -131,7 +131,6 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
     }
 
     private void checkAnnouncement() {
-        if (isChecking) return;
         if(FCLApplication.appConfig.getProperty("enable-announcement","true").equals("true")){
             isChecking = true;
             AtomicReference<String> remoteDataRef = new AtomicReference<>();
@@ -266,10 +265,10 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
             if (announcement != null && (isChecking || announcement.isSignificant())) {
                 FCLAlertDialog.Builder builder = new FCLAlertDialog.Builder(getContext());
                 builder.setAlertLevel(FCLAlertDialog.AlertLevel.ALERT);
-                builder.setCancelable(false);
+                builder.setCancelable(true);
                 builder.setMessage(getContext().getString(R.string.announcement_significant));
-                builder.setPositiveButton(null);
-                builder.setNegativeButton(null, null);
+                builder.setPositiveButton(null, null);
+                builder.setNegativeButton(getContext().getString(com.tungsten.fcllibrary.R.string.dialog_positive), null);
                 builder.create().show();
             } else {
                 hideAnnouncement();
