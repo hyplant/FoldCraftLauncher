@@ -25,7 +25,7 @@ fi
 if [ "$controllerRepoInit" == "true" ]; then
     echo -e "\e[92m从官方控制器仓库拉取更新\e[0m"
     cd controllerRepo
-    git fetch --prune && git reset --hard && git pull
+    git fetch --prune && git reset --hard && git clean -fdX && git pull
     if [ "$?" != "0" ]; then
         echo -e "\e[91m更新失败\e[0m"
     fi

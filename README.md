@@ -7,8 +7,8 @@
   由于某些原因，某些特定的控制器图标和截图可能会被移除
     如果你不希望你的控制器发生这种情况
     可以选择通过 pull request 提交符合要求的图像
-    图标文件: Scripts/assets/<控制器id>/icon.png
-    截图文件: Scripts/assets/<控制器id>/<截图id>.png
+    图标文件: _/assets/<控制器id>/icon.png
+    截图文件: _/assets/<控制器id>/<截图id>.png
 
   你也可以通过 pull request 向直装版控制器仓库 (controllerRepoCN) 提交控制器
 ```
@@ -38,14 +38,19 @@
 - 控制器仓库2（对应启动器中的国内源） `controllerRepoCN`
   - 一些适用于服务器或整合包直装版的控制器
 
-### 脚本及相关资源 
+### 其他资源
 
-- 文件夹 `Scripts` 中：
-- 官方控制器仓库（controllerRepo）更新脚本 `pull.sh`
-- 用于移除特定图像的脚本 `remove.sh`
-- 待替换的图标和截图
-  - 图标 `listIcon.txt`
-  - 截图 `listScreenshot.txt`
-- 用于替换的默认文件
-  - 图标 `icon64.png`
-  - 截图 `icon1024.png`
+- 文件夹 `_` 中：
+- 控制器仓库相关脚本：
+  - 官方控制器仓库（controllerRepo）更新脚本 `pull.sh`
+  - 用于移除特定图像的脚本 `remove.sh`
+  - 待替换的图标和截图
+    - 图标 `listIcon.txt`
+    - 截图 `listScreenshot.txt`
+- 控制器仓库相关资源
+  - 用于替换的默认文件
+    - 图标 `_/assets/icon.png`
+    - 截图 `_/assets/screenshot.png`
+  - 适用于某个控制器的特定文件
+    - 图标 `_/assets/<控制器id>/icon.png`
+    - 截图 `_/assets/<控制器id>/<截图id>.png`
