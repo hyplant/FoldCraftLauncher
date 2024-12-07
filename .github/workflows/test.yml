@@ -26,6 +26,8 @@ jobs:
       - name: Prepare to Build ALL
         run: |
           chmod +x gradlew
+          ./gradlew -Darch=all :FCL:mergeDebugAssets --rerun-tasks --no-build-cache
+
 
       - name: Build ALL apk
         run: |
