@@ -33,7 +33,6 @@ android {
     defaultConfig {
         aaptOptions{
             ignoreAssets "!.svn:!.git:<dir>_*:!CVS:!thumbs.db:!picasa.ini:!*.scc:*~"
-            ignoreAssetsPattern '!bin-arm.tar.xz*:!bin-x86.tar.xz*:!bin-x86_64.tar.xz*'
         }
         applicationId "com.tungsten.fcl.debug"
         minSdk 26
@@ -82,8 +81,8 @@ android {
                     println(runtimeDir)
                     def files = fileTree(dir: runtimeDir, include: ['*.tar.xz'])
                     files.forEach { File file ->
-                        if (arch != 'all' && !file.getName().contains(arch) && !file.getName().contains("universal")) {
-                            print("delete:${file} :")
+                        if (arch != 'all'&& !file.getName().contains("universal") && !file.getName().contains(arch)) {
+                            print("delete:${file} : ")
                             println(delete(file))
                         }
                     }
