@@ -11,7 +11,6 @@ android {
         minSdk 26
         targetSdk 34
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -48,7 +47,6 @@ android {
 
 dependencies {
     implementation 'com.bytedance:bytehook:1.0.9'
-    implementation 'com.jaredrummler:android-device-names:2.1.0'
     implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'com.google.android.material:material:1.12.0'
     testImplementation 'junit:junit:4.13.2'

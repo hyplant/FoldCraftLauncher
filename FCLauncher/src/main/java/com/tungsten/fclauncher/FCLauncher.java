@@ -8,7 +8,6 @@ import android.os.Build;
 import android.system.Os;
 import android.util.ArrayMap;
 
-import com.jaredrummler.android.device.DeviceName;
 import com.oracle.dalvik.VMLauncher;
 import com.tungsten.fclauncher.bridge.FCLBridge;
 import com.tungsten.fclauncher.plugins.FFmpegPlugin;
@@ -41,7 +40,7 @@ public class FCLauncher {
 
     private static void logStartInfo(FCLBridge bridge, String task) {
         printTaskTitle(bridge, "Start " + task);
-        log(bridge, "Device: " + DeviceName.getDeviceName());
+        log(bridge, "Device: " + Build.MODEL);
         log(bridge, "Architecture: " + Architecture.archAsString(Architecture.getDeviceArchitecture()));
         log(bridge, "CPU:" + Build.HARDWARE);
         log(bridge, "Android SDK: " + Build.VERSION.SDK_INT);

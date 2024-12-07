@@ -7,7 +7,6 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.jaredrummler.android.device.DeviceName;
 import com.tungsten.fcl.BuildConfig;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,11 +31,11 @@ public class DeviceInfoUtils{
     }
 
     public void readDeviceInfo() throws IOException {
-        map.put("Device-Name", DeviceName.getDeviceName());
+        map.put("Device-Name", Build.MODEL);
 
         map.put("Android-Version", "Android " + Build.VERSION.RELEASE);
 
-        map.put("Launcher-Version", BuildConfig.VERSION_NAME);
+        map.put("Launcher-Version", BuildConfig.VERSION_NAME + "," + BuildConfig.BUILD_TYPE);
 
         map.put("SOC-Information", Build.HARDWARE);
 
