@@ -297,16 +297,16 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="4dp"
                 app:layout_constraintBottom_toTopOf="@id/launch_textview"
-                app:layout_constraintEnd_toStartOf="@id/shell"
+                app:layout_constraintEnd_toStartOf="@id/view_logs"
                 app:layout_constraintStart_toStartOf="parent"
                 app:ripple="true" />
 
             <com.tungsten.fcllibrary.component.view.FCLButton
-                android:id="@+id/shell"
+                android:id="@+id/view_logs"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="@string/browse_files"
+                android:text="@string/view_fcl_logs"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toTopOf="@id/launch_textview"
@@ -349,7 +349,7 @@
                 android:layout_marginHorizontal="8dp"
                 app:layout_constraintBottom_toTopOf="@id/launch_boat"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/shell"
+                app:layout_constraintStart_toEndOf="parent"
                 app:ripple="true" />
 
             <com.tungsten.fcllibrary.component.view.FCLButton

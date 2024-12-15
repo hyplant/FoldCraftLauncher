@@ -321,7 +321,7 @@ public class ControllerRepoPage extends FCLCommonPage implements View.OnClickLis
         ArrayAdapter<String> sourceAdapter = new ArrayAdapter<>(getContext(), R.layout.item_spinner_auto_tint, sources);
         sourceAdapter.setDropDownViewResource(R.layout.item_spinner_dropdown);
         sourceSpinner.setAdapter(sourceAdapter);
-        sourceSpinner.setSelection(LocaleUtils.isChinese(getContext()) ? 1 : 0);
+        sourceSpinner.setSelection(1);
         sourceSpinner.setOnItemSelectedListener(this);
 
         ArrayList<String> lang = new ArrayList<>();

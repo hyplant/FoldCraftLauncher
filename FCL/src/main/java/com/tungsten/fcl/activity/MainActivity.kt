@@ -175,8 +175,8 @@ class MainActivity : FCLActivity(), OnSelectListener, View.OnClickListener {
                         .show()
                     true
                 }
-                shell.setOnClickListener(this@MainActivity)
-                shell.setOnLongClickListener {
+                viewLogs.setOnClickListener(this@MainActivity)
+                viewLogs.setOnLongClickListener {
                     startActivity(Intent(this@MainActivity, ShellActivity::class.java))
                     true
                 }
@@ -320,10 +320,10 @@ class MainActivity : FCLActivity(), OnSelectListener, View.OnClickListener {
             if (view === executeJar) {
                 JarExecutorHelper.start(this@MainActivity, this@MainActivity)
             }
-            if (view === shell) {
+            if (view === viewLogs) {
                 val builder = FileBrowser.Builder(this@MainActivity)
                 builder.setLibMode(LibMode.FILE_BROWSER)
-                builder.setInitDir(File(FCLPath.EXTERNAL_DIR).absolutePath)
+                builder.setInitDir(File(FCLPath.LOG_DIR).absolutePath)
                 builder.create().browse(this@MainActivity, RequestCodes.BROWSE_DIR_CODE, null)
             }
 
@@ -530,7 +530,7 @@ class MainActivity : FCLActivity(), OnSelectListener, View.OnClickListener {
                 it.interpolator(BounceInterpolator()).start()
             }
             AnimUtil.playTranslationY(
-                listOf(executeJar, shell, launchPojav, launchBoat),
+                listOf(executeJar, viewLogs, launchPojav, launchBoat),
                 speed * 100L,
                 -200f,
                 0f

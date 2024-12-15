@@ -1,0 +1,18 @@
+#!/system/bin/sh
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+  echo "Usage: hello [Args]"
+  echo "Print a friendly greeting."
+  echo "Args:"
+  echo "    (without args or unknown args)"
+  echo "        print the greeting and exit"
+  echo "    -h, --help"
+  echo "        display this help and exit"
+  echo "    -v, --version"
+  echo "        output version information and exit"
+elif [[ "$1" == "-v" || "$1" == "--version" ]]; then
+  echo -n "FCL othersInternal version: "
+  cat "${HOME}/files/version"
+  echo ""
+else
+  echo "Hello, Fold Craft Launcher!"
+fi

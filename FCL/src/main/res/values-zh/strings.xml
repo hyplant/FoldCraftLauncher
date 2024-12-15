@@ -359,7 +359,6 @@
     <string name="folder_config">浏览配置文件夹</string>
     <string name="folder_game">浏览游戏文件夹</string>
     <string name="folder_log">浏览日志文件夹</string>
-    <string name="folder_fcl_log">浏览FCL日志文件夹</string>
     <string name="folder_mod">浏览模组文件夹</string>
     <string name="folder_resourcepacks">浏览资源包文件夹</string>
     <string name="folder_saves">浏览存档文件夹</string>
@@ -465,7 +464,7 @@
     <string name="jar_execute_custom_args">使用自定义参数执行</string>
     <string name="jar_executor_crash_title">Jar Executor 意外退出</string>
     <string name="jar_executor_crash_reason">尚不支持 Jar Executor 崩溃原因分析。</string>
-    <string name="browse_files">浏览文件</string>
+    <string name="view_fcl_logs">FCL 日志</string>
 
     <string name="launch_pojav">Pojav</string>
     <string name="launch_boat">Boat</string>

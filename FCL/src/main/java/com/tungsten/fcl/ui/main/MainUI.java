@@ -217,7 +217,7 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
     }
 
     private void checkSkinDisplay() {
-        if (!ThemeEngine.getInstance().theme.isCloseSkinModel() && announcementContainer.getVisibility() == View.GONE) {
+        if (isShowing() && !ThemeEngine.getInstance().theme.isCloseSkinModel() && announcementContainer.getVisibility() == View.GONE) {
             if (skinCanvas == null) {
                 skinCanvas = new SkinCanvas(getContext());
                 skinCanvas.setRenderer(renderer, 5f);

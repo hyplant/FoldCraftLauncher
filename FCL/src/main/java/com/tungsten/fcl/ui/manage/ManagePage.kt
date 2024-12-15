@@ -62,11 +62,6 @@ class ManagePage(context: Context, id: Int, parent: FCLUILayout, resId: Int) :
             }
             left.layoutManager = LinearLayoutManager(context)
             left.adapter = ManageItemAdapter(context, mutableListOf<ManageItem>().apply {
-                add(ManageItem(R.drawable.ic_baseline_script_24, R.string.folder_fcl_log) {
-                    onBrowse(
-                        FCLPath.LOG_DIR
-                    )
-                })
                 add(ManageItem(R.drawable.ic_baseline_videogame_asset_24, R.string.folder_game) {
                     onBrowse("")
                 })

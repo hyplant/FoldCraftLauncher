@@ -377,7 +377,6 @@
     <string name="folder_config">Browse configs</string>
     <string name="folder_game">Browse game directory</string>
     <string name="folder_log">Browse log directory</string>
-    <string name="folder_fcl_log">Browse FCL log directory</string>
     <string name="folder_mod">Browse mods</string>
     <string name="folder_resourcepacks">Browse resource packs</string>
     <string name="folder_saves">Browse saves</string>
@@ -492,7 +491,7 @@
     <string name="jar_execute_custom_args">Execute with custom args</string>
     <string name="jar_executor_crash_title">Jar Executor Crashed</string>
     <string name="jar_executor_crash_reason">Jar Executor crash reason analyse is not supported now.</string>
-    <string name="browse_files">Files</string>
+    <string name="view_fcl_logs">FCL Logs</string>
 
     <string name="launch_pojav" translatable="false">Pojav</string>
     <string name="launch_boat" translatable="false">Boat</string>

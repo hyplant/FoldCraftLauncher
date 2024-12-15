@@ -1,0 +1,30 @@
+#!/system/bin/sh
+##########
+echo "运行时管理/安装/备份...\n尚未完成，敬请期待！"
+return
+##########
+if [[ $# -ge 1 ]]; then
+local runtime_cmd="$1"
+shift 1
+fi
+
+runtime_cmd_help(){
+  echo "Usage: runtime <help|unknown> [Args]"
+  echo "Print a friendly greeting."
+  echo "Args:"
+  echo "    (without args or unknown args)"
+  echo "        print the greeting and exit"
+  echo "    -h, --help"
+  echo "        display this help and exit"
+  echo "    -v, --version"
+  echo "        output version information and exit"
+}
+
+case "${runtime_cmd}" in
+  "help")
+    runtime_cmd_help
+  ;;
+  "" | *)
+    echo "Unknown runtime command. Use 'runtime help' to get help."
+  ;;
+esac
