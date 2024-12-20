@@ -113,9 +113,9 @@
     <string name="announcement_error_network">Failure: Network problem</string>
     <string name="announcement_error_network_content">Failed to load announcement. The url may be incorrect or unable to connect to remote server. Announcement url:</string>
     <string name="announcement_error_format">Error: Format error</string>
-    <string name="announcement_error_format_content">The remote JSON file is invalid and failed to parse. Original data:</string>
+    <string name="announcement_error_format_content">The remote JSON file is invalid or the type of necessary data is incorrect. For example, the launcher version is not an integer. Original data:</string>
     <string name="announcement_error_data">Error: Data error</string>
-    <string name="announcement_error_data_content">The remote JSON file is valid, but failed to load data. For example, the announcement content does not have a version for the current language or a null (universal) version, or the launcher version is not an integer. Original data:</string>
+    <string name="announcement_error_data_content">The remote JSON file is valid, but failed to load data. For example, the announcement content does not have a version for the current language or a null (universal) version. Original data:</string>
 
     <string name="archive_author">Author(s)</string>
     <string name="archive_date">Publish Date</string>
@@ -834,8 +834,8 @@
     <string name="settings_launcher_launcher_log_export_success">Logs have been exported to %s</string>
     <string name="settings_launcher_theme">Theme</string>
     <string name="settings_launcher_theme2">Theme2</string>
-    <string name="settings_launcher_background_lt">Light Mode Launcher Background</string>
-    <string name="settings_launcher_background_dk">Dark Mode Launcher Background</string>
+    <string name="settings_launcher_background_lt">Light Background</string>
+    <string name="settings_launcher_background_dk">Dark Background</string>
     <string name="settings_launcher_cursor">Cursor Picture</string>
     <string name="settings_launcher_menu_icon">Menu View Icon</string>
     <string name="settings_launcher_ignore_notch">Ignore Notch</string>
@@ -1012,4 +1012,5 @@
     </string>
     <string name="wiki_release">https://minecraft.wiki/w/Java_Edition_%s</string>
     <string name="wiki_snapshot">https://minecraft.wiki/w/Java_Edition_%s</string>
+    <string name="installed">Installed</string>
 </resources>

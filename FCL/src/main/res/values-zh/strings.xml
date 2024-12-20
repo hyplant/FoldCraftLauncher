@@ -99,9 +99,9 @@
     <string name="announcement_error_network">公告加载失败：网络问题</string>
     <string name="announcement_error_network_content">无法加载公告，可能是链接格式有误或远程服务器异常。当前加载链接：</string>
     <string name="announcement_error_format">公告加载异常：格式错误</string>
-    <string name="announcement_error_format_content">远程文件json格式无效，解析失败。原始数据：</string>
+    <string name="announcement_error_format_content">远程文件json格式无效或必要数据类型错误，例如启动器版本不是整数等。原始数据：</string>
     <string name="announcement_error_data">公告加载异常：数据错误</string>
-    <string name="announcement_error_data_content">远程文件json格式有效，但加载数据失败，例如公告内容既没有当前语言版本也没有null(通用)版本、启动器版本不是整数等。原始数据：</string>
+    <string name="announcement_error_data_content">远程文件json格式有效，但内容存在问题，例如公告内容既没有当前语言版本也没有null(通用)版本等。原始数据：</string>
 
     <string name="archive_author">作者</string>
     <string name="archive_date">发布时间</string>
@@ -969,4 +969,5 @@
 
     <string name="wiki_release">https://zh.minecraft.wiki/w/Java版%s?variant=zh-cn</string>
     <string name="wiki_snapshot">https://zh.minecraft.wiki/w/%s?variant=zh-cn</string>
+    <string name="installed">已安装</string>
 </resources>

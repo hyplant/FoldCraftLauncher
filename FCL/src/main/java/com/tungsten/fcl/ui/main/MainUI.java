@@ -145,7 +145,7 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
                     String remoteData = NetworkUtils.doGet(NetworkUtils.toURL(ANNOUNCEMENT_URL), FCLApplication.deviceInfoUtils.toString());
                     remoteDataRef.set(remoteData);
                 }catch (Exception e) {
-                    e.printStackTrace();
+                    Logging.LOG.log(Level.WARNING, "Unable to load online announcement", e);
                     return new Announcement(
                         -1, true, false, -1, -1, new ArrayList<>(),
                         new ArrayList<>(Collections.singletonList(new Announcement.Content(null, getContext().getString(R.string.announcement_error_network)))),
@@ -157,7 +157,7 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
                     Announcement announcementData = new Gson().fromJson(remoteDataRef.get(), Announcement.class);
                     announcementDataRef.set(announcementData);
                 }catch (Exception e) {
-                    e.printStackTrace();
+                    Logging.LOG.log(Level.WARNING, "Failed to process JSON file", e);
                     return new Announcement(
                         -1, true, false, -1, -1, new ArrayList<>(),
                         new ArrayList<>(Collections.singletonList(new Announcement.Content(null, getContext().getString(R.string.announcement_error_format)))),
@@ -180,6 +180,7 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
                     announcementView.setText(this.announcement.getDisplayContent(getContext()));
                     date.setText(this.announcement.getDate());
                 }catch(Exception e) {
+                    Logging.LOG.log(Level.WARNING, "Failed to process announcement data", e);
                     title.setText(getContext().getString(R.string.announcement_error_data));
                     announcementView.setText(ANNOUNCEMENT_URL);
                     date.setText(getContext().getString(R.string.announcement_error_data_content) + "\n" + remoteDataRef.get());
