@@ -172,7 +172,7 @@ public final class LauncherHelper {
                     fclBridge.setRenderer(repository.getVersionSetting(selectedVersion).getRenderer().toString());
                     fclBridge.setJava(Integer.toString(javaVersionRef.get().getVersion()));
                     checkMod(fclBridge);
-                    checkTouchMod(repository.getRunDirectory(selectedVersion).getAbsolutePath());
+                    checkTouchMod(fclBridge, repository.getRunDirectory(selectedVersion).getAbsolutePath());
                     JVMActivity.setFCLBridge(fclBridge, MenuType.GAME);
                     Bundle bundle = new Bundle();
                     bundle.putString("controller", repository.getVersionSetting(selectedVersion).getController());
@@ -287,7 +287,7 @@ public final class LauncherHelper {
         }
     }
 
-    private void checkTouchMod(String GameDir) {
+    private void checkTouchMod(FCLBridge bridge, String GameDir) {
         try {
             File touchModEnable = new File(GameDir + "/config", "touchModEnable");
             if (touchModEnable.exists()) {
