@@ -1,12 +1,16 @@
 {
   "screenshot": 3,
-  "description": "多人游戏基本布局（服务器直装版基础按键）\n2.3.1 - 新增鼠标按钮，改善按钮能见度",
+  "description": "多人游戏基本布局（服务器直装版基础按键）\n2.4.0 - 全键盘增加更多功能按钮，新增文本编辑十字键，全键盘T不再打开键盘",
   "author": "root-S7",
   "latest": {
-    "versionCode": 5,
-    "versionName": "2.3.1"
+    "versionCode": 6,
+    "versionName": "2.4.0"
   },
   "history": [
+    {
+      "versionCode": 5,
+      "versionName": "2.3.1 - 新增鼠标按钮，改善按钮能见度"
+    },
     {
       "versionCode": 4,
       "versionName": "2.3.0 - 全键盘新增更多按钮"
