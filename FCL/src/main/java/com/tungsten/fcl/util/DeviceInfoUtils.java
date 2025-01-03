@@ -8,6 +8,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.tungsten.fcl.BuildConfig;
+import com.tungsten.fclauncher.FCLauncher;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,7 +39,7 @@ public class DeviceInfoUtils{
 
         map.put("Launcher-Version", BuildConfig.VERSION_NAME + "," + BuildConfig.BUILD_TYPE);
 
-        map.put("SOC-Information", Build.HARDWARE);
+        map.put("SOC-Information", FCLauncher.getSocName());
 
         ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
         ((ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE)).getMemoryInfo(memoryInfo);

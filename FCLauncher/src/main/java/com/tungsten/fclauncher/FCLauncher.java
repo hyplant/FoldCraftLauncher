@@ -20,6 +20,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -41,7 +42,7 @@ public class FCLauncher {
         printTaskTitle(bridge, "Start " + task);
         log(bridge, "Device: " + Build.MODEL);
         log(bridge, "Architecture: " + Architecture.archAsString(Architecture.getDeviceArchitecture()));
-        log(bridge, "CPU:" + Build.HARDWARE);
+        log(bridge, "CPU: " + getSocName());
         log(bridge, "Android SDK: " + Build.VERSION.SDK_INT);
         log(bridge, "Language: " + Locale.getDefault());
     }
@@ -242,6 +243,19 @@ public class FCLauncher {
             envMap.put("LIBGL_ES", "3");
             if (!FCLBridge.BACKEND_IS_BOAT) {
                 envMap.put("POJAV_RENDERER", "opengles3_ltw");
+                envMap.put("POJAVEXEC_EGL", renderer.getEglLibName());
+            }
+        } else if (renderer == FCLConfig.Renderer.RENDERER_GL4ESPLUS) {
+            envMap.put("LIBGL_ES", "3");
+            envMap.put("LIBGL_MIPMAP", "3");
+            envMap.put("LIBGL_NORMALIZE", "1");
+            envMap.put("LIBGL_NOINTOVLHACK", "1");
+            envMap.put("LIBGL_SHADERCONVERTER", "1");
+            envMap.put("LIBGL_GL", "21");
+            envMap.put("LIBGL_USEVBO", "1");
+            envMap.put("LIBGL_BACKEND_ANGLE", "1");
+            if (!FCLBridge.BACKEND_IS_BOAT) {
+                envMap.put("POJAV_RENDERER", "opengles3");
                 envMap.put("POJAVEXEC_EGL", renderer.getEglLibName());
             }
         } else {
@@ -464,6 +478,18 @@ public class FCLauncher {
         bridge.setThread(apiInstallerThread);
 
         return bridge;
+    }
+
+    public static String getSocName() {
+        try {
+            Process process = Runtime.getRuntime().exec("getprop ro.soc.model");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String name = reader.readLine();
+            reader.close();
+            return name;
+        } catch (Exception e) {
+            return Build.HARDWARE;
+        }
     }
 
 }
