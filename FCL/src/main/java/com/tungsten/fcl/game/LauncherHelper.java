@@ -289,9 +289,9 @@ public final class LauncherHelper {
 
     private void checkTouchMod(FCLBridge bridge, String GameDir) {
         try {
-            File touchModEnable = new File(GameDir + "/config", "touchModEnable");
-            if (touchModEnable.exists()) {
-                LOG.log(Level.INFO, "Enable touch controller.");
+            File touchModEnableFile = new File(GameDir + "/config", "enableTouchMod");
+            if (touchModEnableFile.exists()) {
+                LOG.log(Level.INFO, "Enable touch controller mod!");
                 bridge.setHasTouchController(true);
             }
         } catch (Exception ignore) {

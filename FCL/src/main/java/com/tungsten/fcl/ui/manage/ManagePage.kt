@@ -100,32 +100,23 @@ class ManagePage(context: Context, id: Int, parent: FCLUILayout, resId: Int) :
                 add(ManageItem(R.drawable.ic_baseline_edit_24, R.string.version_manage_rename) {
                     rename()
                 })
-                add(
-                    ManageItem(
-                        R.drawable.ic_baseline_content_copy_24,
-                        R.string.version_manage_duplicate
-                    ) {
-                        duplicate()
-                    })
+                add(ManageItem(R.drawable.ic_baseline_content_copy_24, R.string.version_manage_duplicate) {
+                    duplicate()
+                })
                 add(ManageItem(R.drawable.ic_baseline_output_24, R.string.modpack_export) {
                     export()
                 })
-                add(
-                    ManageItem(
-                        R.drawable.ic_baseline_list_24,
-                        R.string.version_manage_redownload_assets_index
-                    ) {
-                        redownloadAssetIndex()
-                    })
-                add(
-                    ManageItem(
-                        R.drawable.ic_baseline_delete_24,
-                        R.string.version_manage_remove_libraries
-                    ) {
-                        clearLibraries()
-                    })
+                add(ManageItem(R.drawable.ic_baseline_list_24, R.string.version_manage_redownload_assets_index) {
+                    redownloadAssetIndex()
+                })
+                add(ManageItem(R.drawable.ic_baseline_delete_24, R.string.version_manage_remove_libraries) {
+                    clearLibraries()
+                })
                 add(ManageItem(R.drawable.ic_baseline_delete_24, R.string.version_manage_clean) {
                     clearJunkFiles()
+                })
+                add(ManageItem(R.drawable.ic_baseline_input_24, R.string.version_touch_mod) {
+                    switchTouchMod()
                 })
             })
         }
@@ -209,6 +200,10 @@ class ManagePage(context: Context, id: Int, parent: FCLUILayout, resId: Int) :
             .thenApply {
                 instance.manageUI.preferredVersionName = it
             }
+    }
+
+    private fun switchTouchMod() {
+        Versions.switchTouchMod(context, profile, version)
     }
 
     private fun duplicate() {

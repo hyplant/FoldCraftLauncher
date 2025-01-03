@@ -883,6 +883,10 @@
     <string name="version_manage_rename_fail">重命名失败</string>
     <string name="version_new_profile">新建目录</string>
     <string name="version_update">更新整合包</string>
+    <string name="version_touch_mod">触控模组</string>
+    <string name="version_touch_mod_enabled">触控模组已启用</string>
+    <string name="version_touch_mod_disabled">触控模组已禁用</string>
+    <string name="version_touch_mod_failed">切换触控模组失败</string>
 
     <string name="view_info_visibility">可视性</string>
     <string name="view_info_visibility_always">总是可见</string>

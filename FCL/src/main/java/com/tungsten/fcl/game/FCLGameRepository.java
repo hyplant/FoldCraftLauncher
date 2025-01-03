@@ -146,6 +146,17 @@ public class FCLGameRepository extends DefaultGameRepository {
         clean(getRunDirectory(id));
     }
 
+    public boolean switchTouchMod(String id) throws IOException {
+        File touchModEnableFile = new File(getRunDirectory(id), "/config/enableTouchMod");
+        if (touchModEnableFile.exists()) {
+            FileUtils.forceDelete(touchModEnableFile);
+            return false;
+        } else {
+            FileUtils.writeText(touchModEnableFile, "");
+            return true;
+        }
+    }
+
     public void duplicateVersion(String srcId, String dstId, boolean copySaves) throws IOException {
         Path srcDir = getVersionRoot(srcId).toPath();
         Path dstDir = getVersionRoot(dstId).toPath();
