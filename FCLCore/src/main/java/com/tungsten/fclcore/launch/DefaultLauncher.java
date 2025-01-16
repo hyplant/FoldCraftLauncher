@@ -145,6 +145,7 @@ public class DefaultLauncher extends Launcher {
         res.addDefault("-Dglfwstub.initEgl=", "false");
         res.addDefault("-Duser.home=", options.getGameDir().getAbsolutePath());
         res.addDefault("-Dorg.lwjgl.vulkan.libname=", "libvulkan.so");
+        res.addDefault("-Djdk.lang.Process.launchMechanism=", "FORK");
         File libJna = new File(FCLPath.RUNTIME_DIR, "jna");
         if (jnaVersion != null && !jnaVersion.isEmpty()) {
             libJna = new File(libJna, jnaVersion);

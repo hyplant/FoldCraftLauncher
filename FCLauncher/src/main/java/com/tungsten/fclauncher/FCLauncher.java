@@ -177,10 +177,6 @@ public class FCLauncher {
         envMap.put("PATH", config.getJavaPath() + "/bin:" + Os.getenv("PATH"));
         envMap.put("LD_LIBRARY_PATH", getLibraryPath(config.getContext(), config.getRenderer() == FCLConfig.Renderer.RENDERER_CUSTOM ? RendererPlugin.getSelected().getPath() : null));
         envMap.put("FORCE_VSYNC", "false");
-        if (!config.getJavaPath().contains("jre8")) {
-            String libName = config.getJavaPath().contains("jre17") ? "/libjsph17.so" : "/libjsph21.so";
-            envMap.put("JSP", config.getContext().getApplicationInfo().nativeLibraryDir + libName);
-        }
         FFmpegPlugin.discover(config.getContext());
         if (FFmpegPlugin.isAvailable) {
             envMap.put("PATH", FFmpegPlugin.libraryPath + ":" + envMap.get("PATH"));
@@ -213,6 +209,9 @@ public class FCLauncher {
             }
             envList.forEach(env -> {
                 String[] split = env.split("=");
+                if (split[0].equals("DLOPEN")){
+                    return;
+                }
                 if (split[0].equals("LIB_MESA_NAME")) {
                     envMap.put(split[0], RendererPlugin.getSelected().getPath() + "/" + split[1]);
                 } else {
@@ -221,10 +220,17 @@ public class FCLauncher {
             });
             return;
         }
+        boolean useAngle = false;
         if (FCLBridge.BACKEND_IS_BOAT) {
             envMap.put("LIBGL_STRING", renderer.toString());
             envMap.put("LIBGL_NAME", renderer.getGlLibName());
-            envMap.put("LIBEGL_NAME", renderer.getEglLibName());
+            if (useAngle && renderer == FCLConfig.Renderer.RENDERER_GL4ESPLUS) {
+                envMap.put("LIBEGL_NAME", "libEGL_angle.so");
+                envMap.put("LIBGL_BACKEND_ANGLE", "1");
+            } else {
+                envMap.put("LIBEGL_NAME", renderer.getEglLibName());
+                envMap.put("LIBGL_BACKEND_ANGLE", "0");
+            }
         }
         if (renderer == FCLConfig.Renderer.RENDERER_GL4ES || renderer == FCLConfig.Renderer.RENDERER_VGPU) {
             envMap.put("LIBGL_ES", "2");
@@ -239,12 +245,6 @@ public class FCLauncher {
                     envMap.put("POJAV_RENDERER", "opengles2_vgpu");
                 }
             }
-        } else if (renderer == FCLConfig.Renderer.RENDERER_LTW) {
-            envMap.put("LIBGL_ES", "3");
-            if (!FCLBridge.BACKEND_IS_BOAT) {
-                envMap.put("POJAV_RENDERER", "opengles3_ltw");
-                envMap.put("POJAVEXEC_EGL", renderer.getEglLibName());
-            }
         } else if (renderer == FCLConfig.Renderer.RENDERER_GL4ESPLUS) {
             envMap.put("LIBGL_ES", "3");
             envMap.put("LIBGL_MIPMAP", "3");
@@ -253,10 +253,9 @@ public class FCLauncher {
             envMap.put("LIBGL_SHADERCONVERTER", "1");
             envMap.put("LIBGL_GL", "21");
             envMap.put("LIBGL_USEVBO", "1");
-            envMap.put("LIBGL_BACKEND_ANGLE", "1");
             if (!FCLBridge.BACKEND_IS_BOAT) {
                 envMap.put("POJAV_RENDERER", "opengles3");
-                envMap.put("POJAVEXEC_EGL", renderer.getEglLibName());
+                envMap.put("POJAVEXEC_EGL", useAngle ? "libEGL_angle.so" : renderer.getEglLibName());
             }
         } else {
             envMap.put("MESA_GLSL_CACHE_DIR", config.getContext().getCacheDir().getAbsolutePath());
@@ -347,6 +346,21 @@ public class FCLauncher {
 
         bridge.dlopen(nativeDir + "/libopenal.so");
         if (config.getRenderer() == FCLConfig.Renderer.RENDERER_CUSTOM) {
+            List<String> envList;
+            if (FCLBridge.BACKEND_IS_BOAT) {
+                envList = RendererPlugin.getSelected().getBoatEnv();
+            } else {
+                envList = RendererPlugin.getSelected().getPojavEnv();
+            }
+            envList.forEach(env -> {
+                String[] split = env.split("=");
+                if (split[0].equals("DLOPEN")) {
+                    String[] libs = split[1].split(",");
+                    for (String lib : libs) {
+                        bridge.dlopen(RendererPlugin.getSelected().getPath() + "/" + lib);
+                    }
+                }
+            });
             bridge.dlopen(RendererPlugin.getSelected().getPath() + "/" + RendererPlugin.getSelected().getGlName());
 //            bridge.dlopen(RendererPlugin.getSelected().getPath() + "/" + RendererPlugin.getSelected().getEglName());
         } else {
@@ -480,16 +494,16 @@ public class FCLauncher {
         return bridge;
     }
 
-    public static String getSocName() {
+    private static String getSocName() {
+        String name = null;
         try {
             Process process = Runtime.getRuntime().exec("getprop ro.soc.model");
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            String name = reader.readLine();
+            name = reader.readLine();
             reader.close();
-            return name;
-        } catch (Exception e) {
-            return Build.HARDWARE;
+        } catch (Exception ignore) {
         }
+        return  (name == null || name.trim().isEmpty()) ? Build.HARDWARE : name;
     }
 
 }

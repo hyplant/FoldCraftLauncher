@@ -36,6 +36,7 @@ import com.tungsten.fcllibrary.component.view.FCLTextView;
 import com.tungsten.fcllibrary.component.view.FCLUILayout;
 import com.tungsten.fcllibrary.skin.SkinCanvas;
 import com.tungsten.fcllibrary.skin.SkinRenderer;
+import com.tungsten.fcllibrary.util.LocaleUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -45,8 +46,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.logging.Level;
 
 public class MainUI extends FCLCommonUI implements View.OnClickListener {
-  
-    public static final String ANNOUNCEMENT_URL = FCLApplication.appConfig.getProperty("announcement-url","https://icraft.ren:90/titles/FCL/Releases_Version/1.1.8.4/announcement.txt");
+
+    public static final String ANNOUNCEMENT_URL = FCLApplication.appConfig.getProperty("announcement-url","https://raw.githubusercontent.com/hyplant-team/FoldCraftLauncher/refs/heads/doc/announcement/latest.json");
 
     private LinearLayoutCompat announcementContainer;
     private LinearLayoutCompat announcementLayout;

@@ -3,13 +3,14 @@ package com.tungsten.fcl.ui.manage;
 import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
-import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
-import android.widget.PopupWindow;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.mio.util.RendererUtil;
+import com.tungsten.fcl.FCLApplication;
 import com.tungsten.fcl.R;
 import com.tungsten.fcl.control.SelectControllerDialog;
 import com.tungsten.fcl.game.FCLGameRepository;
@@ -95,7 +96,9 @@ public class VersionSettingPage extends FCLCommonPage implements ManageUI.Versio
     private FCLImageButton deleteIconButton;
     private FCLImageButton controllerButton;
     private FCLImageButton rendererButton;
+    private FCLImageButton rendererInstallButton;
     private FCLImageButton driverButton;
+    private FCLImageButton driverInstallButton;
 
     private FCLTextView rendererText;
     private FCLTextView driverText;
@@ -172,13 +175,17 @@ public class VersionSettingPage extends FCLCommonPage implements ManageUI.Versio
         deleteIconButton = findViewById(R.id.delete_icon);
         controllerButton = findViewById(R.id.edit_controller);
         rendererButton = findViewById(R.id.edit_renderer);
+        rendererInstallButton = findViewById(R.id.install_renderer);
         driverButton = findViewById(R.id.edit_driver);
+        driverInstallButton = findViewById(R.id.install_driver);
 
         editIconButton.setOnClickListener(this);
         deleteIconButton.setOnClickListener(this);
         controllerButton.setOnClickListener(this);
         rendererButton.setOnClickListener(this);
+        rendererInstallButton.setOnClickListener(this);
         driverButton.setOnClickListener(this);
+        driverInstallButton.setOnClickListener(this);
 
         rendererText = findViewById(R.id.renderer);
         driverText = findViewById(R.id.driver);
@@ -452,6 +459,30 @@ public class VersionSettingPage extends FCLCommonPage implements ManageUI.Versio
             RendererUtil.openDriverMenu(getContext(), view, name -> {
                 driverText.setText(name);
             });
+        }
+        if (view == rendererInstallButton) {
+            String url = FCLApplication.appConfig.getProperty("renderer-plugin-url","https://github.com/hyplant-team/FCLRendererPlugin/releases/tag/Renderer");
+            FCLAlertDialog.Builder builder = new FCLAlertDialog.Builder(getContext());
+            builder.setAlertLevel(FCLAlertDialog.AlertLevel.INFO);
+            builder.setCancelable(true);
+            builder.setMessage(getContext().getString(R.string.message_install_plugin));
+            builder.setPositiveButton(getContext().getString(com.tungsten.fcllibrary.R.string.dialog_negative), null);
+            builder.setNegativeButton(getContext().getString(com.tungsten.fcllibrary.R.string.dialog_positive), () -> {
+                AndroidUtils.openLink(getContext(), url);
+            });
+            builder.create().show();
+        }
+        if (view == driverInstallButton) {
+            String url = FCLApplication.appConfig.getProperty("driver-plugin-url","https://github.com/hyplant-team/FCLDriverPlugin/releases/tag/Renderer");
+            FCLAlertDialog.Builder builder = new FCLAlertDialog.Builder(getContext());
+            builder.setAlertLevel(FCLAlertDialog.AlertLevel.INFO);
+            builder.setCancelable(true);
+            builder.setMessage(getContext().getString(R.string.message_install_plugin));
+            builder.setPositiveButton(getContext().getString(com.tungsten.fcllibrary.R.string.dialog_negative), null);
+            builder.setNegativeButton(getContext().getString(com.tungsten.fcllibrary.R.string.dialog_positive), () -> {
+                AndroidUtils.openLink(getContext(), url);
+            });
+            builder.create().show();
         }
     }
 }
