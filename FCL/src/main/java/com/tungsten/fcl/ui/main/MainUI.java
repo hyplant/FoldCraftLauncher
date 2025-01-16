@@ -143,7 +143,7 @@ public class MainUI extends FCLCommonUI implements View.OnClickListener {
             checkSkinDisplay();
             CompletableFuture<Announcement> future = CompletableFuture.supplyAsync(() -> {
                 try {
-                    String remoteData = NetworkUtils.doGet(NetworkUtils.toURL(ANNOUNCEMENT_URL), FCLApplication.deviceInfoUtils.toString());
+                    String remoteData = NetworkUtils.doGet(NetworkUtils.toURL(ANNOUNCEMENT_URL));
                     remoteDataRef.set(remoteData);
                 }catch (Exception e) {
                     Logging.LOG.log(Level.WARNING, "Unable to load online announcement", e);

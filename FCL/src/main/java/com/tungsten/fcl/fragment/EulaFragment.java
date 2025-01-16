@@ -58,7 +58,7 @@ public class EulaFragment extends FCLFragment implements View.OnClickListener {
         new Thread(() -> {
             String str = getString(R.string.splash_eula_error);
             try {
-                str = NetworkUtils.doGet(NetworkUtils.toURL(EULA_URL),FCLApplication.deviceInfoUtils.toString());
+                str = NetworkUtils.doGet(NetworkUtils.toURL(EULA_URL));
                 load = true;
             } catch (IOException | IllegalArgumentException e) {
                 e.printStackTrace();
