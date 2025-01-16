@@ -7,8 +7,6 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 
-import androidx.appcompat.app.AlertDialog;
-
 import com.mio.util.RendererUtil;
 import com.tungsten.fcl.FCLApplication;
 import com.tungsten.fcl.R;

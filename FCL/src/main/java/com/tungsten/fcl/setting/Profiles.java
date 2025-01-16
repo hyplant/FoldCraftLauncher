@@ -40,8 +40,6 @@ import java.util.function.Consumer;
 
 public final class Profiles {
 
-    private static SharedPreferences.Editor edit = FCLApplication.getSharedPreferences().edit();
-
     private Profiles() {
     }
 
